@@ -1,5 +1,5 @@
-git clone git://github.com/benhoskings/dot-files.git ~/.dot-files &&
 cd &&
+git clone git://github.com/benhoskings/dot-files.git .dot-files &&
 ls -1d .dot-files/.* | while read f; do
   [ "$f" == '.dot-files/.' ] ||
   [ "$f" == '.dot-files/..' ] ||
