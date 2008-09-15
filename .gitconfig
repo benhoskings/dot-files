@@ -1,0 +1,9 @@
+[user]
+        name = Ben Hoskings
+        email = ben@hoskings.net
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /Users/ben/.gitignore
