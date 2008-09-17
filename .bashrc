@@ -23,6 +23,7 @@ umask 022
 export EDITOR='mate -w'
 export ARCHFLAGS='-arch i386'
 export MAKEFLAGS='-j4'
+export RUBYLIB="lib:test:$RUBYLIB"
 export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
 
 [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
