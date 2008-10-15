@@ -7,3 +7,5 @@
 	branch = auto
 [core]
 	excludesfile = /Users/ben/.gitignore
+[github]
+	user = benhoskings
