@@ -32,10 +32,16 @@ export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
-    alias ls='ls -G'
-    alias ll='ls -lhG'
-    alias la='ls -aG'
-    alias lal='ls -lhaG'
+  if [ `uname -s` == 'Linux' ]; then
+    color_option='--color=auto'
+  else
+    color_option='-G'
+  fi
+  
+  alias ls="ls $color_option"
+  alias ll="ls -lh $color_option"
+  alias la="ls -a $color_option"
+  alias lal="ls -lha $color_option"
 fi
 
 alias top='top -o cpu'
