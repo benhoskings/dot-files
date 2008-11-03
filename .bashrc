@@ -8,26 +8,28 @@ else
   . /opt/local/etc/bash_completion
 fi
 
-export COLOR_NONE='\e[0m'
-export COLOR_WHITE='\e[1;37m'
-export COLOR_BLACK='\e[0;30m'
-export COLOR_BLUE='\e[0;34m'
-export COLOR_LIGHT_BLUE='\e[1;34m'
-export COLOR_GREEN='\e[0;32m'
-export COLOR_LIGHT_GREEN='\e[1;32m'
-export COLOR_CYAN='\e[0;36m'
-export COLOR_LIGHT_CYAN='\e[1;36m'
-export COLOR_RED="\e[0;31m"
-export COLOR_LIGHT_RED='\e[1;31m'
-export COLOR_PURPLE='\e[0;35m'
-export COLOR_LIGHT_PURPLE='\e[1;35m'
-export COLOR_BROWN='\e[0;33m'
-export COLOR_YELLOW='\e[1;33m'
-export COLOR_GRAY='\e[0;30m'
-export COLOR_LIGHT_GRAY='\e[0;37m'
+export color_none='\e[0m'
+export color_white='\e[1;37m'
+export color_black='\e[0;30m'
+export color_blue='\e[0;34m'
+export color_light_blue='\e[1;34m'
+export color_green='\e[0;32m'
+export color_light_green='\e[1;32m'
+export color_cyan='\e[0;36m'
+export color_light_cyan='\e[1;36m'
+export color_red="\e[0;31m"
+export color_light_red='\e[1;31m'
+export color_purple='\e[0;35m'
+export color_light_purple='\e[1;35m'
+export color_brown='\e[0;33m'
+export color_yellow='\e[1;33m'
+export color_gray='\e[0;30m'
+export color_light_gray='\e[0;37m'
 
-GIT_PIECE='$(__git_ps1 " \[${COLOR_RED}\]%s\[${COLOR_NONE}\]")'
-export PS1="\u\[${COLOR_GREEN}\]@\[${COLOR_NONE}\]\h \[${COLOR_GRAY}\]\w\[${GIT_PIECE}\] \[${COLOR_GREEN}\]\$\[${COLOR_NONE}\] "
+. .ps1_color
+
+git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
+export PS1="\u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\] \[${color_ps1}\]\$\[${color_none}\] "
 umask 022
 
 export EDITOR='mate -w'
