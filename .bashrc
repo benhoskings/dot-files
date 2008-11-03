@@ -1,3 +1,13 @@
+system_name=`uname -s`
+
+if [ $system_name == 'Linux' ]; then
+  ls -1 --color=none /etc/bash_completion.d | while read f; do
+    . "$f"
+  done
+else
+  . /opt/local/etc/bash_completion
+fi
+
 export COLOR_NONE='\e[0m'
 export COLOR_WHITE='\e[1;37m'
 export COLOR_BLACK='\e[0;30m'
@@ -26,18 +36,16 @@ export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
 export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
 
-[ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
-
 # bind "set show-all-if-ambiguous On" # complete first result on ambiguous tab
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
-  if [ `uname -s` == 'Linux' ]; then
+  if [ $system_name == 'Linux' ]; then
     color_option='--color=auto'
   else
     color_option='-G'
   fi
-  
+
   alias ls="ls $color_option"
   alias ll="ls -lh $color_option"
   alias la="ls -a $color_option"
