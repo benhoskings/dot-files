@@ -1,9 +1,7 @@
 system_name=`uname -s`
 
 if [ $system_name == 'Linux' ]; then
-  ls -1 --color=none /etc/bash_completion.d | while read f; do
-    . "$f"
-  done
+  . /etc/bash_completion
 else
   . /opt/local/etc/bash_completion
 fi
