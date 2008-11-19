@@ -24,7 +24,7 @@ export color_yellow='\e[1;33m'
 export color_gray='\e[0;30m'
 export color_light_gray='\e[0;37m'
 
-. .ps1_color
+. ~/.ps1_color
 
 git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
 export PS1="\u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\] \[${color_ps1}\]\$\[${color_none}\] "
