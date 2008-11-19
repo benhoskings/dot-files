@@ -35,6 +35,7 @@ export ARCHFLAGS='-arch i386'
 export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
 export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
+export HISTSIZE=100000
 
 bind "set show-all-if-ambiguous On"
 
