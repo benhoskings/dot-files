@@ -36,7 +36,7 @@ export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
 export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
 
-# bind "set show-all-if-ambiguous On" # complete first result on ambiguous tab
+bind "set show-all-if-ambiguous On"
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
