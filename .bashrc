@@ -51,6 +51,9 @@ if [ "$TERM" != "dumb" ]; then
   alias ll="ls -lh $color_option"
   alias la="ls -a $color_option"
   alias lal="ls -lha $color_option"
+else
+  # TODO use path_helper to do this properly
+  PATH=/opt/local/bin:$PATH
 fi
 
 alias top='top -o cpu'
