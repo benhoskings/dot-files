@@ -25,9 +25,9 @@ export color_gray='\e[0;30m'
 export color_light_gray='\e[0;37m'
 
 . ~/.ps1_color
-
 git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
-export PS1="\u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\] \[${color_ps1}\]\$\[${color_none}\] "
+date_piece='$(date "+%Y %b %d %H:%M:%S")'
+export PS1="\[${color_gray}\]${date_piece}\[${color_none}\] \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
 umask 022
 
 export EDITOR='mate -w'
