@@ -4,5 +4,5 @@ ls -1d --color=none .dot-files/.* | while read f; do
   [ "$f" == '.dot-files/.' ] ||
   [ "$f" == '.dot-files/..' ] ||
   [ "$f" == '.dot-files/.git' ] ||
-  ln -vs "$f" .
+  ln -vsf "$f" .
 done
