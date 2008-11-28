@@ -1,0 +1,10 @@
+alias gits='git status'
+alias gita='git add'
+alias gitau='git add -u'
+alias gitd='git diff'
+alias gitdc='git diff --cached'
+alias gitc='git commit -v'
+alias gitsup='git pull && git submodule update'
+alias gitp='git pull && git push'
+
+alias git-set-remote='echo git config branch.master.remote "$1" && echo git config branch.master.merge "refs/heads/$2"'
