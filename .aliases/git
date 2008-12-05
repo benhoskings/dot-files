@@ -8,12 +8,12 @@ alias gitb='git branch -v'
 alias gitl='git log -p'
 alias gitlg='git log -p -g'
 alias gitlor_raw='git log ORIG_HEAD..HEAD --pretty=format:"%Cblue%h%Creset %Cgreen%an%Creset %s"'
-alias gitlpend_raw='git log $(git config branch.master.remote)/master..master --pretty=format:"%Cblue%h%Creset %Cgreen%an%Creset %s"'
+alias gitlpend_raw='git log $(git config branch.master.remote)/master..HEAD --pretty=format:"%Cblue%h%Creset %Cgreen%an%Creset %s"'
 alias gitlor='echo -e "commits from ${color_red}ORIG_HEAD${color_none} to ${color_red}HEAD${color_none}" &&
   gitlor_raw | cat && echo'
-alias gitlpend='echo -e "commits from ${color_red}$(git config branch.master.remote)/master${color_none} to ${color_red}master${color_none}" &&
+alias gitlpend='echo -e "commits from ${color_red}$(git config branch.master.remote)/master${color_none} to ${color_red}HEAD${color_none}" &&
   gitlpend_raw | cat && echo'
-alias gitlorp='gitlorig -p'
+alias gitlorp='gitlor_raw -p'
 alias gitup='git pull && gitlor && git submodule update'
 alias gitp='gitup && gitlpend && git push'
 
