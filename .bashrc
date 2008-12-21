@@ -18,7 +18,7 @@ export EDITOR='mate -w'
 export ARCHFLAGS='-arch i386'
 export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
-export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
+export GEMS="`gem env gemdir`/gems"
 export HISTSIZE=100000
 
 bind "set show-all-if-ambiguous On"
