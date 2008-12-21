@@ -1,3 +1,5 @@
+concise_logging_format='--pretty=format:%Cblue%h%Creset %Cgreen%an%Creset %s'
+
 alias gits='git status'
 alias gita='git add'
 alias gitau='git add -u'
@@ -6,9 +8,10 @@ alias gitdc='git diff --cached'
 alias gitc='git commit -v'
 alias gitb='git branch -v'
 alias gitl='git log -p'
+alias gitlc='git log "$concise_logging_format"'
 alias gitlg='git log -p -g'
-alias gitlor_raw='git log ORIG_HEAD..HEAD --pretty=format:"%Cblue%h%Creset %Cgreen%an%Creset %s"'
-alias gitlpend_raw='git log $(git config branch.master.remote)/master..HEAD --pretty=format:"%Cblue%h%Creset %Cgreen%an%Creset %s"'
+alias gitlor_raw='git log ORIG_HEAD..HEAD "$concise_logging_format"'
+alias gitlpend_raw='git log $(git config branch.master.remote)/master..HEAD "$concise_logging_format"'
 alias gitlor='echo -e "commits from ${color_red}ORIG_HEAD${color_none} to ${color_red}HEAD${color_none}" &&
   gitlor_raw | cat && echo'
 alias gitlpend='echo -e "commits from ${color_red}$(git config branch.master.remote)/master${color_none} to ${color_red}HEAD${color_none}" &&
