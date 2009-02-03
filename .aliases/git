@@ -1,4 +1,4 @@
-concise_logging_format='--pretty=format:%Cblue%h%Creset %Cgreen%an%Creset %s'
+concise_logging_format='--pretty=format:%Cblue%h%Creset %ar %Cgreen%an%Creset %s'
 
 alias gits='git status'
 alias gita='git add'
