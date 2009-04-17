@@ -58,3 +58,4 @@ alias less='less -R'
 
 . ~/.aliases/git
 . ~/.aliases/svn
+. ~/.aliases/commands
