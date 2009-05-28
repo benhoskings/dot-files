@@ -17,8 +17,11 @@ SET fish_color_history_current:cyan
 SET fish_color_error:red\x1e--bold
 SET __fish_init_1_23_0:\x1d
 SET fish_color_escape:cyan
+SET GEMS:/opt/local/lib/ruby/gems/1.8/gems
 SET fish_color_redirection:normal
 SET fish_pager_color_description:blue
+SET color_ruby_words:--color-words=(:|@|@@|$)?[a-zA-Z_][a-zA-Z0-9_]*[?!]?
+SET_EXPORT EDITOR:mate -w
 SET pr_normal:\x1b[30m\x1b[m
 SET fish_color_operator:cyan
 SET git_concise_log_format:--pretty=format:%Cblue%h%Creset %cr %Cgreen%an%Creset %s
