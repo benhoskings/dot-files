@@ -13,7 +13,7 @@ function build_nginx --description Build\ nginx/Passenger,\ +SSL\ +upload_module
 	tar -zxvf nginx-$nginx_version.tar.gz
 	tar -zxvf nginx_upload_module-$upload_module_version.tar.gz
 
-	echo -ne "\n2\n/root/src/nginx-$nginx_version\n\n--with-http_ssl_module --add-module='/root/src/nginx_upload_module-$upload_module_version'\n\n\n" | 	passenger-install-nginx-module
+	echo -ne "\n2\n$PWD/nginx-$nginx_version\n\n--with-http_ssl_module --add-module='$PWD/nginx_upload_module-$upload_module_version'\n\n\n" | 	sudo passenger-install-nginx-module
 
 
 end
