@@ -1,5 +1,5 @@
 function release_hammock
-	set VERSION (cat lib/hammock.rb | grep VERSION | sed -E 's/^.*\'([0-9.]+)\'.*$/\1/')
+	set VERSION (cat lib/hammock.rb | grep "VERSION =" | sed -E 's/^.*\'([0-9.]+)\'.*$/\1/')
 	and rake gemspec
 	and gitd
 	and confirm
