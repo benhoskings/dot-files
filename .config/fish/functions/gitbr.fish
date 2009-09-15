@@ -1,3 +1,5 @@
 function gitbr
-	git branch $argv; 
+	git branch -v $argv
+
+
 end
