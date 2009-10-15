@@ -10,8 +10,4 @@ if test (uname -s) = "Darwin"
   function vi
     mate $argv
   end
-
-  function sed
-    gsed $argv
-  end
 end
