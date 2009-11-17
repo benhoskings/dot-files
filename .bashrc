@@ -61,6 +61,9 @@ alias df='df -k'
 alias du='du -k -d1'
 alias less='less -R'
 
+bind "\C-p":history-search-backward
+bind "\C-n":history-search-forward
+
 alias gits='git status'
 alias gita='git add'
 alias gitau='git add -u'
