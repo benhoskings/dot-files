@@ -1,73 +1,91 @@
-system_name=`uname -s`
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
-if [ $system_name == 'Linux' ]; then
-  . /etc/bash_completion
-else
-  . /opt/local/etc/bash_completion
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-export color_none='\e[0m'
-export color_white='\e[1;37m'
-export color_black='\e[0;30m'
-export color_blue='\e[0;34m'
-export color_light_blue='\e[1;34m'
-export color_green='\e[0;32m'
-export color_light_green='\e[1;32m'
-export color_cyan='\e[0;36m'
-export color_light_cyan='\e[1;36m'
-export color_red="\e[0;31m"
-export color_light_red='\e[1;31m'
-export color_purple='\e[0;35m'
-export color_light_purple='\e[1;35m'
-export color_brown='\e[0;33m'
-export color_yellow='\e[1;33m'
-export color_gray='\e[0;30m'
-export color_light_gray='\e[0;37m'
+# set a fancy prompt (non-color, unless we know we "want" color)
+# case "$TERM" in
+#xterm-color)
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#    ;;
+#*)
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#    ;;
+#esac
 
-. ~/.ps1_color
-git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
-date_piece='$(date "+%Y %b %d %H:%M:%S")'
-export PS1="\[${color_gray}\]${date_piece}\[${color_none}\] \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
-umask 022
+# Comment in the above and uncomment this below for a color prompt
+case "$USER" in 
+root)
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;101m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  ;;
+*)
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  ;;
+esac
 
-export EDITOR='mate -w'
-export ARCHFLAGS='-arch i386'
-export MAKEFLAGS='-j4'
-export RUBYLIB="lib:test:$RUBYLIB"
-export GEMS='/opt/local/lib/ruby/gems/1.8/gems'
-export HISTSIZE=100000
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
 
-bind "set show-all-if-ambiguous On"
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-# coloured ls
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
-  if [ $system_name == 'Linux' ]; then
-    color_option='--color=auto'
-  else
-    color_option='-G'
-  fi
-
-  alias ls="ls $color_option"
-  alias ll="ls -lh $color_option"
-  alias la="ls -a $color_option"
-  alias lal="ls -lha $color_option"
-else
-  # TODO use path_helper to do this properly
-  PATH=/opt/local/bin:$PATH
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    #alias dir='ls --color=auto --format=vertical'
+    #alias vdir='ls --color=auto --format=long'
 fi
 
-alias top='top -o cpu'
-alias df='df -k'
-alias du='du -k -d1'
-alias less='less -R'
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
 
-bind "\C-p":history-search-backward
-bind "\C-n":history-search-forward
+JAVA_HOME=/opt/jdk16
+EDITOR=vim
+FIGNORE="CVS:.swp:.svn"
+PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin:~/src/ec2/ec2-api-tools/bin
+AWT_TOOLKIT=MToolkit
 
-alias gits='git status'
-alias gita='git add'
-alias gitau='git add -u'
-alias gitd='git diff'
-alias gitdc='git diff --cached'
-alias gitc='git commit -v'
-alias gitsup='git pull && git submodule update'
+export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
+
+
+# Amazon EC2 stuff
+if [ -f ~/.ec2rc ]; then
+  . ~/.ec2rc
+fi
+
