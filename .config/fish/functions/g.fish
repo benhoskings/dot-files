@@ -1,3 +1,3 @@
-function gits
+function g
 	git status $argv; 
 end

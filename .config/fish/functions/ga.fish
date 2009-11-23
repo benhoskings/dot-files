@@ -1,3 +1,3 @@
-function gita
+function ga
 	git add $argv; 
 end

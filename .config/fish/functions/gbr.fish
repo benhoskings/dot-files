@@ -1,4 +1,4 @@
-function gitbr
+function gbr
 	git branch -v $argv
 
 

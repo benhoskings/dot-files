@@ -1,4 +1,4 @@
-function gitca
+function gca
 	gitc -a $argv
 
 

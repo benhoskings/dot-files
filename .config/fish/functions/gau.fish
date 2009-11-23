@@ -1,3 +1,3 @@
-function gitau
+function gau
 	git add -u $argv; 
 end

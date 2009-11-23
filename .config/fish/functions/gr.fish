@@ -1,3 +1,3 @@
-function gitr
+function gr
 	git reset $argv; 
 end

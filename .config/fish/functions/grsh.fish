@@ -1,3 +1,3 @@
-function gitrsh
+function grsh
 	git reset --soft HEAD~ $argv; 
 end

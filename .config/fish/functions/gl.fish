@@ -1,5 +1,3 @@
 function gl
-	git log $argv
-
-
+	git log -p $argv; 
 end
