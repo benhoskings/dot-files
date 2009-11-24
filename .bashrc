@@ -3,7 +3,7 @@ system_name=`uname -s`
 . ~/.aliases/colours
 . ~/.ps1_color
 
-git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
+#git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
 date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
 export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
 umask 022
