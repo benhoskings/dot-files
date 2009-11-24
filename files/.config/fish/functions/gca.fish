@@ -1,5 +1,5 @@
 function gca
-	gitc -a $argv
+	gc -a $argv
 
 
 end
