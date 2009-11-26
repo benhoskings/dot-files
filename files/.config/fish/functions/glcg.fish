@@ -1,3 +1,5 @@
 function glcg
-	gitlc --graph $argv; 
+	glc --graph $argv
+
+
 end
