@@ -1,4 +1,4 @@
-cd >/dev/null ^/dev/null
+cd >/dev/null 2>/dev/null
 
 if test (uname -s) = "Darwin"
   set -x PATH /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin /usr/X11/bin
