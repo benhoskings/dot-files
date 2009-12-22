@@ -1,6 +1,6 @@
 [user]
-        name = Ben Hoskings
-        email = ben@hoskings.net
+        name = Jamie Cook
+        email = jamie.cook@veitchlister.com.au
 [color]
 	diff = auto
 	status = auto
@@ -8,4 +8,4 @@
 [core]
 	excludesfile = /Users/ben/.gitignore
 [github]
-	user = benhoskings
+	user = jamiecook 

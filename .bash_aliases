@@ -30,6 +30,7 @@ alias g="ssh gordon.vlc"
 alias coverage='k && (b coverage || rm -rf ~/build_coverage) && mv build/coverage ~/build_coverage && open ~/build_coverage/index.html'
 alias min='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
 alias max='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'
+alias sum='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.inject(0.0) {|a,x| a+=x}"'
 
 alias df='df -h'
 alias du='du -sh'
