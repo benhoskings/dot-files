@@ -11,4 +11,4 @@ end
 
 set -x CDPATH .
 set gems (gem env gemdir)/gems
-set git_concise_log_format '--pretty=format:%Cblue%h%Creset %cr %Cgreen%an%Creset %s'
+set git_concise_log_format '--pretty=format:%Cblue%h%d%Creset %cr %Cgreen%an%Creset %s'
