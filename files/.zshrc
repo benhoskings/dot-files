@@ -4,6 +4,8 @@ setopt prompt_subst
 . ~/.zsh/aliases
 . ~/.zsh/git_aliases
 
+export EDITOR='mate -w'
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
