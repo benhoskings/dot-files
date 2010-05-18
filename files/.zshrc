@@ -15,7 +15,7 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 setopt extendedglob notify
 unsetopt autocd
-bindkey -v
+bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/ben/.zshrc'
