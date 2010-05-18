@@ -1,4 +1,5 @@
 setopt prompt_subst
+setopt hist_ignore_dups
 
 . ~/.zsh/prompt
 . ~/.zsh/aliases
