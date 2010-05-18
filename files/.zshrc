@@ -23,3 +23,8 @@ zstyle :compinstall filename '/Users/ben/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+export WORDCHARS='*?_[]~=&;!#$%^(){}'
+
+bindkey '[D' emacs-backward-word
+bindkey '[C' emacs-forward-word
