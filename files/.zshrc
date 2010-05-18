@@ -5,6 +5,9 @@ setopt prompt_subst
 . ~/.zsh/git_aliases
 
 export EDITOR='mate -w'
+export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin"
+export MANPATH="/usr/local/share/man:/usr/X11/man:/usr/share/man"
+
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
