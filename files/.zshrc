@@ -1,28 +1,28 @@
 setopt prompt_subst
 
 project_pwd() {
-  pwd | perl -pe "s/\/Users\/${USER}\/projects\/([^\/]+)\/current/\$1 :/"
+  echo $PWD | sed -e "s/\/Users\/$USER\/projects\/\([^\/]*\)\/current/\\1 :/"
 }
 
 in_git_repo() {
-  g=`git rev-parse --git-dir 2>/dev/null`
-	[ -n "$g" ] &&
-	[ `pwd` != "~" ] &&
-	[ "$g" != "$HOME"/.git ]
+ [ $PWD != "/Users/$HOME" ] && [ -d '.git' ]
 }
 
 git_parse_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  sed -e 's/^.*refs\/heads\///' '.git/HEAD'
 }
 
 git_head_commit_id() {
-  git rev-parse --short HEAD
+  cut -c 1-7 ".git/refs/heads/`git_parse_branch`"
+}
+
+git_cwd_dirty() {
+  [[ `git ls-files -m` == '' ]] || echo ' +'
 }
 
 git_cwd_info() {
   if in_git_repo; then
-    echo -ne " %{\e[0;90m%}`git_parse_branch`%{\e[0m%}@\033%{\e[0;90m%}`git_head_commit_id`"
-    [[ `git ls-files -m | wc -l` -eq 0 ]] || echo " +"
+    echo -n "%{\e[0;90m%}`git_parse_branch`%{\e[0m%}@%{\e[0;90m%}`git_head_commit_id``git_cwd_dirty`%{\e[0m%}"
   fi
 }
 
