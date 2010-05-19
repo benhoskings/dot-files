@@ -21,7 +21,7 @@ def git_head_commit_id
 end
 
 def git_cwd_dirty
-  ' +' unless `git ls-files -m`.strip.empty?
+  ' ✗' unless `git ls-files -m`.strip.empty?
 end
 
 if in_git_repo
