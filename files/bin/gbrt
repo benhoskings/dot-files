@@ -29,7 +29,7 @@ commit_info = `git branch #{ARGV.join(' ')} | cut -c 3-`.strip.split("\n").map {
 }.reverse.map {|commit_info|
   format_commit_info(*commit_info)
 }.transpose.map {|column|
-  max_col_length = column.sort_by(&:length).last.length
+  max_col_length = column.sort_by {|i| i.length }.last.length
   column.map {|i| i.ljust(max_col_length) }
 }.transpose.map {|commit_info|
   puts render_commit_info(*commit_info)
