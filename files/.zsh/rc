@@ -29,3 +29,7 @@ export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
 bindkey '[D' emacs-backward-word
 bindkey '[C' emacs-forward-word
+
+bindkey '^' self-insert-backslash
+function self-insert-backslash() { LBUFFER+='\'; zle .self-insert }
+zle -N self-insert-backslash
