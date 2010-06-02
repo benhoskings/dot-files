@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+# The methods that get called more than once are memoized.
+
+def git_repo_path
+  @git_repo_path ||= `git rev-parse --git-dir 2>/dev/null`.strip
+end
+
+def in_git_repo
+  !git_repo_path.empty? &&
+  git_repo_path != '~' &&
+  git_repo_path != "#{ENV['HOME']}/.git"
+end
+
+def git_parse_branch
+  @git_parse_branch ||= File.read("#{git_repo_path}/HEAD").strip.sub(/^.*refs\/heads\//, '')
+end
+
+def git_head_commit_id
+  `git rev-parse --short HEAD`.strip
+end
+
+def git_cwd_dirty
+  ' ✗' unless `git ls-files -m`.strip.empty?
+end
+
+if in_git_repo
+  puts " %{\e[0;90m%}#{git_parse_branch}%{\e[0m%}@%{\e[0;90m%}#{git_head_commit_id}#{git_cwd_dirty}%{\e[0m%}"
+end
