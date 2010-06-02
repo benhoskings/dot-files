@@ -1,0 +1,3 @@
+cd() {
+  builtin cd "$@" && ls
+}
