@@ -23,8 +23,14 @@ alias gds='gitd --stat'
 alias gdw='git diff $color_ruby_words'
 alias gf='git fetch'
 alias gfo='git fetch origin'
-alias gl='git log --graph $git_concise_log_format'
-alias glv='gl -p'
+alias glog='git log $git_concise_log_format'
+alias gl='glog --graph'
+gls() {
+  query="$1"
+  shift
+  glog --pickaxe-regex "-S$query" "$@"
+}
+alias glv='glog -p'
 alias gm='git merge --no-ff'
 alias gp='git push'
 alias gpb='git push banana'
