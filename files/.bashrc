@@ -9,11 +9,11 @@ export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}
 umask 022
 
 if [ $system_name == 'Linux' ]; then
-  . /etc/bash_completion
+  [ -f /etc/bash_completion ] && . /etc/bash_completion
 
   export EDITOR='vim'
 else
-  . /opt/local/etc/bash_completion
+  [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
 
   export EDITOR='mate -w'
 fi
@@ -26,7 +26,7 @@ export HISTSIZE=1000000
 
 bind "set show-all-if-ambiguous On"
 
-shopt -s globstar
+#shopt -s globstar
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
