@@ -1,5 +1,5 @@
 project_pwd() {
-  echo $PWD | sed -e "s/\/Users\/$USER/~/" -e "s/~\/projects\/\([^\/]*\)\/current/\\1 :/"
+  echo $PWD | sed -e "s/\/Users\/$USER/~/" -e "s/~\/projects\/\([^\/]*\)\/current/\\1 :/" -e "s/~\/Sites\/\([^\/]*\)\/current/http:\/\/\\1 :/"
 }
 
 export PROMPT=$'%{\e[0;%(?.32.31)m%}☂ %{\e[0m%} '
