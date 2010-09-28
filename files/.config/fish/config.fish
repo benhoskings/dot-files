@@ -12,3 +12,8 @@ end
 set -x CDPATH .
 set gems (gem env gemdir)/gems
 set git_concise_log_format '--pretty=format:%Cblue%h%d%Creset %cr %Cgreen%an%Creset %s'
+# -- start rip config -- #
+set -x RIPDIR /Users/ben/.rip
+set -x RUBYLIB "$RUBYLIB:$RIPDIR/active/lib"
+set PATH $RIPDIR/active/bin $PATH
+# -- end rip config -- #

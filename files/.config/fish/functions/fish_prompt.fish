@@ -1,5 +1,5 @@
 function fish_prompt --description 'Write out the prompt'
-	set -l pr_prompt (test $status -eq 0; and echo '\001\033[32m\002 ☂ \001\033[0m\002'; or echo '\001\033[31m\002 ☂ \001\033[0m\002')
+	set -l pr_prompt (test $status -eq 0; and echo '\001\033[32m\002⚡\001\033[0m\002'; or echo '\001\033[31m\002⚡\001\033[0m\002')
 	set -l duration $CMD_DURATION
 	set -l pr_duration (test -n "$duration"; and echo "-> $duration\n")
 	set -l pr_term (test $TERM = 'screen'; and echo "[screen/$WINDOW] ")
