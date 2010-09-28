@@ -16,6 +16,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 setopt extendedglob notify
+setopt append_history
+setopt inc_append_history
 unsetopt autocd
 bindkey -e
 # End of lines configured by zsh-newuser-install
