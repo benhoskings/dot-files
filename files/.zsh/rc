@@ -28,10 +28,12 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
-bindkey '[D' emacs-backward-word
-bindkey '[C' emacs-forward-word
+export WORDCHARS='*?[]~=&;!#$%^(){}'
+
+# mappings for Ctrl/Option-left-arrow and Ctrl/Option-right-arrow for word moving
+bindkey "\e\e[C"  forward-word
+bindkey "\e\e[D"  backward-word
 
 bindkey '^' self-insert-backslash
 function self-insert-backslash() { LBUFFER+='\'; zle .self-insert }
