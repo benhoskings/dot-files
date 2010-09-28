@@ -3,4 +3,15 @@
 --context=1
 --follow
 --group
---all
+
+--type-add=ruby=.haml
+
+--type-add=objc=.pch
+--type-set=xcode=.pbxproj,.pbxuser,.perspectivev3
+--type-set=ragel=.rl
+--type-set=nib=.xib
+--type-set=plist=.plist
+--type-set=tmstuff=.tmproj,.tm_build_errors
+--nonib
+--notmstuff
+--noxcode
