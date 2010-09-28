@@ -1,5 +1,8 @@
 export git_concise_log_format='--pretty=format:%Cblue%h%d%Creset %cr %Cgreen%an%Creset %s'
 
+git_current_branch() {
+  git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
+}
 alias git='/Users/ben/code/git-achievements/git-achievements'
 
 alias ga='git add'
@@ -33,13 +36,14 @@ gls() {
 alias glv='glog -p'
 alias gm='git merge --no-ff'
 alias gp='git push'
+alias gpthis='git push origin HEAD:$(git_current_branch)'
 alias gpb='git push banana'
 alias gpd='gp deploy deploy'
 alias gpo='git push origin'
 alias gpom='git push origin master'
 alias gpt='gp --tags'
 alias gr='git reset'
-alias grb='git rebase'
+alias grb='git rebase -p'
 alias grbc='git rebase --continue'
 alias grbi='grb -i'
 alias grh='git reset --hard'
@@ -53,6 +57,7 @@ alias gss='gs --stat'
 alias gst='git stash'
 alias gstp='git stash pop'
 alias gstwc='gst save --keep-index'
+alias gup='gf origin && grb origin/$(git_current_branch)'
 
 alias gab='gm $argv && gbr -d $argv'
 alias gmd='gm $argv && gbr -d $argv $argv && glcg'
