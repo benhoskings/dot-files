@@ -52,8 +52,15 @@ alias gss='gs --stat'
 alias gst='git stash'
 alias gstp='git stash pop'
 alias gstwc='gst save --keep-index'
-alias gup='gf origin && grb origin/$(git_current_branch)'
-
+gup() {
+  if [ "`git ls-files -m`" != "" ]; then
+    echo "Local changes detected, stash first."
+    false
+  else
+    gf origin &&
+    grb origin/$(git_current_branch)
+  fi
+}
 alias gab='gm $argv && gbr -d $argv'
 alias gmd='gm $argv && gbr -d $argv $argv && glcg'
 alias graf='git remote add $argv[1] $argv[2] && gf $argv[1]'
