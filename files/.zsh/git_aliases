@@ -3,7 +3,6 @@ export git_concise_log_format='--pretty=format:%Cblue%h%d%Creset %cr %Cgreen%an%
 git_current_branch() {
   git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
 }
-alias git='/Users/ben/code/git-achievements/git-achievements'
 
 alias ga='git add'
 alias gap='ga -p'
