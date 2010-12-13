@@ -18,11 +18,11 @@ def git_parse_branch
 end
 
 def git_head_commit_id
-  `git rev-parse --short HEAD`.strip
+  `git rev-parse --short HEAD 2>/dev/null`.strip
 end
 
 def git_cwd_dirty
-  ' ✗' unless `git ls-files -m`.strip.empty?
+  ' ✗' unless git_repo_path == '.' || `git ls-files -m`.strip.empty?
 end
 
 if in_git_repo
