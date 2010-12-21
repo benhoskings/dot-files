@@ -66,6 +66,7 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls --color=auto'
     #alias dir='ls --color=auto --format=vertical'
     #alias vdir='ls --color=auto --format=long'
+    export GREP_OPTIONS='--color=auto'
 fi
 
 # enable programmable completion features (you don't need to enable
