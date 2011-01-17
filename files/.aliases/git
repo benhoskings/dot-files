@@ -31,5 +31,3 @@ alias gitlorp='gitlor_raw -p'
 alias gitup='git pull && gitlor && git submodule update'
 alias gitp='gitup && gitlpend && git push'
 alias gitpt='gitp && git push --tags'
-
-#alias git-set-remote='echo git config branch.`git-branch-name`.remote "$1" && echo git config branch.`git-branch-name`.merge "refs/heads/$2"'

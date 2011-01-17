@@ -1,12 +1,10 @@
 alias m='mate .'
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -nr | head -n 20"
 
-alias ll="ls -lh "
-alias dir="ll | grep dr"
-alias df="df -h"
 alias cd..="cd ../"
 alias cp="cp -i"
+alias dir="ll | grep dr"
+alias df="df -h"
 #alias mysql=mysql5
 alias scala=scala-2.8 
 alias days="git log --since='2 month ago' --author=tomjadams | grep Date | awk '{print \$2, \$3, \$4}' | uniq"
-

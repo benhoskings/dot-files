@@ -1,12 +1,36 @@
-system_name=`uname -s`
-
 . ~/.aliases/colours
 . ~/.ps1_color
 
-#git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
-date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
-export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
-umask 022
+function go () {
+  PROJECT_DIRS="$HOME/p/mogen/projects $HOME/p/mogen/projects/oomph-clients $HOME/railscamp $HOME/p/mogen/kits"
+  cd `find $PROJECT_DIRS -maxdepth 1 | grep \/$1 | head -n 1`
+}
+
+system_name=`uname -s`
+
+# git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
+# date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
+# export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
+# umask 022
+
+
+#alias git-set-remote='echo git config branch.`git-branch-name`.remote "$1" && echo git config branch.`git-branch-name`.merge "refs/heads/$2"'
+# Combining Lachie Cox's crazy Git branch mojo:
+#   http://spiral.smartbomb.com.au/post/31418465
+# with 
+#   http://henrik.nyh.se/2008/12/git-dirty-prompt
+# AND Geoff Grosenbach's style:
+#   http://pastie.org/325104
+# Sweeeeeeeet!
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "(☠)"
+}
+
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
+
+export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
 
 if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
@@ -16,28 +40,30 @@ else
   export EDITOR='mate -w'
 fi
 
-export ARCHFLAGS='-arch i386'
+export ARCHFLAGS='-arch x86_64'
 export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
 export GEMS="`gem env gemdir`/gems"
 export HISTSIZE=1000000
+export FIGNORE="CVS:.swp:.DS_Store:.svn"
+export JAVA_HOME=/Library/Java/Home
 
-bind "set show-all-if-ambiguous On"
+export PATH=/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:~/.gem/ruby/1.8/bin:~/.cabal/bin:/opt/scala/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
 
-#shopt -s globstar
+#export http_proxy=http://username:password@host:port/
+#export http_proxy=http://proxy.uq.net.au:80
+
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
+
   if [ $system_name == 'Linux' ]; then
     color_option='--color=auto'
-
     alias du='du -k --max-depth=1'
   else
     color_option='-G'
-
     alias du='du -k -d1'
     alias top='top -o cpu'
-
     alias vi='mate'
   fi
 
@@ -47,12 +73,7 @@ if [ "$TERM" != "dumb" ]; then
   alias lal="ls -lha $color_option"
 
   . ~/.scripts/j.sh
-
-else
-  # TODO use path_helper to do this properly
-  export PATH=/opt/local/bin:$PATH
 fi
-
 
 # sets the title window
 case $TERM in
@@ -73,32 +94,11 @@ stty discard undef
 # set the umask to something reasonable
 umask 007
 
+#shopt -s globstar
+
 bind "C-p":history-search-backward
 bind "C-n":history-search-forwardp
-
-PATH=${PATH}:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:~/.gem/ruby/1.8/bin:~/.cabal/bin
-
-### Environment variables ###
-JAVA_HOME=/Library/Java/Home
-PATH=/opt/scala/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
-FIGNORE="CVS:.swp:.DS_Store:.svn"
-
-export PATH PS1 EDITOR FIGNORE JAVA_HOME ANT_HOME
-#export http_proxy=http://username:password@host:port/
-#export http_proxy=http://proxy.uq.net.au:80
-
-if [ -f ~/Projects/Personal/dot-files/git-prompt.sh ]; then
-  . ~/Projects/Personal/dot-files/git-prompt.sh
-fi
-
-. ~/.aliases/git
-
-function go () {
-  PROJECT_DIRS="$HOME/p/mogen/projects $HOME/p/mogen/projects/oomph-clients $HOME/railscamp $HOME/p/mogen/kits"
-  cd `find $PROJECT_DIRS -maxdepth 1 | grep \/$1 | head -n 1`
-}
-
-
+bind "set show-all-if-ambiguous On"
 
 . ~/.aliases/git
 . ~/.aliases/svn
