@@ -2,6 +2,35 @@
 " " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+"set term=builtin_beos-ansi
+":if has("terminfo")
+":  set t_Co=8
+":  set t_Sf=[3%p1%dm
+":  set t_Sb=[4%p1%dm
+":else
+":  set t_Co=8
+":  set t_Sf=[3%dm
+":  set t_Sb=[4%dm
+":endif
+
+if !has("gui") && has("terminfo")
+  set t_Co=16
+  set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+  set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+else
+  set t_Co=16
+  set t_Sf=[3%dm
+  set t_Sb=[4%dm
+endif
+
+syntax on
+set title
+set visualbell
+set noerrorbells
+set ai
+set noai
+"set mouse=n
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -126,7 +155,7 @@ set tabstop=2
 " specifies what to save for :mkview
 set viewoptions=folds	" save folding state for views
 " long lines wrap and continue on the next line
-"set wrap
+set wrap
 
 " paste without trying to re-indent
 set pastetoggle=<F6>
@@ -174,7 +203,7 @@ augroup encrypted
     autocmd BufReadPost,FileReadPost    *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
 
     " Convert all text to encrypted text before writing
-    autocmd BufWritePre,FileWritePre    *.gpg   '[,']!gpg --default-key=B6D8A3F9 --default-recipient-self -ae 2>/dev/null
+    autocmd BufWritePre,FileWritePre    *.gpg   '[,']!gpg --default-key=DD07A6DC--default-recipient-self -ae 2>/dev/null
     " Undo the encryption so we are back in the normal text, directly
     " after the file has been written.
     autocmd BufWritePost,FileWritePost    *.gpg   u

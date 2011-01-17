@@ -1,11 +1,15 @@
+[alias]
+  ci = commit
+  st = status
+  co = checkout
+  log = log --oneline --decorate
 [user]
-        name = Ben Hoskings
-        email = ben@hoskings.net
+	name = Tom Adams
+	email = tomjadams@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-[core]
-	excludesfile = /Users/ben/.gitignore
-[github]
-	user = benhoskings
+  diff = auto
+  status = auto
+  branch = auto
+[default]
+	push = tracking
+	pull = tracking

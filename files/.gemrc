@@ -1,12 +1,9 @@
 --- 
-:benchmark: false
-:verbose: true
 :update_sources: true
-gem: --no-rdoc --no-ri
-gemcutter_key: 8c69d3afca6c0d7b72ae7a6396bc0e4a
-:sources: 
-- http://gemcutter.org
-- http://gems.rubyforge.org
-- http://gems.github.com
 :backtrace: false
+:verbose: true
 :bulk_threshold: 1000
+:benchmark: false
+:sources: 
+- http://rubygems.org
+- http://gems.github.com
