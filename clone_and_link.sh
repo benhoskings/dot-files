@@ -6,5 +6,5 @@ ls -1d .dot-files/files/* .dot-files/files/.* | while read f; do
   [ "$f" == '.dot-files/files/.' ] ||
   [ "$f" == '.dot-files/files/..' ] ||
   [ "$f" == '.dot-files/files/.git' ] ||
-  ln -vsf "$f" .
+  ln -vsF "$f" .
 done
