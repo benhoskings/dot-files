@@ -1,18 +1,18 @@
 . ~/.aliases/colours
 . ~/.ps1_color
 
-function go () {
-  PROJECT_DIRS="$HOME/p/mogen/projects $HOME/p/mogen/projects/oomph-clients $HOME/railscamp $HOME/p/mogen/kits"
-  cd `find $PROJECT_DIRS -maxdepth 1 | grep \/$1 | head -n 1`
-}
-
 system_name=`uname -s`
 
+function go () {
+  PROJECT_DIRS="$HOME/Projects"
+  cd `find $PROJECT_DIRS -maxdepth 2 | grep \/$1 | head -n 1`
+}
+
+# old stuff from ben's basrc
 # git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
 # date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
 # export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
 # umask 022
-
 
 #alias git-set-remote='echo git config branch.`git-branch-name`.remote "$1" && echo git config branch.`git-branch-name`.merge "refs/heads/$2"'
 # Combining Lachie Cox's crazy Git branch mojo:
@@ -30,13 +30,12 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
-
 if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
   [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
+  [ -f ~/.bash_completion.d/git-flow-completion.bash ] && . ~/.bash_completion.d/git-flow-completion.bash
   export EDITOR='mate -w'
 fi
 
@@ -50,9 +49,10 @@ export JAVA_HOME=/Library/Java/Home
 
 export PATH=/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:~/.gem/ruby/1.8/bin:~/.cabal/bin:/opt/scala/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
 
+export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
+
 #export http_proxy=http://username:password@host:port/
 #export http_proxy=http://proxy.uq.net.au:80
-
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
