@@ -32,8 +32,8 @@ if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
-  [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
-  [ -f ~/.bash_completion.d/git-flow-completion.bash ] && . ~/.bash_completion.d/git-flow-completion.bash
+  for cf in /usr/local/etc/bash_completion.d/*; do . $cf; done
+  for cf in ~/.bash_completion.d/*; do . $cf; done  
   export EDITOR='mate -w'
 fi
 
@@ -45,7 +45,7 @@ export HISTSIZE=1000000
 export FIGNORE="CVS:.swp:.DS_Store:.svn"
 export JAVA_HOME=/Library/Java/Home
 
-export PATH=/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:~/.gem/ruby/1.8/bin:~/.cabal/bin:/opt/scala/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
+export PATH=/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/.cabal/bin:/opt/scala/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
 
 # old prompt
 # export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
