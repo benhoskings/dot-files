@@ -48,7 +48,7 @@ export HISTSIZE=1000000
 export FIGNORE="CVS:.swp:.DS_Store:.svn"
 export JAVA_HOME=/Library/Java/Home
 
-export PATH=/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/.cabal/bin:/opt/scala/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
+export PATH=/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/.cabal/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
 
 # old prompt
 # export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
