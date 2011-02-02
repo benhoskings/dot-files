@@ -32,7 +32,10 @@ if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
-  for cf in /usr/local/etc/bash_completion.d/*; do . $cf; done
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+  fi
+  # for cf in /usr/local/etc/bash_completion.d/*; do . $cf; done
   for cf in ~/.bash_completion.d/*; do . $cf; done  
   export EDITOR='mate -w'
 fi
