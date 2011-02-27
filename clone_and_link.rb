@@ -1,5 +1,4 @@
-#!/usr/bin/ruby 
-require 'find'
+#!/usr/bin/env ruby
 `git clone git://github.com/vlc/dot-files.git ~/.dot-files` unless File.directory?("#{ENV['HOME']}/.dot-files")
 
 def process_dir(dir)
