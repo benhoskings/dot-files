@@ -8,7 +8,9 @@ def process_dir(dir)
     source = File.join(dir, f)
     target = source.gsub(/.dot-files\//, "")
     if File.directory?(source)
-      process_dir(source) unless File.symlink?(target)
+      next if File.symlink?(target)
+      `mkdir -p #{target}`
+      process_dir(source)
     else
       str = "ln -vsf \"#{source}\" #{target}"
       `#{str}`
