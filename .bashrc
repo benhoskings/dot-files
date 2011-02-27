@@ -78,7 +78,7 @@ fi
 JAVA_HOME=/opt/jdk16
 EDITOR=vim
 FIGNORE="CVS:.swp:.svn"
-PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin:~/src/ec2/ec2-api-tools/bin
+PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin
 AWT_TOOLKIT=MToolkit
 
 export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
@@ -87,5 +87,8 @@ export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 # Amazon EC2 stuff
 if [ -f ~/.ec2rc ]; then
   . ~/.ec2rc
+fi
+if [ -f ~/Projects/kahuna/etc/ec2/ec2rc ]; then
+  . ~/Projects/kahuna/etc/ec2/ec2rc
 fi
 

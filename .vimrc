@@ -76,3 +76,10 @@ map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 map <F5> :set hls!set hls?
 
 set pastetoggle=<Tab>
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
