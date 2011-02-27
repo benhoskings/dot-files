@@ -36,6 +36,8 @@ alias df='df -h'
 alias du='du -sh'
 alias less='less -R'
 
+alias screen='byobu'
+
 
 function @ {
    pushd . 
