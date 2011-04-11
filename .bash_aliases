@@ -19,6 +19,7 @@ alias vi='vim'
 alias open='gnome-open'
 alias kah='cd ~/Projects/kahuna'
 alias k='cd ~/Projects/kahuna'
+alias t='cd /opt/tempest/bin'
 alias san='cd ~/Projects/sandbox'
 alias b="./build.sh"
 alias ci="svn ci -m ''"
