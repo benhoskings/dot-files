@@ -6,6 +6,9 @@
 
 --type-add=ruby=.haml
 --type-add=css=.sass
+--type-add=css=.scss
+--type-add=js=.coffee
+--type-set=markdown=.markdown
 
 --type-add=objc=.pch
 --type-set=xcode=.pbxproj,.pbxuser,.perspectivev3
