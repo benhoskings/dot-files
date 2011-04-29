@@ -106,3 +106,5 @@ bind "set show-all-if-ambiguous On"
 . ~/.aliases/git
 . ~/.aliases/svn
 . ~/.aliases/commands
+
+[[ -s "/Users/tom/.rvm/scripts/rvm" ]] && source "/Users/tom/.rvm/scripts/rvm"
