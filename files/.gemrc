@@ -7,3 +7,5 @@
 :sources: 
 - http://rubygems.org
 - http://gems.github.com
+install: --no-rdoc --no-ri
+update: --no-rdoc --no-ri

@@ -67,7 +67,7 @@ if [ "$TERM" != "dumb" ]; then
     color_option='-G'
     alias du='du -k -d1'
     alias top='top -o cpu'
-    alias vi='mate'
+    alias vi='vim'
   fi
 
   alias ls="ls $color_option"
