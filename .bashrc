@@ -85,7 +85,7 @@ AWT_TOOLKIT=MToolkit
 
 export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # Amazon EC2 stuff
 if [ -f ~/.ec2rc ]; then
