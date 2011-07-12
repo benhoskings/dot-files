@@ -94,11 +94,3 @@ if [ -f ~/Projects/kahuna/etc/ec2/ec2rc ]; then
   . ~/Projects/kahuna/etc/ec2/ec2rc
 fi
 
-# Oracle stuff
-if [ -d /opt/oracle/instantclient_10_2 ]; then
-  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
-  ORACLE_HOME=/opt/oracle/instantclient_10_2
-fi
-
-export LD_LIBRARY_PATH
-export ORACLE_HOME
