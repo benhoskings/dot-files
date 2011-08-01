@@ -1,9 +1,6 @@
 --- 
 :verbose: true
 gem: --no-rdoc --no-ri
-:sources: 
-- http://rubygems.org/
-- http://gems.rubyforge.org
 :benchmark: false
 :update_sources: true
 :backtrace: false
