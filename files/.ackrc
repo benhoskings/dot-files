@@ -5,6 +5,7 @@
 --group
 
 --type-add=ruby=.haml
+--type-add=ruby=.ru
 --type-add=css=.sass
 --type-add=css=.scss
 --type-add=js=.coffee
