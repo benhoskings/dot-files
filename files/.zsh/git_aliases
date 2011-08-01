@@ -34,6 +34,7 @@ gls() {
   glog --pickaxe-regex "-S$query" "$@"
 }
 alias gm='git merge --no-ff'
+alias gmf='git merge --ff-only'
 alias gp='git push'
 alias gpthis='git push origin HEAD:$(git_current_branch)'
 alias gpb='git push banana'
