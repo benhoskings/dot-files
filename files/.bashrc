@@ -44,7 +44,6 @@ export ARCHFLAGS='-arch x86_64'
 export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
 export GEMS="`gem env gemdir`/gems"
-export CC=gcc-4.2
 export HISTSIZE=1000000
 export FIGNORE="CVS:.swp:.DS_Store:.svn"
 export JAVA_HOME=/Library/Java/Home
