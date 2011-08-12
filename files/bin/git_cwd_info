@@ -25,6 +25,16 @@ def git_cwd_dirty
   ' ✗' unless git_repo_path == '.' || `git ls-files -m`.strip.empty?
 end
 
+def rebasing_etc
+  if File.exists?(File.join(git_repo_path, 'BISECT_LOG'))
+    "+bisect"
+  elsif File.exists?(File.join(git_repo_path, 'MERGE_HEAD'))
+    "+merge"
+  elsif %w[rebase rebase-apply rebase-merge ../.dotest].any? {|d| File.exists?(File.join(git_repo_path, d)) }
+    "+rebase"
+  end
+end
+
 if in_git_repo
-  puts " %{\e[0;90m%}#{git_parse_branch}%{\e[0m%}@%{\e[0;90m%}#{git_head_commit_id}#{git_cwd_dirty}%{\e[0m%}"
+  puts " %{\e[0;90m%}#{git_parse_branch}%{\e[0m%}@%{\e[0;90m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}%{\e[0;90m%}#{git_cwd_dirty}%{\e[0m%}"
 end
