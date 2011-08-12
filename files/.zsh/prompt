@@ -4,4 +4,4 @@ project_pwd() {
 
 export PROMPT=$'%n%{\e[0;90m%}@%{\e[0m%}%m
 %{\e[0;%(?.32.31)m%}>%{\e[0m%} '
-export RPROMPT=$'`project_pwd``git_cwd_info`'
+export RPROMPT=$'$(project_pwd)$(git_cwd_info)'
