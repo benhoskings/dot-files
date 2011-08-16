@@ -36,5 +36,5 @@ def rebasing_etc
 end
 
 if in_git_repo
-  puts " • %{\e[0;90m%}#{git_parse_branch}%{\e[0m%}@%{\e[0;90m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}%{\e[0;90m%}#{git_cwd_dirty}%{\e[0m%}"
+  puts " %{\e[0;90m%}#{git_parse_branch}%{\e[0m%}@%{\e[0;90m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}%{\e[0;90m%}#{git_cwd_dirty}%{\e[0m%}"
 end
