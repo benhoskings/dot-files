@@ -27,7 +27,7 @@ alias gf='git fetch'
 alias glog='git log $git_concise_log_format'
 alias gl='glog --graph'
 alias gla='gl --all'
-alias gl_absolute='git log --graph --pretty=format:"%Cblue%h%d%Creset %ad %Cgreen%an%Creset %s"'
+alias gl_absolute='git log --pretty=format:"%Cblue%h%d%Creset %ad %Cgreen%an%Creset %s"'
 gls() {
   query="$1"
   shift
