@@ -11,14 +11,14 @@ alias gbr='git branch -v'
 gc() {
   git diff --cached | grep '\btap[ph]\b' >/dev/null &&
     echo "\e[0;31;29mOops, there's a #tapp or similar in that diff.\e[0m" ||
-    git commit -v
+    git commit -v "$@"
 }
 alias gc!='git commit -v'
-alias gca='gc -a'
+alias gca='git commit -v -a'
 alias gcam='gca --amend'
 alias gcf='git config -l'
 alias gch='git cherry-pick'
-alias gcm='gc --amend'
+alias gcm='git commit -v --amend'
 alias gco='git checkout'
 alias gcop='gco -p'
 alias gd='git diff -M'
