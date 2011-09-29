@@ -36,8 +36,5 @@ def rebasing_etc
 end
 
 if in_git_repo
-  print " %{\e[0;90m%}#{git_parse_branch}%{\e[0m%}"
-  print "@%{\e[0;90m%}#{git_head_commit_id}%{\e[0m%}"
-  print "#{rebasing_etc}"
-  print "%{\e[0;90m%}#{git_cwd_dirty}%{\e[0m%}"
+  print " #{git_parse_branch}@#{git_head_commit_id}#{rebasing_etc}#{git_cwd_dirty}"
 end
