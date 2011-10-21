@@ -37,7 +37,7 @@ else
   fi
   # for cf in /usr/local/etc/bash_completion.d/*; do . $cf; done
   for cf in ~/.bash_completion.d/*; do . $cf; done  
-  export EDITOR='mate -w'
+  export EDITOR='vim'
 fi
 
 export ARCHFLAGS='-arch x86_64'
