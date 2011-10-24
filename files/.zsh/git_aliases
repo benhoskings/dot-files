@@ -25,6 +25,14 @@ alias gd.='git diff -M --color-words="."'
 alias gdc='git diff --cached -M'
 alias gdc.='git diff --cached -M --color-words="."'
 alias gf='git fetch'
+git-new() {
+  mkdir "$1" &&
+  cd "$1" &&
+  git init &&
+  touch .gitignore &&
+  git add .gitignore &&
+  git commit -m "Added .gitignore."
+}
 alias glog='git log $git_concise_log_format'
 alias gl='glog --graph'
 alias gla='gl --all'
