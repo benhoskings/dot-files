@@ -4,6 +4,9 @@
 --follow
 --group
 
+--ignore-dir=log/
+--ignore-dir=tmp/
+
 --type-add=ruby=.haml
 --type-add=ruby=.ru
 --type-add=css=.sass
