@@ -44,9 +44,9 @@ function ku() {
 
 # Find a project in various directories. Change them to whatever suits you
 function fp() {
- echo `find $HOME/src/mogeneration
-$HOME/src/mogeneration/oomph-build/oomph-ipad-publications
-$HOME/src/personal $HOME/src/thirdparty $HOME/src /usr/local/src
+ echo `find $HOME/Projects/mogeneration
+$HOME/Projects/mogeneration/oomph-build/oomph-ipad-publications
+$HOME/Projects/Personal $HOME/Projects/OpenSource
 -maxdepth 1 | grep /\[\^/\]\*$1\
 \[\^/\]\*$ | head -n 1`
 }

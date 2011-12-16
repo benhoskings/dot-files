@@ -76,6 +76,7 @@ if [ "$TERM" != "dumb" ]; then
   alias lal="ls -lha $color_option"
 
   . ~/.scripts/j.sh
+  . ~/.scripts/goku.sh
 fi
 
 # sets the title window
