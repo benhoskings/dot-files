@@ -20,7 +20,7 @@ alias gdc='git diff --cached -M'
 alias gdc.='git diff --cached -M --color-words="."'
 alias gf='git fetch'
 git-new() {
-  mkdir "$1" &&
+  [ -d "$1" ] || mkdir "$1" &&
   cd "$1" &&
   git init &&
   touch .gitignore &&
