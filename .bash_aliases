@@ -29,9 +29,12 @@ alias f="ssh freeman.vlc"
 alias w="ssh warne.vlc"
 alias g="ssh gordon.vlc"
 alias coverage='k && (b coverage || rm -rf ~/build_coverage) && mv build/coverage ~/build_coverage && open ~/build_coverage/index.html'
+RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
 alias min='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
 alias max='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'
 alias sum='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.inject(0.0) {|a,x| a+=x}"'
+alias var="${RUBY_NUMERIC_ARRAY_STR}.sum\""
+alias mean="${RUBY_NUMERIC_ARRAY_STR}.mean\""
 
 alias df='df -h'
 alias du='du -sh'
@@ -58,4 +61,9 @@ function @_3 {
   cd ~/Projects
   rsync -ral .tmp/kahuna/ kahuna/
   popd
+}
+
+function parse_git_branch {
+  ref=$(git symbolic-ref HEAD) || return
+  echo " ("${ref#refs/heads/}")"
 }
