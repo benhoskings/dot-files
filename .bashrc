@@ -33,12 +33,21 @@ fi
 #esac
 
 # Comment in the above and uncomment this below for a color prompt
+GREY="\[\033[01;30m\]"
+GREEN="\[\033[01;32m\]"
+YELLOW="\[\033[01;33m\]"
+#BLUE="\[\033[01;33m\]"
+BLUE="\[\033[01;34m\]"
+WHITE="\[\033[00m\]"
+WHITE="\[\033[01;37m\]"
+export GREY BLUE GREEN HUH HUH2
 case "$USER" in 
 root)
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;101m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   ;;
 *)
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  #PS1='\$(date)${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\$(date +%Y%m%d\ %H:%M:%S)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1="${debian_chroot:+($debian_chroot)}${GREY}\$(date +%Y%m%d\ %H:%M:%S) ${BLUE}\u@\h${WHITE}:${GREEN}\w${WHITE}${GREY}\$(__git_ps1)${WHITE} "
   ;;
 esac
 
@@ -66,6 +75,7 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls --color=auto'
     #alias dir='ls --color=auto --format=vertical'
     #alias vdir='ls --color=auto --format=long'
+    export GREP_OPTIONS='--color=auto'
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -78,14 +88,30 @@ fi
 JAVA_HOME=/opt/jdk16
 EDITOR=vim
 FIGNORE="CVS:.swp:.svn"
-PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin:~/src/ec2/ec2-api-tools/bin
+PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin
 AWT_TOOLKIT=MToolkit
 
 export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # Amazon EC2 stuff
 if [ -f ~/.ec2rc ]; then
   . ~/.ec2rc
 fi
+if [ -f ~/Projects/kahuna/etc/ec2/ec2rc ]; then
+  . ~/Projects/kahuna/etc/ec2/ec2rc
+fi
 
+# Oracle stuff
+if [ -d /opt/oracle/instantclient_10_2 ]; then
+  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
+  ORACLE_HOME=/opt/oracle/instantclient_10_2
+fi
+
+# Setup the LANG so that gcc doesn't spit a^ characters instead of '
+LANG=en_AU.utf8
+
+export LD_LIBRARY_PATH
+export LANG
+export ORACLE_HOME
