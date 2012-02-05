@@ -14,7 +14,7 @@ def in_git_repo
 end
 
 def git_parse_branch
-  @git_parse_branch ||= File.read("#{git_repo_path}/HEAD").strip.scan(/(?<=refs\/heads\/).*$/).first
+  @git_parse_branch ||= File.read("#{git_repo_path}/HEAD").strip.scan(/refs\/heads\/(.*)$/).flatten.first
 end
 
 def git_head_commit_id
