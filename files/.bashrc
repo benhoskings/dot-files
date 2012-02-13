@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+system_name=
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -34,7 +35,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-if [ $system_name == 'Linux' ]; then
+if [ `uname -s` == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
