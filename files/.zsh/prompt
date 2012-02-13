@@ -1,0 +1,11 @@
+project_pwd() {
+  echo $PWD | sed -e "s/\/Users\/$USER/~/" -e "s/~\/projects\/\([^\/]*\)\/current/\\1/" -e "s/~\/Sites\/\([^\/]*\)\/current/http:\/\/\\1/"
+}
+
+ruby_version() {
+  echo " $(ruby -v | awk '{print $2}')"
+}
+
+export PROMPT=$'%{\e[0;90m%}%n@\e[0;30;47m%M%{\e[0m%}
+%{\e[0;%(?.32.31)m%}>%{\e[0m%} '
+export RPROMPT=$'%{\e[0;90m%}$(project_pwd)$(ruby_version)$(git_cwd_info)%{\e[0m%}'
