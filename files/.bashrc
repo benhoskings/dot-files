@@ -1,63 +1,97 @@
-system_name=`uname -s`
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
-. ~/.aliases/colours
-. ~/.ps1_color
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
-#git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
-date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
-export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
-umask 022
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    export GREP_OPTIONS='--color=auto'
+fi
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
 
 if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
-
   export EDITOR='vim'
 else
   [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
-
   export EDITOR='mate -w'
 fi
 
-export ARCHFLAGS='-arch i386'
-export MAKEFLAGS='-j4'
-export RUBYLIB="lib:test:$RUBYLIB"
-export GEMS="`gem env gemdir`/gems"
-export HISTSIZE=1000000
+GREY="\[\033[01;30m\]"
+GREEN="\[\033[01;32m\]"
+YELLOW="\[\033[01;33m\]"
+#BLUE="\[\033[01;33m\]"
+BLUE="\[\033[01;34m\]"
+WHITE="\[\033[00m\]"
+WHITE="\[\033[01;37m\]"
+export GREY BLUE GREEN HUH HUH2
+case "$USER" in
+root)
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;101m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  ;;
+*)
+  PS1="${debian_chroot:+($debian_chroot)}${GREY}\$(date +%Y%m%d\ %H:%M:%S) ${BLUE}\u@\h${WHITE}:${GREEN}\w${WHITE}${GREY}\$(__git_ps1)${WHITE} "
+  ;;
+esac
 
-bind "set show-all-if-ambiguous On"
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
 
-#shopt -s globstar
+JAVA_HOME=/opt/jdk16
+EDITOR=vim
+FIGNORE="CVS:.swp:.svn"
+PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin
+AWT_TOOLKIT=MToolkit
 
-# coloured ls
-if [ "$TERM" != "dumb" ]; then
-  if [ $system_name == 'Linux' ]; then
-    color_option='--color=auto'
+export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 
-    alias du='du -k --max-depth=1'
-  else
-    color_option='-G'
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
-    alias du='du -k -d1'
-    alias top='top -o cpu'
+# Amazon EC2 stuff
+[ -f ~/.ec2rc ] && . ~/.ec2rc
+[ -f ~/Projects/kahuna/etc/ec2/ec2rc ]  && . ~/Projects/kahuna/etc/ec2/ec2rc
 
-    alias vi='mate'
-  fi
 
-  alias ls="ls $color_option"
-  alias ll="ls -lh $color_option"
-  alias la="ls -a $color_option"
-  alias lal="ls -lha $color_option"
-
-  . ~/.scripts/j.sh
-
-else
-  # TODO use path_helper to do this properly
-  export PATH=/opt/local/bin:$PATH
+# Oracle stuff
+if [ -d /opt/oracle/instantclient_10_2 ]; then
+  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
+  ORACLE_HOME=/opt/oracle/instantclient_10_2
 fi
 
-alias df='df -h'
-alias less='less -R'
+# Setup the LANG so that gcc doesn't spit a^ characters instead of '
+LANG=en_AU.utf8
 
-. ~/.aliases/git
-. ~/.aliases/svn
-. ~/.aliases/commands
+export LD_LIBRARY_PATH
+export LANG
+export ORACLE_HOME
