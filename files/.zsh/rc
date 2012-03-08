@@ -45,4 +45,7 @@ bindkey '^' self-insert-backslash
 function self-insert-backslash() { LBUFFER+='\'; zle .self-insert }
 zle -N self-insert-backslash
 
+
+[[ -d "/usr/local/share/python" ]] && export PATH="/usr/local/share/python:$PATH"
+
 [[ -d "$HOME/.rbenv" ]] && export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
