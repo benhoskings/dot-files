@@ -1,4 +1,4 @@
-alias ga='git add'
+alias ga='git add -A'
 alias gap='ga -p'
 alias gau='git add -u'
 alias gbr='git branch -v'
