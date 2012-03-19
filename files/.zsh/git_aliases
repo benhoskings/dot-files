@@ -43,7 +43,6 @@ alias gmf='git merge --ff-only'
 alias gmfthis='gmf origin/$(git_current_branch)'
 alias gp='git push'
 alias gpthis='gp origin $(git_current_branch)'
-alias gpt='gp --tags'
 alias gr='git reset'
 alias grb='git rebase -p'
 alias grbthis='grb origin/$(git_current_branch)'
@@ -63,4 +62,3 @@ gupstation() {
   gf production
   gf staging
 }
-alias graf='git remote add $argv[1] $argv[2] && gf $argv[1]'
