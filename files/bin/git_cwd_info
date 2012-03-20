@@ -1,27 +1,40 @@
-#!/bin/sh
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 
-GIT_REPO_PATH=`git rev-parse --git-dir 2>/dev/null`
+# The methods that get called more than once are memoized.
 
-if [[ $GIT_REPO_PATH != '' && $GIT_REPO_PATH != '~' && $GIT_REPO_PATH != "$HOME/.git" ]]; then
+def git_repo_path
+  @git_repo_path ||= `git rev-parse --git-dir 2>/dev/null`.strip
+end
 
-  GIT_BRANCH=`git symbolic-ref -q HEAD | sed 's/refs\/heads\///'`
+def in_git_repo
+  !git_repo_path.empty? &&
+  git_repo_path != '~' &&
+  git_repo_path != "#{ENV['HOME']}/.git"
+end
 
-  GIT_COMMIT_ID=`git rev-parse --short HEAD 2>/dev/null`
+def git_parse_branch
+  @git_parse_branch ||= File.read("#{git_repo_path}/HEAD").strip.scan(/refs\/heads\/(.*)$/).flatten.first
+end
 
-  GIT_MODE=""
-  if [[ -e "$GIT_REPO_PATH/BISECT_LOG" ]]; then
-    GIT_MODE=" +bisect"
-  elif [[ -e "$GIT_REPO_PATH/MERGE_HEAD" ]]; then
-    GIT_MODE=" +merge"
-  elif [[ -e "$GIT_REPO_PATH/rebase" || -e "$GIT_REPO_PATH/rebase-apply" || -e "$GIT_REPO_PATH/rebase-merge" || -e "$GIT_REPO_PATH/../.dotest" ]]; then
-    GIT_MODE=" +rebase"
-  fi
+def git_head_commit_id
+  `git rev-parse --short HEAD 2>/dev/null`.strip
+end
 
-  GIT_DIRTY=""
-  if [[ "$GIT_REPO_PATH" != '.' && `git ls-files -m` != "" ]]; then
-    GIT_DIRTY=" %{\033[90m%}✗%{\033[0m%}"
-  fi
+def git_cwd_dirty
+  " %{\e[90m%}✗%{\e[0m%}" unless git_repo_path == '.' || `git ls-files -m`.strip.empty?
+end
 
-  echo " %{\033[34m%}$GIT_BRANCH%{\033[90m%}@%{\033[33m%}$GIT_COMMIT_ID%{\033[0m%}$GIT_MODE$GIT_DIRTY"
+def rebasing_etc
+  if File.exists?(File.join(git_repo_path, 'BISECT_LOG'))
+    "+bisect"
+  elsif File.exists?(File.join(git_repo_path, 'MERGE_HEAD'))
+    "+merge"
+  elsif %w[rebase rebase-apply rebase-merge ../.dotest].any? {|d| File.exists?(File.join(git_repo_path, d)) }
+    "+rebase"
+  end
+end
 
-fi
+if in_git_repo
+  print " %{\e[34m%}#{git_parse_branch}%{\e[90m%}@%{\e[33m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}#{git_cwd_dirty}"
+end
