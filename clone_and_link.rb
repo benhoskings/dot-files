@@ -3,12 +3,14 @@
 
 def process_dir(dir)
   Dir.new(dir).each { |f| 
+    # skip (1) git dir (2) "." and ".." (3) this file
     next if f =~ /.git$/ || f =~ /^\.*$/ || f =~ /clone_and_link/
     source = File.join(dir, f)
-    target = source.gsub(/.dot-files\//, "")
+    target = source.gsub(/.dot-files\/files\//, "")
     if File.directory?(source)
       next if File.symlink?(target)
       `mkdir -p #{target}`
+      p "Processing directory #{target} recursively"
       process_dir(source)
     else
       str = "ln -vsf \"#{source}\" #{target}"
@@ -17,4 +19,4 @@ def process_dir(dir)
   }
 end
 
-process_dir("#{ENV['HOME']}/.dot-files")
+process_dir("#{ENV['HOME']}/.dot-files/files")
