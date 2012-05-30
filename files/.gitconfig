@@ -4,8 +4,8 @@
   co = checkout
   log = log --oneline --decorate
 [user]
-	name = Tom Adams
-	email = tomjadams@gmail.com
+	name = Jamie Cook
+	email = jamie.cook@veitchlister.com.au
 [color]
   diff = auto
   status = auto
