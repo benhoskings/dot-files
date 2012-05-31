@@ -16,6 +16,11 @@ alias gco='git checkout'
 alias gcop='gco -p'
 alias gd='git diff -M'
 alias gd.='git diff -M --color-words="."'
+gdbr() {
+  ref="$1"
+  shift
+  git diff -M "$@" $(git merge-base HEAD "$ref").."$ref"
+}
 alias gdc='git diff --cached -M'
 alias gdc.='git diff --cached -M --color-words="."'
 alias gf='git fetch'
