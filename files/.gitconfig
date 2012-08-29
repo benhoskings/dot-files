@@ -1,3 +1,5 @@
+[push]
+	default = upstream
 [user]
         name = Ben Hoskings
         email = ben@hoskings.net
