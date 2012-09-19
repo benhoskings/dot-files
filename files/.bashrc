@@ -77,7 +77,6 @@ AWT_TOOLKIT=MToolkit
 
 export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # Amazon EC2 stuff
 [ -f ~/.ec2rc ] && . ~/.ec2rc
@@ -96,3 +95,7 @@ LANG=en_AU.utf8
 export LD_LIBRARY_PATH
 export LANG
 export ORACLE_HOME
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+rvm use default
