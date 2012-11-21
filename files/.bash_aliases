@@ -62,3 +62,8 @@ function @_3 {
   rsync -ral .tmp/kahuna/ kahuna/
   popd
 }
+
+function parse_git_branch {
+  ref=$(git symbolic-ref HEAD) || return
+  echo " ("${ref#refs/heads/}")"
+}

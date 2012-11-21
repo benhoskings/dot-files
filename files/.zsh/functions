@@ -1,0 +1,10 @@
+cd() {
+  builtin cd "$@" && ls
+}
+function tm() {
+  mate
+  if [[ $(ls -l | grep tmproj | wc -l) -eq 0 ]]
+  then mate .
+  else open *.tmproj
+  fi
+}
