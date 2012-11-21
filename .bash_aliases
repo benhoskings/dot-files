@@ -29,9 +29,12 @@ alias f="ssh freeman.vlc"
 alias w="ssh warne.vlc"
 alias g="ssh gordon.vlc"
 alias coverage='k && (b coverage || rm -rf ~/build_coverage) && mv build/coverage ~/build_coverage && open ~/build_coverage/index.html'
-alias min='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
-alias max='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'
-alias sum='ruby -e "p ARGF.select{|e| e =~ /^[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.inject(0.0) {|a,x| a+=x}"'
+RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
+alias min='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
+alias max='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'
+alias sum='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.inject(0.0) {|a,x| a+=x}"'
+alias mean='ruby -e "tmp = ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }; p tmp.inject(0.0) {|a,x| a+=x} / tmp.size"'
+alias var="${RUBY_NUMERIC_ARRAY_STR}.sum\""
 
 alias df='df -h'
 alias du='du -sh'
