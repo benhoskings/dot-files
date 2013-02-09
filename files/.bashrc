@@ -13,7 +13,8 @@ fi
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
+    # dircolors doesn't exist on mac osx
+    `which dircolors` && eval "`dircolors -b`"
     alias ls='ls --color=auto'
     export GREP_OPTIONS='--color=auto'
 fi
@@ -36,12 +37,13 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 if [ `uname -s` == 'Linux' ]; then
-  [ -f /etc/bash_completion ] && . /etc/bash_completion
+  [ -f ./etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
   [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
   export EDITOR='mate -w'
 fi
+for cf in ~/.bash_completion.d/*; do . $cf; done  
 
 GREY="\[\033[01;30m\]"
 GREEN="\[\033[01;32m\]"
@@ -77,7 +79,6 @@ AWT_TOOLKIT=MToolkit
 
 export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 
-
 # Amazon EC2 stuff
 [ -f ~/.ec2rc ] && . ~/.ec2rc
 [ -f ~/Projects/kahuna/etc/ec2/ec2rc ]  && . ~/Projects/kahuna/etc/ec2/ec2rc
@@ -90,7 +91,7 @@ if [ -d /opt/oracle/instantclient_10_2 ]; then
 fi
 
 # Setup the LANG so that gcc doesn't spit a^ characters instead of '
-LANG=en_AU.utf8
+LANG=en_AU.UTF-8
 
 export LD_LIBRARY_PATH
 export LANG
