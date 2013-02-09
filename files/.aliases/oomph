@@ -1,0 +1,4 @@
+alias prod="rlwrap ssh oomph.mogeneration.com 'source /etc/profile && cd /data/oompfserver/current && bundle exec script/console'"
+alias stag="rlwrap ssh oomph-staging.mogeneration.com 'source /etc/profile && cd /data/oompfserver/current && bundle exec script/console'"
+alias integ="rlwrap ssh oomph-integration.mogeneration.com 'source /etc/profile && cd /data/oompfserver/current && bundle exec script/console'"
+
