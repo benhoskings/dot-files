@@ -1,17 +1,21 @@
+" .vimrc
+"
+" Copied from Smylers's .vimrc
+" http://www.stripey.com/vim/
+
 " Use Vim settings, rather then Vi settings (much better!).
-" " This must be first, because it changes other options as a side effect.
+" This must be first, because it changes other options as a side effect.
 set nocompatible
 
-"set term=builtin_beos-ansi
-":if has("terminfo")
-":  set t_Co=8
-":  set t_Sf=[3%p1%dm
-":  set t_Sb=[4%p1%dm
-":else
-":  set t_Co=8
-":  set t_Sf=[3%dm
-":  set t_Sb=[4%dm
-":endif
+
+" Change the colorscheme
+" colorscheme murphy
+colorscheme elflord
+syntax on
+set background=dark
+set number
+set autoindent
+set bs=indent,eol,start         " allow backspacing over everything in insert mode
 
 if !has("gui") && has("terminfo")
   set t_Co=16
@@ -23,7 +27,6 @@ else
   set t_Sb=[4%dm
 endif
 
-syntax on
 set title
 set visualbell
 set noerrorbells
@@ -132,17 +135,8 @@ set scrolloff=2
 set shiftround
 " number of spaces to use for (auto)indent step
 set shiftwidth=2
-" string to use at the start of wrapped lines
-set showbreak=\
-" show (partial) command in status line
-set showcmd
-" briefly jump to matching bracket if insert one
-set showmatch
-" min. nr. of columns to left andright of cursor
-set sidescrolloff=4
-" no ignore case when pattern as uppercase set smartcase
-set smartcase
-" use 'shiftwidth' when inserting <Tab>
+set shiftround
+set expandtab
 set smarttab
 " number of spaces that <Tab> uses while editing
 set softtabstop=2
@@ -209,10 +203,77 @@ augroup encrypted
     autocmd BufWritePost,FileWritePost    *.gpg   u
 augroup END
 
-" Additional filetypes
-autocmd! BufRead,BufNewFile *.thtml	set filetype=php
-autocmd! BufRead,BufNewFile *.inf	set filetype=text
-autocmd! BufRead,BufNewFile *.ck  set filetype=ck
-autocmd! BufRead,BufNewFile *.SQL  set filetype=sql
+" have command-line completion <Tab> (for filenames, help topics, option names)
+" first list the available options and complete the longest common part, then
+" have further <Tab>s cycle through the possibilities:
+set wildmode=list:longest,full
 
-let g:jpTemplateKey = '<C-t>'
+" enable filetype detection:
+filetype on
+
+" for Perl programming, have things in braces indenting themselves:
+autocmd FileType perl set smartindent
+
+" for CSS, also have things in braces indented:
+autocmd FileType css set smartindent
+
+" for HTML, generally format text, but if a long line has been created leave it
+" alone when editing:
+autocmd FileType html set formatoptions+=tl
+
+" for both CSS and HTML, use genuine tab characters for indentation, to make
+" files a few bytes smaller:
+autocmd FileType html,css set noexpandtab tabstop=2
+
+" in makefiles, don't expand tabs to spaces, since actual tab characters are
+" needed, and have indentation at 8 chars to be sure that all indents are tabs
+" (despite the mappings later):
+autocmd FileType make set noexpandtab shiftwidth=8
+
+
+" Stolen from some guy named ben :) benoit.cerrina@writeme.com
+fun BenIndent()
+  let oldLine=line('.')
+  normal(gg=G)
+  execute ':' . oldLine
+endfun
+map -- :call BenIndent()<CR>
+
+
+" for C-like programming, have automatic indentation:
+autocmd FileType c,cpp,slang set cindent
+
+" show the `best match so far' as search strings are typed:
+set incsearch
+
+" Makefile sanity
+autocmd BufEnter ?akefile* set noet ts=8 sw=8
+autocmd BufEnter */debian/rules set noet ts=8 sw=8
+
+" Map f11 to toggle background
+set background=dark
+map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+" Map f5 to toggle search highlighting
+map <F5> :set hls!set hls?
+
+set pastetoggle=<Tab>
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END

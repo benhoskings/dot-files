@@ -1,112 +1,101 @@
-. ~/.aliases/colours
-. ~/.ps1_color
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+system_name=
 
-system_name=`uname -s`
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
-function go () {
-  PROJECT_DIRS="$HOME/Projects"
-  cd `find $PROJECT_DIRS -maxdepth 2 | grep \/$1 | head -n 1`
-}
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
-git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
-date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
-# umask 022
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    export GREP_OPTIONS='--color=auto'
+fi
 
-#alias git-set-remote='echo git config branch.`git-branch-name`.remote "$1" && echo git config branch.`git-branch-name`.merge "refs/heads/$2"'
-# Combining Lachie Cox's crazy Git branch mojo:
-#   http://spiral.smartbomb.com.au/post/31418465
-# with 
-#   http://henrik.nyh.se/2008/12/git-dirty-prompt
-# AND Geoff Grosenbach's style:
-#   http://pastie.org/325104
-# Sweeeeeeeet!
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "(☠)"
-}
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
 
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-if [ $system_name == 'Linux' ]; then
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+if [ `uname -s` == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-  fi
-  # for cf in /usr/local/etc/bash_completion.d/*; do . $cf; done
-  for cf in ~/.bash_completion.d/*; do . $cf; done  
-  export EDITOR='vim'
+  [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
+  export EDITOR='mate -w'
 fi
 
-export ARCHFLAGS='-arch x86_64'
-export MAKEFLAGS='-j4'
-export RUBYLIB="lib:test:$RUBYLIB"
-export GEMS="`gem env gemdir`/gems"
-export HISTSIZE=1000000
-export FIGNORE="CVS:.swp:.DS_Store:.svn"
-export JAVA_HOME=/Library/Java/Home
-
-export PATH=/opt/android-sdk-mac_x86/tools:/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/Library/Haskell/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
-
-# old prompt
-# export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
-export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
-
-#export http_proxy=http://username:password@host:port/
-#export http_proxy=http://proxy.uq.net.au:80
-
-# coloured ls
-if [ "$TERM" != "dumb" ]; then
-
-  if [ $system_name == 'Linux' ]; then
-    color_option='--color=auto'
-    alias du='du -k --max-depth=1'
-  else
-    color_option='-G'
-    alias du='du -k -d1'
-    alias top='top -o cpu'
-    alias vi='vim'
-  fi
-
-  alias ls="ls $color_option"
-  alias ll="ls -lh $color_option"
-  alias la="ls -a $color_option"
-  alias lal="ls -lha $color_option"
-
-  . ~/.scripts/j.sh
-  . ~/.scripts/goku.sh
-fi
-
-# sets the title window
-case $TERM in
-    xterm*)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD}\007"'
-        ;;
-    vt100*)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD}\007"'
-        ;;
-    *)
-        PROMPT_COMMAND='${USER}@${HOSTNAME%%.*}:${PWD}"'
-        ;;
+GREY="\[\033[01;30m\]"
+GREEN="\[\033[01;32m\]"
+YELLOW="\[\033[01;33m\]"
+#BLUE="\[\033[01;33m\]"
+BLUE="\[\033[01;34m\]"
+WHITE="\[\033[00m\]"
+WHITE="\[\033[01;37m\]"
+export GREY BLUE GREEN HUH HUH2
+case "$USER" in
+root)
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;101m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  ;;
+*)
+  PS1="${debian_chroot:+($debian_chroot)}${GREY}\$(date +%Y%m%d\ %H:%M:%S) ${BLUE}\u@\h${WHITE}:${GREEN}\w${WHITE}${GREY}\$(__git_ps1)${WHITE} "
+  ;;
 esac
 
-# disable the discard character (so ^O works in bash)
-stty discard undef
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
 
-# set the umask to something reasonable
-umask 007
+JAVA_HOME=/opt/jdk16
+EDITOR=vim
+FIGNORE="CVS:.swp:.svn"
+PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin
+AWT_TOOLKIT=MToolkit
 
-#shopt -s globstar
+export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
 
-bind "C-p":history-search-backward
-bind "C-n":history-search-forwardp
-bind "set show-all-if-ambiguous On"
 
-. ~/.aliases/git
-. ~/.aliases/svn
-. ~/.aliases/commands
-. ~/.aliases/oomph
+# Amazon EC2 stuff
+[ -f ~/.ec2rc ] && . ~/.ec2rc
+[ -f ~/Projects/kahuna/etc/ec2/ec2rc ]  && . ~/Projects/kahuna/etc/ec2/ec2rc
 
-[[ -s "/Users/tom/.rvm/scripts/rvm" ]] && source "/Users/tom/.rvm/scripts/rvm"
+
+# Oracle stuff
+if [ -d /opt/oracle/instantclient_10_2 ]; then
+  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
+  ORACLE_HOME=/opt/oracle/instantclient_10_2
+fi
+
+# Setup the LANG so that gcc doesn't spit a^ characters instead of '
+LANG=en_AU.utf8
+
+export LD_LIBRARY_PATH
+export LANG
+export ORACLE_HOME
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+rvm use default

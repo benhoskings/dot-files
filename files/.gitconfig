@@ -4,12 +4,13 @@
   co = checkout
   log = log --oneline --decorate
 [user]
-	name = Jamie Cook
-	email = jamie.cook@veitchlister.com.au
+  name  = Jamie Cook
+  email = jamie.cook@veitchlister.com.au
 [color]
   diff = auto
   status = auto
   branch = auto
-[default]
-	push = tracking
-	pull = tracking
+[core]
+  excludesfile = ~/.gitignore
+[github]
+  user = jamiecook
