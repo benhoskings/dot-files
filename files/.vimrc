@@ -177,6 +177,12 @@ end
 " TagList
 :map <F6> :TlistToggle <cr>
 
+" Lets get crontab editing working 
+if $VIM_CRONTAB == 'true'
+  set nobackup
+  set nowritebackup
+endif
+
 " Transparent editing of gpg encrypted files.
 " By Wouter Hanegraaff <wouter@blub.net>
 augroup encrypted
