@@ -91,6 +91,12 @@ if [ -d /opt/oracle/instantclient_10_2 ]; then
   ORACLE_HOME=/opt/oracle/instantclient_10_2
 fi
 
+# Postgres stuff (for Mac OS/X)
+HOME_BREW_POSTGRES_DIR=/opt/local/lib/postgresql84/bin/
+if [ -d $HOME_BREW_POSTGRES_DIR ]; then
+  PATH=${HOME_BREW_POSTGRES_DIR}:${PATH}
+fi
+
 # Setup the LANG so that gcc doesn't spit a^ characters instead of '
 LANG=en_AU.UTF-8
 
