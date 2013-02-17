@@ -10,11 +10,12 @@ system_name=
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+for alias_file in ~/.aliases/*; do . $alias_file; done
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
     # dircolors doesn't exist on mac osx
-    `which dircolors` && eval "`dircolors -b`"
+    if [ `which dircolors` ]; then eval "`dircolors -b`"; fi
     alias ls='ls --color=auto'
     export GREP_OPTIONS='--color=auto'
 fi

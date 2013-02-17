@@ -86,7 +86,7 @@ set backspace=indent,eol,start
 " keep backup file after overwriting a file
 set backup
 " list of directories for the backup file
-set backupdir=~/tmp
+" set backupdir=~/tmp
 " rule a line under the cursor position
 "set cursorline
 " encoding used internally

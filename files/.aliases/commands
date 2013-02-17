@@ -4,8 +4,42 @@ alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' 
 alias cd..="cd ../"
 alias cp="cp -i"
 alias dir="ll | grep dr"
-alias df="df -h"
-#alias mysql=mysql5
-alias scala=scala-2.8 
 alias days="git log --since='2 month ago' --author=tomjadams | grep Date | awk '{print \$2, \$3, \$4}' | uniq"
+
 alias crontab="VIM_CRONTAB=true EDITOR=vim crontab"
+
+# Search your history
+bind "\C-p":history-search-backward
+bind "\C-n":history-search-forward
+
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias vi='vim'
+alias open='gnome-open'
+alias kah='cd ~/Projects/kahuna'
+alias k='cd ~/Projects/kahuna'
+alias t='cd /opt/tempest/bin'
+alias san='cd ~/Projects/sandbox'
+alias b="./build.sh"
+alias ci="svn ci -m ''"
+alias up="svn up"
+alias st="svn st"
+alias f="ssh freeman.vlc"
+alias w="ssh warne.vlc"
+alias g="ssh gordon.vlc"
+alias coverage='k && (b coverage || rm -rf ~/build_coverage) && mv build/coverage ~/build_coverage && open ~/build_coverage/index.html'
+RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
+alias min='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
+alias max='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'
+alias sum='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.inject(0.0) {|a,x| a+=x}"'
+alias mean='ruby -e "tmp = ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }; p tmp.inject(0.0) {|a,x| a+=x} / tmp.size"'
+alias var="${RUBY_NUMERIC_ARRAY_STR}.sum\""
+
+alias df='df -h'
+alias du='du -sh'
+alias less='less -R'
+
+alias screen='byobu'
