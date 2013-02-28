@@ -16,7 +16,12 @@ for alias_file in ~/.aliases/*; do . $alias_file; done
 if [ "$TERM" != "dumb" ]; then
     # dircolors doesn't exist on mac osx
     if [ `which dircolors` ]; then eval "`dircolors -b`"; fi
-    alias ls='ls --color=auto'
+    if [ `uname -s` == 'Linux' ]; then
+        alias ls='ls --color=auto'
+    else
+        alias ls='ls -G'
+    fi
+
     export GREP_OPTIONS='--color=auto'
 fi
 
@@ -78,18 +83,18 @@ FIGNORE="CVS:.swp:.svn"
 PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin
 AWT_TOOLKIT=MToolkit
 
-export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT
-
 # Amazon EC2 stuff
 [ -f ~/.ec2rc ] && . ~/.ec2rc
 [ -f ~/Projects/kahuna/etc/ec2/ec2rc ]  && . ~/Projects/kahuna/etc/ec2/ec2rc
-
 
 # Oracle stuff
 if [ -d /opt/oracle/instantclient_10_2 ]; then
   LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
   ORACLE_HOME=/opt/oracle/instantclient_10_2
 fi
+
+# Homebrew stuff (for Mac OS/X)
+[ -d ~/.homebrew/bin ] && PATH=~/.homebrew/bin:$PATH
 
 # Postgres stuff (for Mac OS/X)
 HOME_BREW_POSTGRES_DIR=/opt/local/lib/postgresql84/bin/
@@ -107,3 +112,6 @@ export ORACLE_HOME
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 rvm use default
+
+# Export all the things we've set up above
+export JAVA_HOME EDITOR FIGNORE PATH AWT_TOOLKIT

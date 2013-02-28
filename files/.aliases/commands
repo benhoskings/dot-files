@@ -17,6 +17,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias babs='babushka'
 alias vi='vim'
 alias open='gnome-open'
 alias kah='cd ~/Projects/kahuna'

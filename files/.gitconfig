@@ -14,3 +14,5 @@
   excludesfile = ~/.gitignore
 [github]
   user = jamiecook
+[push]
+	default = simple
