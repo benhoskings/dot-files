@@ -12,7 +12,8 @@
   branch = auto
 [core]
   excludesfile = ~/.gitignore
+  autocrlf = input
 [github]
   user = jamiecook
 [push]
-	default = simple
+  default = simple
