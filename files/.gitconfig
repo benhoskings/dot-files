@@ -16,4 +16,4 @@
 [github]
   user = jamiecook
 [push]
-  default = simple
+  default = current 
