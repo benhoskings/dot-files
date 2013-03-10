@@ -117,8 +117,8 @@ set laststatus=2
 set lazyredraw
 " wrap long lines at a blank
 set linebreak
-" show <Tab> and <EOL>
-set list
+" DON'T show <Tab> and <EOL>
+set nolist
 " recognize modelines at start or end of file
 set modeline
 " ??
@@ -155,7 +155,7 @@ set wrap
 set pastetoggle=<F6>
 
 " I think these are gpm-related.
-set mouse=a
+set mouse-=a
 set mousehide
 
 " relies on desert file existing. I keep it in ~/.vim/colors/

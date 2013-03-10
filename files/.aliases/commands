@@ -5,6 +5,7 @@ alias cd..="cd ../"
 alias cp="cp -i"
 alias dir="ll | grep dr"
 alias days="git log --since='2 month ago' --author=tomjadams | grep Date | awk '{print \$2, \$3, \$4}' | uniq"
+alias ack='ack-grep'
 
 alias crontab="VIM_CRONTAB=true EDITOR=vim crontab"
 
