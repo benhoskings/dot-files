@@ -19,6 +19,9 @@ alias sub='subl -n'
 alias b='bundle exec'
 alias r='bundle exec rake'
 
+alias z='zeus'
+alias zr='z rspec'
+
 alias df='df -kh $argv'
 alias reload_webkit='osascript -e 'tell application "WebKit" to do JavaScript "window.location.reload()" in front document''
 alias tigs='tig status $argv'
