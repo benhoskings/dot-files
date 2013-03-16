@@ -4,11 +4,15 @@
 # The methods that get called more than once are memoized.
 
 def git_repo_path
-  @git_repo_path ||= `git rev-parse --git-dir 2>/dev/null`.strip
+  @git_repo_path ||= begin
+    relative_path = `git rev-parse --git-dir 2>/dev/null`.strip
+    File.expand_path(relative_path) unless relative_path.empty?
+  end
 end
 
 def in_git_repo
-  !git_repo_path.empty? &&
+  !git_repo_path.nil? &&
+  git_repo_path != '/.git' &&
   git_repo_path != '~' &&
   git_repo_path != "#{ENV['HOME']}/.git"
 end
