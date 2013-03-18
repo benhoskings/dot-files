@@ -54,6 +54,7 @@ for cf in ~/.bash_completion.d/*; do . $cf; done
 GREY="\[\033[01;30m\]"
 GREEN="\[\033[01;32m\]"
 YELLOW="\[\033[01;33m\]"
+LIGHT_YELLOW="\e[38;05;3m"
 #BLUE="\[\033[01;33m\]"
 BLUE="\[\033[01;34m\]"
 WHITE="\[\033[00m\]"
@@ -64,7 +65,7 @@ root)
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;101m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   ;;
 *)
-  PS1="${debian_chroot:+($debian_chroot)}${GREY}\$(date +%Y%m%d\ %H:%M:%S) ${BLUE}\u@\h${WHITE}:${GREEN}\w${WHITE}${GREY}\$(__git_ps1)${WHITE} "
+  PS1="${debian_chroot:+($debian_chroot)}${GREY}\$(date +%Y%m%d\ %H:%M:%S) ${LIGHT_YELLOW}\u${GREY}@${BLUE}\h${WHITE}:${GREEN}\w${WHITE}${GREY}\$(__git_ps1)${WHITE} "
   ;;
 esac
 
