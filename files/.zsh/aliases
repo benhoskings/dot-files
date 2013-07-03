@@ -26,3 +26,4 @@ alias r='bundle exec rake'
 alias df='df -kh $argv'
 alias tigs='tig status $argv'
 
+alias less='less -R'
