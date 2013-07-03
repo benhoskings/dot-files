@@ -20,6 +20,7 @@ alias d='gd $argv'
 alias sub='subl -n'
 
 alias b='bundle exec'
+alias bl='bundle --local'
 alias r='bundle exec rake'
 
 alias df='df -kh $argv'
