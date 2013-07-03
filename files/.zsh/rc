@@ -5,6 +5,7 @@ setopt hist_ignore_dups
 . ~/.zsh/aliases
 . ~/.zsh/git_aliases
 . ~/.zsh/functions
+. ~/.zsh/ruby
 
 if [ $(uname -s) = 'Darwin' ]; then
   export LANG="en_AU.UTF-8"
