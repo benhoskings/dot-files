@@ -78,7 +78,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-JAVA_HOME=/opt/jdk16
+JAVA_HOME=/opt/jdk17
 EDITOR=vim
 FIGNORE="CVS:.swp:.svn"
 PATH=$JAVA_HOME/bin:/var/lib/gems/1.8/bin/:$PATH:~/bin
