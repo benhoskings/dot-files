@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-`git clone git://github.com/vlc/dot-files.git ~/.dot-files` unless File.directory?("#{ENV['HOME']}/.dot-files")
+`git clone --quiet git://github.com/vlc/dot-files.git ~/.dot-files` unless File.directory?("#{ENV['HOME']}/.dot-files")
 
 def process_dir(dir)
   Dir.new(dir).each { |f| 
