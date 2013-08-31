@@ -17,3 +17,7 @@
   user = jamiecook
 [push]
   default = current 
+[format]
+  pretty = oneline
+[log]
+  abbrevCommit = true
