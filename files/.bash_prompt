@@ -89,7 +89,7 @@ function set_git_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state}(${branch})${remote}${COLOR_NONE}"
+  BRANCH=" ${state}(${branch})${remote}${COLOR_NONE}"
 }
 
 # Determine the branch information for this subversion repository. No support
@@ -108,7 +108,7 @@ function set_svn_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="(${branch})"
+  BRANCH=" (${branch})"
 }
 
 # Return the prompt symbol to use, colorized based on the return value of the
@@ -150,7 +150,7 @@ function set_bash_prompt () {
        DATE_PS1="${GREY}\$(date +%Y%m%d\ %H:%M:%S)"
   USER_HOST_PS1="${USER_PS1}${GREY}@${BLUE}\h${WHITE}"
         PWD_PS1="${GREEN}\w${WHITE}"
-  PS1="${CHROOT_PS1}${DATE_PS1} ${USER_HOST_PS1}:${PWD_PS1}${GREY} ${BRANCH}${COLOR_NONE}${PROMPT_SYMBOL} "
+  PS1="${CHROOT_PS1}${DATE_PS1} ${USER_HOST_PS1}:${PWD_PS1}${GREY}${BRANCH}${COLOR_NONE}${PROMPT_SYMBOL} "
   # PS1="\u@\h \w ${BRANCH}${PROMPT_SYMBOL} "
 }
 
