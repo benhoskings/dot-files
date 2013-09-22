@@ -14,6 +14,11 @@ def process_dir(dir)
       process_dir(source)
     else
       str = "ln -vsf \"#{source}\" #{target}"
+      if File.exists?(target)
+        target_backup = target + ".bak"
+        p "moving existing file #{target} out of the way (#{target_backup})"
+        `mv #{target} #{target_backup}`
+      end
       `#{str}`
     end
   }
