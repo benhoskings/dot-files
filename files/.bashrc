@@ -51,7 +51,7 @@ else
 fi
 for cf in ~/.bash_completion.d/*; do . $cf; done
 
-if [ -f ~/.bash_prompt ]; then . ~/.bash_prompt; fi
+if [ -f ~/.bash_prompt ]; then source ~/.bash_prompt; fi
 
 #GREY="\[\033[01;30m\]"
 #GREEN="\[\033[01;32m\]"

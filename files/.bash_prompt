@@ -22,7 +22,6 @@
 #
 #   http://gist.github.com/31967
 
-
 # The various escape codes that we can use to color our prompt.
          RED="\[\033[0;31m\]"
   BRIGHT_RED="\[\033[1;31m\]"
@@ -131,6 +130,7 @@ function set_user_prompt () {
 
 # Set the full bash prompt.
 function set_bash_prompt () {
+
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the 
   # return value of the last command.
   set_prompt_symbol $?
@@ -151,8 +151,9 @@ function set_bash_prompt () {
   USER_HOST_PS1="${USER_PS1}${GREY}@${BLUE}\h${WHITE}"
         PWD_PS1="${GREEN}\w${WHITE}"
   PS1="${CHROOT_PS1}${DATE_PS1} ${USER_HOST_PS1}:${PWD_PS1}${GREY}${BRANCH}${COLOR_NONE}${PROMPT_SYMBOL} "
-  # PS1="\u@\h \w ${BRANCH}${PROMPT_SYMBOL} "
 }
 
 # Tell bash to execute this function just before displaying its prompt.
+set_bash_prompt
 PROMPT_COMMAND=set_bash_prompt
+export PS1
