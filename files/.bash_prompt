@@ -123,7 +123,7 @@ function set_prompt_symbol () {
 
 function set_user_prompt () {
   if user_is_root ; then
-    USER_PS1="${BRIGHT_RED}\u"
+    USER_PS1="${BRIGHT_RED}ROOT"
   else
     USER_PS1="${LIGHT_YELLOW}\u"
   fi
