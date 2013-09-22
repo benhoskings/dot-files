@@ -65,7 +65,7 @@ function set_git_branch {
   else
     state="${PURPLE}"
   fi
-  
+
   # Set arrow icon based on status against remote.
   remote_pattern="# Your branch is (.*) of"
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
@@ -81,9 +81,9 @@ function set_git_branch {
   if [[ ${git_status} =~ ${diverge_pattern} ]]; then
     remote="."
   fi
-  
+
   # Get the name of the branch.
-  branch_pattern="^# On branch ([^${IFS}]*)"    
+  branch_pattern="^# On branch ([^${IFS}]*)"
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
   fi

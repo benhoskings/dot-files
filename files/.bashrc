@@ -49,7 +49,7 @@ else
   [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
   export EDITOR='mate -w'
 fi
-for cf in ~/.bash_completion.d/*; do . $cf; done  
+for cf in ~/.bash_completion.d/*; do . $cf; done
 
 if [ -f ~/.bash_prompt ]; then . ~/.bash_prompt; fi
 
