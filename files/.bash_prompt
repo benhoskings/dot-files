@@ -27,7 +27,7 @@
   BRIGHT_RED="\[\033[1;31m\]"
       PURPLE="\[\033[0;35m\]"
       YELLOW="\[\033[01;33m\]"
-LIGHT_YELLOW="\e[38;05;3m"
+LIGHT_YELLOW="\[\e[38;05;3m\]"
        GREEN="\[\033[01;32m\]"
         BLUE="\[\033[01;34m\]"
    LIGHT_RED="\[\033[1;31m\]"
