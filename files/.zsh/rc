@@ -20,7 +20,7 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt extendedglob notify
+setopt notify
 setopt append_history
 setopt inc_append_history
 unsetopt autocd
@@ -41,10 +41,6 @@ export WORDCHARS='*?[]~=&;!#$%^(){}'
 # mappings for Ctrl/Option-left-arrow and Ctrl/Option-right-arrow for word moving
 bindkey "\e\e[C"  forward-word
 bindkey "\e\e[D"  backward-word
-
-bindkey '^' self-insert-backslash
-function self-insert-backslash() { LBUFFER+='\'; zle .self-insert }
-zle -N self-insert-backslash
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
