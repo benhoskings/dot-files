@@ -46,4 +46,5 @@ bindkey '^' self-insert-backslash
 function self-insert-backslash() { LBUFFER+='\'; zle .self-insert }
 zle -N self-insert-backslash
 
-[[ -d "$HOME/.rbenv" ]] && export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
