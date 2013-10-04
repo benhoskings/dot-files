@@ -9,3 +9,5 @@
 	excludesfile = /Users/ben/.gitignore
 [github]
 	user = benhoskings
+[diff]
+	submodule = log
