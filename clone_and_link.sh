@@ -4,8 +4,7 @@ pushd "$HOME"
 
   if [ -d ".dot-files" ]; then
     pushd ".dot-files"
-      git fetch origin
-      git reset --hard origin/master
+      git smart-pull
     popd
   else
     git clone "git://github.com/benhoskings/dot-files.git" ".dot-files"
