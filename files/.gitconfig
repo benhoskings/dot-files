@@ -11,3 +11,5 @@
 	user = benhoskings
 [diff]
 	submodule = log
+[column]
+	ui = auto,dense
