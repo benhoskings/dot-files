@@ -1,5 +1,3 @@
-setopt prompt_subst
-setopt hist_ignore_dups
 
 . ~/.zsh/prompt
 . ~/.zsh/completion
@@ -17,16 +15,15 @@ else
   export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 fi
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt notify
-setopt append_history
-setopt inc_append_history
-unsetopt autocd
-bindkey -e
-# End of lines configured by zsh-newuser-install
+setopt append_history # Append to the history file rather than replacing it.
+setopt inc_append_history # Write history items as they are run, not on shell exit.
+
+setopt notify # Print background job status immediately.
+unsetopt auto_cd # Don't "execute" directories by changing into them.
+setopt complete_in_word # Complete from within words, not just at the end.
 
 export WORDCHARS='*?[]~=&;!#$%^(){}'
 

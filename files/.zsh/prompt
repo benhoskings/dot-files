@@ -1,3 +1,6 @@
+
+setopt prompt_subst # Expand parameters, etc, in the prompt variables.
+
 tilde_or_pwd() {
   echo $PWD | sed -e "s/\/Users\/$USER/~/"
 }
