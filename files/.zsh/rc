@@ -2,6 +2,7 @@ setopt prompt_subst
 setopt hist_ignore_dups
 
 . ~/.zsh/prompt
+. ~/.zsh/completion
 . ~/.zsh/aliases
 . ~/.zsh/git_aliases
 . ~/.zsh/functions
@@ -26,15 +27,6 @@ setopt inc_append_history
 unsetopt autocd
 bindkey -e
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/ben/.zshrc'
-
-autoload -Uz compinit
-compinit
-setopt complete_in_word
-# End of lines added by compinstall
-
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 export WORDCHARS='*?[]~=&;!#$%^(){}'
 

@@ -1,3 +1,8 @@
+alias git=hub
+if type compdef >/dev/null; then
+   compdef hub=git
+fi
+
 alias ga='git add -A'
 alias gap='ga -p'
 alias gau='git add -u'
