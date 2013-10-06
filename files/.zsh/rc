@@ -1,9 +1,9 @@
 
-. ~/.zsh/prompt
-. ~/.zsh/options
-. ~/.zsh/aliases
-. ~/.zsh/git
-. ~/.zsh/ruby
+. ~/.zsh/prompt # prompt config
+. ~/.zsh/options # zsh options
+. ~/.zsh/aliases # shell aliases
+. ~/.zsh/git # git aliases
+. ~/.zsh/ruby # ruby env vars and version management
 
 # Tab completion
 fpath=(~/.zsh/completion.d $fpath)
