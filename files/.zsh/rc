@@ -1,11 +1,16 @@
 
 . ~/.zsh/prompt
-. ~/.zsh/completion
+. ~/.zsh/options
 . ~/.zsh/aliases
-. ~/.zsh/git_aliases
-. ~/.zsh/functions
+. ~/.zsh/git
 . ~/.zsh/ruby
 
+# Tab completion
+fpath=(~/.zsh/completion.d $fpath)
+autoload -Uz compinit
+compinit -u
+
+# Env vars
 if [ $(uname -s) = 'Darwin' ]; then
   export LANG="en_AU.UTF-8"
   export EDITOR='subl -n -w'
@@ -14,24 +19,3 @@ if [ $(uname -s) = 'Darwin' ]; then
 else
   export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 fi
-
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=900000 # This value is smaller than HISTSIZE to allow a window for dupes.
-setopt append_history # Append to the history file rather than replacing it.
-setopt inc_append_history # Write history items as they are run, not on shell exit.
-setopt hist_expire_dups_first # Expire duplicate history items before older unique ones.
-setopt hist_ignore_dups # Don't save consecutive duplicate history items.
-
-setopt notify # Print background job status immediately.
-unsetopt auto_cd # Don't "execute" directories by changing into them.
-setopt complete_in_word # Complete from within words, not just at the end.
-
-export WORDCHARS='*?[]~=&;!#$%^(){}'
-
-# mappings for Ctrl/Option-left-arrow and Ctrl/Option-right-arrow for word moving
-bindkey "\e\e[C"  forward-word
-bindkey "\e\e[D"  backward-word
-
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh

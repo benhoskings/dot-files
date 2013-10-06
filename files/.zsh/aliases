@@ -6,16 +6,14 @@ else
   alias du='du -k --max-depth=1 $argv'
 fi
 
+cd() {
+  builtin cd "$@" && ls
+}
+
 alias l='ls'
 alias ll='ls -lh'
 alias la='ls -a'
 alias lal='ls -lah'
-
-s() {
-  git status -sb "$@"
-  return 0
-}
-alias d='gd $argv'
 
 alias sub='subl -n'
 

@@ -3,6 +3,13 @@ if type compdef >/dev/null; then
    compdef hub=git
 fi
 
+s() {
+  git status -sb "$@"
+  return 0
+}
+
+alias d='gd $argv'
+
 alias ga='git add -A'
 alias gap='ga -p'
 alias gau='git add -u'
