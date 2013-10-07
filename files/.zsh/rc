@@ -1,14 +1,10 @@
 
 . ~/.zsh/prompt # prompt config
 . ~/.zsh/options # zsh options
+. ~/.zsh/completion # tab completion config
 . ~/.zsh/aliases # shell aliases
 . ~/.zsh/git # git aliases
 . ~/.zsh/ruby # ruby env vars and version management
-
-# Tab completion
-fpath=(~/.zsh/completion.d $fpath)
-autoload -Uz compinit
-compinit -u
 
 # Env vars
 if [ $(uname -s) = 'Darwin' ]; then

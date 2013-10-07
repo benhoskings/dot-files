@@ -10,7 +10,6 @@ setopt hist_ignore_dups # Don't save consecutive duplicate history items.
 # Misc zsh config
 setopt notify # Print background job status immediately.
 unsetopt auto_cd # Don't "execute" directories by changing into them.
-setopt complete_in_word # Complete from within words, not just at the end.
 
 # Move between (customised) words with option-left/right.
 export WORDCHARS='*?[]~=&;!#$%^(){}'
