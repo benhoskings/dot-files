@@ -1,6 +1,9 @@
-alias git=hub
-if type compdef >/dev/null; then
-   compdef hub=git
+
+if type hub >/dev/null; then
+  alias git=hub
+  if type compdef >/dev/null; then
+     compdef hub=git
+  fi
 fi
 
 s() {
