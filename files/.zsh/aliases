@@ -17,3 +17,7 @@ alias sub='subl -n'
 cd() {
   builtin cd "$@" && ls
 }
+
+b() {
+  bundle "$@" | grep -v '^Using'
+}
