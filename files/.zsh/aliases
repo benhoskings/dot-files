@@ -17,11 +17,6 @@ alias lal='ls -lah'
 
 alias sub='subl -n'
 
-alias b='bundle exec'
-alias bl='bundle --local'
-alias r='bundle exec rake'
-
 alias df='df -kh $argv'
-alias tigs='tig status $argv'
 
 alias less='less -R'
