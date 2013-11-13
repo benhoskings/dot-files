@@ -6,17 +6,14 @@ else
   alias du='du -k --max-depth=1 $argv'
 fi
 
-cd() {
-  builtin cd "$@" && ls
-}
-
+alias df='df -kh $argv'
 alias l='ls'
 alias ll='ls -lh'
 alias la='ls -a'
 alias lal='ls -lah'
-
+alias less='less -R'
 alias sub='subl -n'
 
-alias df='df -kh $argv'
-
-alias less='less -R'
+cd() {
+  builtin cd "$@" && ls
+}
