@@ -21,3 +21,7 @@ cd() {
 b() {
   bundle "$@" | grep -v '^Using'
 }
+
+p() {
+  cd "$(find ~/code ~/projects -type d -maxdepth 3 -name .git | sed -e 's/\/\.git$//' | selecta)"
+}
