@@ -14,6 +14,8 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
+" save and run current file
+nmap <leader>e :w \| !./%<cr>
 
 " Change the colorscheme
 " colorscheme murphy
@@ -297,3 +299,4 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
