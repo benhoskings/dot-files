@@ -1,4 +1,3 @@
-
 alias gs='git status -sb'
 alias gl='git log --oneline --decorate'
 alias gp='git push'
