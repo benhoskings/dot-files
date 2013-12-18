@@ -33,6 +33,9 @@ export HISTCONTROL=ignoreboth
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+# Search your history
+bind "\C-p":history-search-backward
+bind "\C-n":history-search-forward
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"

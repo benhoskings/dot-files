@@ -1,38 +1,22 @@
-alias m='mate .'
-alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -nr | head -n 20"
-
-alias cd..="cd ../"
+alias ..="cd .."
 alias cp="cp -i"
-alias dir="ll | grep dr"
-alias days="git log --since='2 month ago' --author=tomjadams | grep Date | awk '{print \$2, \$3, \$4}' | uniq"
 alias ack='ack-grep'
 
 alias crontab="VIM_CRONTAB=true EDITOR=vim crontab"
 
-# Search your history
-bind "\C-p":history-search-backward
-bind "\C-n":history-search-forward
-
 # some more ls aliases
 alias ll='ls -l'
-alias la='ls -A'
 alias l='ls -CF'
 
-alias babs='babushka'
 alias vi='vim'
-alias open='gnome-open'
-alias kah='cd ~/Projects/kahuna'
-alias k='cd ~/Projects/kahuna'
-alias t='cd /opt/tempest/bin'
-alias san='cd ~/Projects/sandbox'
+
+# go folders: ~/Projects, /opt, ~/src
+
 alias b="./build.sh"
-alias ci="svn ci -m ''"
-alias up="svn up"
-alias st="svn st"
-alias f="ssh freeman.vlc"
-alias w="ssh warne.vlc"
-alias g="ssh gordon.vlc"
-alias coverage='k && (b coverage || rm -rf ~/build_coverage) && mv build/coverage ~/build_coverage && open ~/build_coverage/index.html'
+alias sci="svn ci -m ''"
+alias sup="svn up"
+alias sst="svn st"
+
 RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
 alias min='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
 alias max='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'
@@ -40,10 +24,20 @@ alias sum='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_
 alias mean='ruby -e "tmp = ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }; p tmp.inject(0.0) {|a,x| a+=x} / tmp.size"'
 alias var="${RUBY_NUMERIC_ARRAY_STR}.sum\""
 
-alias process_lts_report_for_transit="ruby -e 'ARGF.select{|l| l =~ /^\d+\d\d\d\d9999,/ }.each { |l| toks = l.strip.split(\",\"); puts [toks.first.match(/^(\d+)(\d\d\d\d)9999/)[1..2].map(&:to_i), toks[2..-1]].flatten.join(\",\") }'"
-
-alias df='df -h'
-alias du='du -sh'
-alias less='less -R'
+export LESS="-R"
 
 alias screen='byobu'
+
+go () {
+  PROJECT_DIRS="$HOME/Projects $HOME/src /opt"
+  # TODO Does not like files in these directories
+  TEST1=`find $PROJECT_DIRS -maxdepth 1 | grep \/$1 | head -n 1`
+  if [ ! -n $TEST1 ]
+  then
+    cd $TEST1
+  else
+    TEST2=`find $PROJECT_DIRS -maxdepth 1 | grep \/[^\/]*$1[^\/]* | head -n 1`
+    cd $TEST2
+  fi
+}
+

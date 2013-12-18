@@ -76,6 +76,11 @@ command Q quit
 " ctl-h removes trailing whitespace from all lines in the file
 :nmap <C-h> :%s/\s\+$//e<cr>
 
+" map ;e :w<CR>:exe ":! ./" . getreg("%") . "" <CR>
+
+map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
+     \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
+
 " tab navigation like Firefox
 ":nmap <C-S-tab> :tabprev<cr>
 ":nmap <C-tab> :tabnext<cr>
