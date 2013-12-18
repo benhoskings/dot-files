@@ -4,9 +4,21 @@ alias ack='ack-grep'
 
 alias crontab="VIM_CRONTAB=true EDITOR=vim crontab"
 
-# some more ls aliases
-alias ll='ls -l'
-alias l='ls -CF'
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+    # dircolors doesn't exist on mac osx
+    if [ `which dircolors` ]; then eval "`dircolors -b`"; fi
+    if [ `uname -s` == 'Linux' ]; then
+        alias ls='ls --color=auto'
+    else
+        alias ls='ls -G'
+    fi
+
+    alias ll='ls -l'
+    alias l='ls -CF'
+
+    export GREP_OPTIONS='--color=auto'
+fi
 
 alias vi='vim'
 

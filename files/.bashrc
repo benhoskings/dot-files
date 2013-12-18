@@ -12,19 +12,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 for alias_file in ~/.aliases/*; do . $alias_file; done
 
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    # dircolors doesn't exist on mac osx
-    if [ `which dircolors` ]; then eval "`dircolors -b`"; fi
-    if [ `uname -s` == 'Linux' ]; then
-        alias ls='ls --color=auto'
-    else
-        alias ls='ls -G'
-    fi
-
-    export GREP_OPTIONS='--color=auto'
-fi
-
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
