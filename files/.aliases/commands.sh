@@ -1,3 +1,4 @@
+alias ea="vim ~/.dot-files/files/.aliases/commands.sh && source ~/.dot-files/files/.aliases/commands.sh"
 alias ..="cd .."
 alias cp="cp -i"
 alias ack='ack-grep'
@@ -22,8 +23,6 @@ fi
 
 alias vi='vim'
 
-# go folders: ~/Projects, /opt, ~/src
-
 alias b="./build.sh"
 alias sci="svn ci -m ''"
 alias sup="svn up"
@@ -43,12 +42,12 @@ alias screen='byobu'
 go () {
   PROJECT_DIRS="$HOME/Projects $HOME/src /opt"
   # TODO Does not like files in these directories
-  TEST1=`find $PROJECT_DIRS -maxdepth 1 | grep \/$1 | head -n 1`
+  TEST1=`find $PROJECT_DIRS -type d -maxdepth 1 | grep \/$1 | head -n 1`
   if [ ! -n $TEST1 ]
   then
     cd $TEST1
   else
-    TEST2=`find $PROJECT_DIRS -maxdepth 1 | grep \/[^\/]*$1[^\/]* | head -n 1`
+    TEST2=`find $PROJECT_DIRS -type d -maxdepth 1 | grep \/[^\/]*$1[^\/]* | head -n 1`
     cd $TEST2
   fi
 }
