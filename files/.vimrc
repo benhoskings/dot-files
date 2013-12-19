@@ -7,6 +7,15 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+" save and run current file
+nmap <leader>e :w \| !./%<cr>
 
 " Change the colorscheme
 " colorscheme murphy
@@ -66,6 +75,11 @@ command Q quit
 
 " ctl-h removes trailing whitespace from all lines in the file
 :nmap <C-h> :%s/\s\+$//e<cr>
+
+" map ;e :w<CR>:exe ":! ./" . getreg("%") . "" <CR>
+
+map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
+     \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
 
 " tab navigation like Firefox
 ":nmap <C-S-tab> :tabprev<cr>
@@ -150,6 +164,13 @@ set tabstop=2
 set viewoptions=folds	" save folding state for views
 " long lines wrap and continue on the next line
 set wrap
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+ " Use the same symbols as TextMate for tabstops and EOLs
+ set listchars=tab:▸\ ,eol:¬
+
 
 " paste without trying to re-indent
 set pastetoggle=<F6>
@@ -284,9 +305,6 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-
-
-" Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
 function! SelectaCommand(choice_command, selecta_args, vim_command)
   try
