@@ -1,4 +1,5 @@
 alias ea="vim ~/.dot-files/files/.aliases/commands.sh && source ~/.dot-files/files/.aliases/commands.sh"
+alias eb="vim ~/.dot-files/files/.bashrc && source ~/.dot-files/files/.bashrc"
 alias ..="cd .."
 alias cp="cp -i"
 alias ack='ack-grep'
@@ -24,9 +25,12 @@ fi
 alias vi='vim'
 
 alias b="./build.sh"
-alias sci="svn ci -m ''"
+alias sci="svn ci"
 alias sup="svn up"
 alias sst="svn st"
+alias ss="svn st"
+alias sd="svn diff | less"
+
 
 RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
 alias min='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
@@ -38,17 +42,3 @@ alias var="${RUBY_NUMERIC_ARRAY_STR}.sum\""
 export LESS="-R"
 
 alias screen='byobu'
-
-go () {
-  PROJECT_DIRS="$HOME/Projects $HOME/src /opt"
-  # TODO Does not like files in these directories
-  TEST1=`find $PROJECT_DIRS -type d -maxdepth 1 | grep \/$1 | head -n 1`
-  if [ ! -n $TEST1 ]
-  then
-    cd $TEST1
-  else
-    TEST2=`find $PROJECT_DIRS -type d -maxdepth 1 | grep \/[^\/]*$1[^\/]* | head -n 1`
-    cd $TEST2
-  fi
-}
-
