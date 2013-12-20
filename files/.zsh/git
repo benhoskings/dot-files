@@ -44,7 +44,7 @@ git-new() {
   git init &&
   touch .gitignore &&
   git add .gitignore &&
-  git commit -m "Added .gitignore."
+  git commit -m "Add .gitignore."
 }
 git_current_branch() {
   cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD" | sed -e 's/^.*refs\/heads\///'
