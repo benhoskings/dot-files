@@ -1,7 +1,7 @@
 
 if type hub >/dev/null; then
   alias git=hub
-  if type compdef >/dev/null; then
+  if type compdef >/dev/null 2>/dev/null; then
      compdef hub=git
   fi
 fi
