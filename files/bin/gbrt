@@ -1,21 +1,22 @@
 #!/usr/bin/env ruby
 
-def format_commit_info timestamp, time_desc, commit_id, message, ref_name
+def format_commit_info timestamp, time_desc, ref, short_ref, message, ref_name
   [
     "#{timestamp.strftime("%y %b %d")}, #{timestamp.strftime("%l:%M%p").downcase}",
     "(#{time_desc})",
-    commit_id,
+    ref,
+    short_ref,
     message,
     ref_name
   ]
 end
 
-def render_commit_info timestamp, time_desc, commit_id, message, ref_name, merged
+def render_commit_info timestamp, time_desc, ref, short_ref, message, ref_name, merged
   [
     timestamp,
     time_desc,
     "\e[32m#{ref_name}\e[0m",
-    (merged ? "  #{commit_id}" : "+ \e[33m#{commit_id}\e[0m"),
+    (merged ? "  #{short_ref}" : "+ \e[33m#{short_ref}\e[0m"),
     "\e[#{message[/^Temp/] ? 31 : 90}m#{message.strip}\e[0m"
   ].join(' ')
 end
@@ -23,7 +24,7 @@ end
 `git branch #{ARGV.join(' ')} | cut -c 3-`.strip.split("\n").reject {|branch|
   branch[' -> ']
 }.map {|branch|
-  `git log --no-walk --pretty=format:"%ct\n%cr\n%h\n%s" "#{branch}" --`.strip.split("\n").push(branch)
+  `git log --no-walk --pretty=format:"%ct\n%cr\n%H\n%h\n%s" "#{branch}" --`.strip.split("\n").push(branch)
 }.map {|(timestamp, *rest)|
   [Time.at(timestamp.to_i)].concat(rest)
 }.sort_by {|(timestamp, *rest)|
@@ -35,7 +36,7 @@ end
   column.map {|i| i.ljust(max_col_length) }
 }.transpose.map {|commit_info|
   commit_info.push(
-    `git merge-base HEAD #{commit_info[2]}`.chomp[0...7] == commit_info[2]
+    `git merge-base HEAD #{commit_info[2]}`.chomp == commit_info[2]
   )
 }.each {|commit_info|
   puts render_commit_info(*commit_info)
