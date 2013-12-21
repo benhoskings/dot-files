@@ -7,6 +7,9 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Install pathogen for runtime modification
+execute pathogen#infect()
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -25,9 +28,13 @@ nmap <leader>e :w \| !./%<cr>
 
 " Change the colorscheme
 " colorscheme murphy
-colorscheme elflord
-syntax on
+" colorscheme elflord
 set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+syntax on
+
+
 set number
 set autoindent
 set bs=indent,eol,start         " allow backspacing over everything in insert mode
