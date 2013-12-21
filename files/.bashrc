@@ -6,6 +6,9 @@ system_name=
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Homebrew stuff (for Mac OS/X) - this has to be before the aliases so that we can do things like [ `which ack` ] in there
+[ -d ~/.homebrew/bin ] && PATH=~/.homebrew/bin:$PATH
+
 # Alias definitions.
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -d ~/.aliases      ] && for alias_file in ~/.aliases/*; do . $alias_file; done
@@ -66,9 +69,6 @@ if [ -d /opt/oracle/instantclient_10_2 ]; then
   LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
   ORACLE_HOME=/opt/oracle/instantclient_10_2
 fi
-
-# Homebrew stuff (for Mac OS/X)
-[ -d ~/.homebrew/bin ] && PATH=~/.homebrew/bin:$PATH
 
 # Postgres stuff (for Mac OS/X)
 HOME_BREW_POSTGRES_DIR=/opt/local/lib/postgresql84/bin/

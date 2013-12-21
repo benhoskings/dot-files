@@ -2,7 +2,7 @@ alias ea="vim ~/.dot-files/files/.aliases/commands.sh && source ~/.dot-files/fil
 alias eb="vim ~/.dot-files/files/.bashrc && source ~/.dot-files/files/.bashrc"
 alias ..="cd .."
 alias cp="cp -i"
-alias ack='ack-grep'
+[ `which ack` ] || alias ack='ack-grep'
 
 alias crontab="VIM_CRONTAB=true EDITOR=vim crontab"
 
@@ -13,6 +13,7 @@ if [ "$TERM" != "dumb" ]; then
     if [ `uname -s` == 'Linux' ]; then
         alias ls='ls --color=auto'
     else
+        export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
         alias ls='ls -G'
     fi
 
