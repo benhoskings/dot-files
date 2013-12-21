@@ -6,7 +6,7 @@
 #    * the branch/status of the current git repository
 #    * the branch of the current subversion repository
 #    * the return value of the previous command
-# 
+#
 # USAGE:
 #
 #   1. Save this file as ~/.git_svn_bash_prompt
@@ -14,7 +14,7 @@
 #        . ~/.git_svn_bash_prompt
 #
 # AUTHOR:
-# 
+#
 #   Scott Woods <scott@westarete.com>
 #   West Arete Computing
 #
@@ -131,7 +131,7 @@ function set_user_prompt () {
 # Set the full bash prompt.
 function set_bash_prompt () {
 
-  # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the 
+  # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
   # return value of the last command.
   set_prompt_symbol $?
 
