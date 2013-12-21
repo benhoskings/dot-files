@@ -62,6 +62,8 @@ function set_git_branch {
   elif [[ ${git_status} =~ "Changes to be committed" ]]; then
     state="${YELLOW}"
   else
+    echo "by"
+    echo ${git_status}
     state="${PURPLE}"
   fi
 
