@@ -13,7 +13,7 @@ def process_dir(dir)
     target = source.gsub(/.dot-files\/files\//, "")
     next if File.symlink?(target)
 
-    if File.directory?(source)
+    if File.directory?(source) && !(source =~ /vim/ )
       `mkdir -p #{target}`
       p "Processing directory #{target} recursively"
       process_dir(source)
