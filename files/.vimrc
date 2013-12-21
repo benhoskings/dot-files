@@ -12,6 +12,12 @@ set nocompatible
 let mapleader = ","
 let g:mapleader = ","
 
+" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+inoremap jj <Esc>
+
+" How often do use ';' ... now how often do you use ':' ... that's why this mapping exists :)
+noremap ; :
+
 " Fast saving
 nmap <leader>w :w!<cr>
 " save and run current file
@@ -235,8 +241,8 @@ filetype on
 
 " Autocomplete settings - use ctrl-space to get the shit going :)
 set ofu=syntaxcomplete#Complete
-" inoremap <C-space> <C-x><C-o>
-inoremap <C-space> <C-p>
+inoremap <C-Space> <C-p>
+inoremap <C-@> <C-p>
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
