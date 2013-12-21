@@ -15,10 +15,15 @@ if [ "$TERM" != "dumb" ]; then
     if [ `which dircolors` ]; then eval "`dircolors -b`"; fi
     if [ `uname -s` == 'Linux' ]; then
         alias ls='ls --color=auto'
-    else
-        # Use linux style colouring for ls output
-        export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
-        alias ls='ls -G'
+    elif [ `uname -s` == 'Darwin' ]; then
+        if [ `which gls` ]; then
+          # Use the core-utils version from homebrew if it's available...
+          alias ls='gls --color=always'
+        else
+          # otherwise try to make bsd ls more usable by using linux style colouring
+          export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+          alias ls='ls -G'
+        fi
     fi
 
     alias ll='ls -l'
