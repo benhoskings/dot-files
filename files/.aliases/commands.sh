@@ -2,6 +2,7 @@
 alias ea="vim ~/.dot-files/files/.aliases/commands.sh && source ~/.dot-files/files/.aliases/commands.sh"
 alias eb="vim ~/.dot-files/files/.bashrc && source ~/.dot-files/files/.bashrc"
 alias ev="vim ~/.dot-files/files/.vimrc"
+alias ed="vim ~/.dot-files/files && source ~/.bashrc"
 
 alias ..="cd .."
 alias cp="cp -i"
