@@ -92,11 +92,11 @@ map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
 ":imap <C-t> <ESC>:tabnew<cr>
 
 " take indent for new line from previous line
-set autoindent 
+set autoindent
 "dark" or "light", used for highlight colors
 set background=dark
 " how backspace works at start of line
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 " keep backup file after overwriting a file
 " set backup
 " list of directories for the backup file
@@ -139,8 +139,6 @@ set modeline
 set nocp
 " print the line number in front of each line
 set number
-" key code that causes 'paste' to toggle
-set pastetoggle=<F10>
 " show cursor line and column in the status line
 set ruler
 "  minimum nr. of lines above and below cursor
@@ -165,15 +163,12 @@ set viewoptions=folds	" save folding state for views
 " long lines wrap and continue on the next line
 set wrap
 
-" Shortcut to rapidly toggle `set list`
+" Shortcut to rapidly toggle `set list` (ie show whitespace)
 nmap <leader>l :set list!<CR>
- 
+
  " Use the same symbols as TextMate for tabstops and EOLs
  set listchars=tab:▸\ ,eol:¬
 
-
-" paste without trying to re-indent
-set pastetoggle=<F6>
 
 " I think these are gpm-related.
 set mouse-=a
@@ -198,7 +193,7 @@ end
 " TagList
 :map <F6> :TlistToggle <cr>
 
-" Lets get crontab editing working 
+" Lets get crontab editing working
 if $VIM_CRONTAB == 'true'
   set nobackup
   set nowritebackup
@@ -238,6 +233,11 @@ set wildmode=list:longest,full
 " enable filetype detection:
 filetype on
 
+" Autocomplete settings - use ctrl-space to get the shit going :)
+set ofu=syntaxcomplete#Complete
+" inoremap <C-space> <C-x><C-o>
+inoremap <C-space> <C-p>
+
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
 
@@ -256,6 +256,11 @@ autocmd FileType html,css set noexpandtab tabstop=2
 " needed, and have indentation at 8 chars to be sure that all indents are tabs
 " (despite the mappings later):
 autocmd FileType make set noexpandtab shiftwidth=8
+autocmd BufEnter ?akefile* set noet ts=8 sw=8
+autocmd BufEnter */debian/rules set noet ts=8 sw=8
+
+" for C-like programming, have automatic indentation:
+autocmd FileType c,cpp,slang set cindent
 
 
 " Stolen from some guy named ben :) benoit.cerrina@writeme.com
@@ -266,16 +271,9 @@ fun BenIndent()
 endfun
 map -- :call BenIndent()<CR>
 
-
-" for C-like programming, have automatic indentation:
-autocmd FileType c,cpp,slang set cindent
-
 " show the `best match so far' as search strings are typed:
 set incsearch
 
-" Makefile sanity
-autocmd BufEnter ?akefile* set noet ts=8 sw=8
-autocmd BufEnter */debian/rules set noet ts=8 sw=8
 
 " Map f11 to toggle background
 set background=dark
@@ -284,6 +282,7 @@ map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 " Map f5 to toggle search highlighting
 map <F5> :set hls!set hls?
 
+" paste without trying to re-indent
 set pastetoggle=<Tab>
 
 highlight ExtraWhitespace ctermbg=red guibg=red
