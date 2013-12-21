@@ -1,5 +1,8 @@
+# Handy aliases to allow quick editing of key config files
 alias ea="vim ~/.dot-files/files/.aliases/commands.sh && source ~/.dot-files/files/.aliases/commands.sh"
 alias eb="vim ~/.dot-files/files/.bashrc && source ~/.dot-files/files/.bashrc"
+alias ev="vim ~/.dot-files/files/.vimrc"
+
 alias ..="cd .."
 alias cp="cp -i"
 [ `which ack` ] || alias ack='ack-grep'
