@@ -16,7 +16,8 @@ if [ "$TERM" != "dumb" ]; then
     if [ `uname -s` == 'Linux' ]; then
         alias ls='ls --color=auto'
     else
-        export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+        # Use linux style colouring for ls output
+        export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
         alias ls='ls -G'
     fi
 
