@@ -32,8 +32,9 @@ nmap <leader>e :w \| !./%<cr>
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-syntax on
 
+" Map f11 to toggle background
+map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 set number
 set autoindent
@@ -286,11 +287,6 @@ map -- :call BenIndent()<CR>
 
 " show the `best match so far' as search strings are typed:
 set incsearch
-
-
-" Map f11 to toggle background
-set background=dark
-map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 " Map f5 to toggle search highlighting
 map <F5> :set hls!set hls?
