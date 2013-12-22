@@ -1,22 +1,33 @@
 " .vimrc
 "
-" Copied from Smylers's .vimrc
-" http://www.stripey.com/vim/
+" Stolen shamelessly from a number of places
+"  -> www.stripey.com/vim/
+"  -> www.github.com/nkpart/vim-files
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Use vundle to manage vim bundles --------------------------------------------
+filetype off                  " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+filetype plugin indent on     " required!
+
+Bundle "tpope/vim-sensible"
+" -----------------------------------------------------------------------------
+
 " Install pathogen for runtime modification
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
-inoremap jj <Esc>
+" This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
+inoremap jk <Esc>
 
 " How often do use ';' ... now how often do you use ':' ... that's why this mapping exists :)
 noremap ; :
@@ -27,12 +38,12 @@ nmap <leader>w :w!<cr>
 nmap <leader>e :w \| !./%<cr>
 
 " Change the colorscheme
+Bundle 'altercation/vim-colors-solarized'
 " colorscheme murphy
 " colorscheme elflord
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-
 " Map f11 to toggle background
 map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
@@ -44,6 +55,10 @@ if !has("gui") && has("terminfo")
   set t_Co=16
   set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
   set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+
+  " Change cursor in iTerm on insert
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 else
   set t_Co=16
   set t_Sf=[3%dm
@@ -59,12 +74,6 @@ set noai
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  "filetype plugin indent on
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
@@ -251,6 +260,17 @@ filetype on
 set ofu=syntaxcomplete#Complete
 inoremap <C-Space> <C-p>
 inoremap <C-@> <C-p>
+
+" Languages
+Bundle "derekwyatt/vim-scala"
+" Bundle "othree/html5.vim"
+" Bundle "kongo2002/fsharp-vim"
+Bundle "vim-ruby/vim-ruby"
+" Bundle "jgdavey/vim-blockle"
+" Bundle "tpope/vim-rails"
+" Bundle "jhenahan/idris-vim"
+"
+Bundle "Markdown"
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent

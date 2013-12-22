@@ -3,3 +3,5 @@ files/.ssh/authorized_keys
 files/.ssh/known_hosts
 .idea
 files/.vim/.netrwhist
+files/.vim/bundle/**
+~files/.vim/bundle/vundle
