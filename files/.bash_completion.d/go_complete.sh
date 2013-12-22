@@ -4,16 +4,16 @@ export GO_SEARCH_DIRS
 
 get_dir_list() {
   for DIR in $GO_SEARCH_DIRS; do
-    ls -l $DIR | grep ^d | awk '{print $9}'
+    ls -l --color=auto $DIR | grep ^d | awk '{print $9}'
   done
 }
 
 find_sub_dirs_strict() {
-  MATCHING_DIR=`ls -l $DIR | grep ^d | awk '{ print $9}' | grep "^$PATTERN" | head -n 1`
+  MATCHING_DIR=`ls -l --color=auto $DIR | grep ^d | awk '{ print $9}' | grep "^$PATTERN" | head -n 1`
 }
 
 find_sub_dirs() {
-  MATCHING_DIR=`ls -l $DIR | grep ^d | awk '{ print $9}' | grep $PATTERN | head -n 1`
+  MATCHING_DIR=`ls -l --color=auto $DIR | grep ^d | awk '{ print $9}' | grep $PATTERN | head -n 1`
 }
 
 go () {
