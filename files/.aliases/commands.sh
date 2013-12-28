@@ -54,3 +54,13 @@ alias var="${RUBY_NUMERIC_ARRAY_STR}.sum\""
 export LESS="-R"
 
 alias screen='byobu'
+
+source_if_exists()
+{
+  test -f $1 && source $1
+}
+
+source_directory()
+{
+  test -d $1 && for file in ${1}/*; do source $file; done
+}

@@ -22,24 +22,6 @@
 #
 #   http://gist.github.com/31967
 
-# The various escape codes that we can use to color our prompt.
-       BLACK="\[\033[0;30m\]"
-  LIGHT_GRAY="\[\033[1;30m\]"
-        GREY=$LIGHT_GRAY
-         RED="\[\033[0;31m\]"
-   LIGHT_RED="\[\033[1;31m\]"
-       GREEN="\[\033[0;32m\]"
- LIGHT_GREEN="\[\033[1;32m\]"
-      YELLOW="\[\033[0;33m\]"
-LIGHT_YELLOW="\[\033[1;33m\]"
-        BLUE="\[\033[0;34m\]"
-  LIGHT_BLUE="\[\033[1;34m\]"
-      PURPLE="\[\033[0;35m\]"
-LIGHT_PURPLE="\[\033[1;35m\]"
-        CYAN="\[\033[0;36m\]"
-  LIGHT_CYAN="\[\033[1;36m\]"
-       WHITE="\[\033[1;37m\]"
-  COLOR_NONE="\[\e[0m\]"
 
 # Detect whether the current directory is a git repository.
 function is_git_repository {
@@ -181,6 +163,11 @@ function set_bash_prompt () {
         PWD_PS1="${GREEN}\w${WHITE}"
   PS1="${CHROOT_PS1}${RVM_PROMPT}${DATE_PS1} ${USER_HOST_PS1}:${PWD_PS1}${GREY}${BRANCH}\n${COLOR_NONE}${SMILEY} "
 }
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+  debian_chroot=$(cat /etc/debian_chroot)
+fi
 
 # Tell bash to execute this function just before displaying its prompt.
 set_bash_prompt
