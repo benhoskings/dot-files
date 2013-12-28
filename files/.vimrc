@@ -104,9 +104,14 @@ command Q quit
 map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
      \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
 
+" Scala tests
+map <leader>t :w<cr>:!sbt test<cr>
+
 " tab navigation like Firefox
-":nmap <C-S-tab> :tabprev<cr>
-":nmap <C-tab> :tabnext<cr>
+:nmap <C-n> :wn<cr>
+:nmap <C-p> :wN<cr>
+:imap <C-n> <ESC>:wn<cr>i
+:imap <C-p> <ESC>:wN<cr>i
 ":nmap <C-t> :tabnew<cr>
 ":map <C-S-tab> :tabprev<cr>
 ":map <C-tab> :tabnext<cr>
@@ -237,6 +242,7 @@ inoremap <C-@> <C-p>
 
 " Languages
 Bundle "derekwyatt/vim-scala"
+so ~/.dot-files/files/.vim/bundle/vim-scala/ftdetect/scala.vim
 " Bundle "othree/html5.vim"
 " Bundle "kongo2002/fsharp-vim"
 Bundle "vim-ruby/vim-ruby"
