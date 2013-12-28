@@ -148,7 +148,8 @@ set_smiley_status() {
 
 set_rvm_prompt() {
   if [ -f ~/.rvm/bin/rvm-prompt ]; then
-    RVM_PROMPT=${YELLOW}$(printf "%${COLUMNS}s\r" "`~/.rvm/bin/rvm-prompt`")${COLOR_NONE}
+    RVM_STR=$(~/.rvm/bin/rvm-prompt)
+    RVM_PROMPT=${YELLOW}$(printf "%${COLUMNS}s\r" "${RVM_STR}")${COLOR_NONE}
   else
     RVM_PROMPT=""
   fi

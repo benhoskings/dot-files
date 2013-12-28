@@ -26,6 +26,16 @@ shopt -s checkwinsize
 bind "\C-p":history-search-backward
 bind "\C-n":history-search-forward
 
+bind "set bell-style none" # No bell, because it's damn annoying
+bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
+
+# history (bigger size, no duplicates, always append):
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+export HISTIGNORE="history*:fg:bg:vim"
+export HISTTIMEFORMAT="%d/%m/%y %T "
+shopt -s histappend
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
