@@ -318,6 +318,9 @@ runtime selecta.vim
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 nnoremap <leader>f :call SelectaCommand("find * -type f", ":e")<cr>
+nnoremap <leader>gf :call SelectaCommand("files", ":e")<cr>
+nnoremap <leader>ga :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump")<cr>
+nnoremap <leader>gd :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}.*::" .', "EditJump")<cr>
 
 
 " Transparent editing of gpg encrypted files.
