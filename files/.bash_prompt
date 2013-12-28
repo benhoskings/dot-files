@@ -160,7 +160,7 @@ function set_bash_prompt () {
 
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
   # return value of the last command.
-  set_prompt_symbol $?
+  #  set_prompt_symbol $?
   set_smiley_status
   set_rvm_prompt
 
@@ -177,7 +177,7 @@ function set_bash_prompt () {
   # Set the bash prompt variable.
      CHROOT_PS1="${debian_chroot:+($debian_chroot)}"
        DATE_PS1="${GREY}\$(date +%Y%m%d\ %H:%M:%S)"
-  USER_HOST_PS1="${USER_PS1}${GREY}@${BLUE}\h${WHITE}"
+  USER_HOST_PS1="${USER_PS1}${GREY}@${LIGHT_BLUE}\h${WHITE}"
         PWD_PS1="${GREEN}\w${WHITE}"
   PS1="${CHROOT_PS1}${RVM_PROMPT}${DATE_PS1} ${USER_HOST_PS1}:${PWD_PS1}${GREY}${BRANCH}\n${COLOR_NONE}${SMILEY} "
 }
