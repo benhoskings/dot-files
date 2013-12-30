@@ -107,11 +107,13 @@ map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
 " Scala tests
 map <leader>t :w<cr>:!sbt test<cr>
 
-" tab navigation like Firefox
-:nmap <C-n> :wn<cr>
-:nmap <C-p> :wN<cr>
-:imap <C-n> <ESC>:wn<cr>i
-:imap <C-p> <ESC>:wN<cr>i
+" buffer navigation like a BOSS!
+:nmap <C-n> :w<cr>:bn<cr>
+:nmap <C-p> :w<cr>:bN<cr>
+:nmap <C-w> :w<cr>:bd<cr>
+:imap <C-n> <ESC>:w<cr>:bn<cr>i
+:imap <C-p> <ESC>:w<cr>:bN<cr>i
+
 ":nmap <C-t> :tabnew<cr>
 ":map <C-S-tab> :tabprev<cr>
 ":map <C-tab> :tabnext<cr>

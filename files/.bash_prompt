@@ -116,15 +116,17 @@ function set_user_prompt () {
 
 set_smiley_status() {
   if [ $? = 0 ]; then
-    export SMILEY="\001\033[0;32m\002∴\001\033[0m\002"
+    # export SMILEY="\001\033[0;32m\002∴\001\033[0m\002"
+    export SMILEY="${GREEN}∴${COLOR_NONE}"
   else
-    export SMILEY="\001\033[31m\002☢\001\033[0m\002"
+    # export SMILEY="\001\033[31m\002☢\001\033[0m\002"
+    export SMILEY="${LIGHT_RED}☢${COLOR_NONE}"
   fi
   j=`jobs`
   if [ -z "$j" ]; then
     export JOB_STATUS=" "
   else
-    export JOB_STATUS="!"
+    export JOB_STATUS="${RED}!${COLOR_NONE}"
   fi
 }
 
@@ -161,7 +163,7 @@ function set_bash_prompt () {
        DATE_PS1="${GREY}\$(date +%Y%m%d\ %H:%M:%S)"
   USER_HOST_PS1="${USER_PS1}${GREY}@${LIGHT_BLUE}\h${WHITE}"
         PWD_PS1="${GREEN}\w${WHITE}"
-  PS1="${CHROOT_PS1}${RVM_PROMPT}${DATE_PS1} ${USER_HOST_PS1}:${PWD_PS1}${GREY}${BRANCH}\n${COLOR_NONE}${SMILEY} "
+  PS1="${CHROOT_PS1}${RVM_PROMPT}${DATE_PS1} ${JOB_STATUS} ${USER_HOST_PS1}:${PWD_PS1}${GREY}${BRANCH}\n${SMILEY} "
 }
 
 # set variable identifying the chroot you work in (used in the prompt below)
