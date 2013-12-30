@@ -30,16 +30,13 @@ nmap <leader>w :w!<cr>
 " save and run current file
 nmap <leader>e :w \| !./%<cr>
 
-let g:solarized_termcolors=256
-let base16colorspace=256  " Access colors present
+syntax enable
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
+set t_Co=16  " Use 16 colours
 set background=dark
-colorscheme base16-default
 colorscheme solarized
 
 if !has("gui") && has("terminfo")
-  set t_Co=16
   set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
   set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
 
@@ -63,9 +60,9 @@ if has("autocmd")
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
 endif " has("autocmd")
 
@@ -78,7 +75,7 @@ ab teh the
 " map ;e :w<CR>:exe ":! ./" . getreg("%") . "" <CR>
 
 map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
-     \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
+      \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
 
 " Scala tests
 map <leader>t :w<cr>:!sbt test<cr>
@@ -99,7 +96,6 @@ map <leader>t :w<cr>:!sbt test<cr>
 :imap <C-t> <ESC>:tabnew<cr>
 
 set autoindent                    " take indent for new line from previous line
-set background=dark               " "dark" or "light", used for highlight colors
 set backspace=indent,eol,start    " how backspace works at start of line
 set cursorline                    " rule a line under the cursor position
 set encoding=utf-8                " encoding used internally
@@ -127,8 +123,6 @@ set expandtab
 set smarttab
 set colorcolumn=100
 let &colorcolumn=join(range(101,999),",")
-highlight ColorColumn ctermbg=108 guibg=#2c2d27
-" set smartindent
 set softtabstop=2                 " number of spaces that <Tab> uses while editing
 set shiftwidth=2                  " number of spaces to use for (auto)indent step
 set tabstop=2                     " number of spaces that <Tab> in file use
@@ -150,10 +144,6 @@ nmap <leader>l :set list!<CR>     " Shortcut to rapidly toggle `set list` (ie sh
 set listchars=tab:▸\ ,eol:¬       " Use the same symbols as TextMate for tabstops and EOLs
 
 
-" override colour scheme to make status line dark green
-highlight StatusLine cterm=none ctermbg=darkgreen
-highlight StatusLineNC cterm=none ctermbg=darkgreen
-highlight VertSplit cterm=none ctermbg=darkgreen
 
 if version >= 700
   " the following line enables spell checking by default. I prefer to have it
@@ -162,8 +152,6 @@ if version >= 700
   :map <F5> :setlocal spell! spelllang=en_au<cr>
   :imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
 end
-
-:map <F6> :TlistToggle <cr>       " TagList
 
 " Lets get crontab editing working
 if $VIM_CRONTAB == 'true'
@@ -214,6 +202,16 @@ autocmd BufEnter */debian/rules set noet ts=8 sw=8
 " for C-like programming, have automatic indentation:
 autocmd FileType c,cpp,slang set cindent
 
+" Commenting blocks of code.
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
+autocmd FileType vim              let b:comment_leader = '" '
+noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
 " Stolen from some guy named ben :) benoit.cerrina@writeme.com
 fun BenIndent()
   let oldLine=line('.')
@@ -229,19 +227,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-
-" function! ResCur()
-"   if line("'\"") <= line("$")
-"     normal! g`"
-"     return 1
-"   endif
-" endfunction
-
-" augroup resCur
-"   autocmd!
-"   autocmd BufWinEnter * call ResCur()
-" augroup END
-
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
