@@ -32,9 +32,10 @@ nmap <leader>e :w \| !./%<cr>
 
 syntax enable
 Bundle 'altercation/vim-colors-solarized'
-set t_Co=16  " Use 16 colours
+" let g:solarized_termcolors=256
+" set t_Co=16
 set background=dark
-colorscheme solarized
+colorscheme elflord
 
 if !has("gui") && has("terminfo")
   set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
@@ -121,8 +122,8 @@ set scrolloff=2                   " minimum nr. of lines above and below cursor
 set shiftround                    " round indent to multiple of shiftwidth
 set expandtab
 set smarttab
-set colorcolumn=100
-let &colorcolumn=join(range(101,999),",")
+let &colorcolumn=join(range(121,999),",")
+highlight ColorColumn ctermbg=8 guibg=#2c2d27
 set softtabstop=2                 " number of spaces that <Tab> uses while editing
 set shiftwidth=2                  " number of spaces to use for (auto)indent step
 set tabstop=2                     " number of spaces that <Tab> in file use
@@ -138,17 +139,13 @@ set incsearch                     " show the `best match so far' as search strin
 map <leader><space> :noh<cr>      " Easily remove search highlighting
 set pastetoggle=<F2>              " paste without trying to re-indent
 
-syntax on                         " syntax to be loaded for current buffer
-
 nmap <leader>l :set list!<CR>     " Shortcut to rapidly toggle `set list` (ie show whitespace)
 set listchars=tab:▸\ ,eol:¬       " Use the same symbols as TextMate for tabstops and EOLs
-
-
 
 if version >= 700
   " the following line enables spell checking by default. I prefer to have it
   " off, then toggle it on with F5 when required
-  setlocal spell spelllang=en_au
+"   setlocal spell spelllang=en_au
   :map <F5> :setlocal spell! spelllang=en_au<cr>
   :imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
 end
@@ -177,6 +174,7 @@ Bundle "derekwyatt/vim-scala"
 so ~/.dot-files/files/.vim/bundle/vim-scala/ftdetect/scala.vim
 Bundle "vim-ruby/vim-ruby"
 Bundle "Markdown"
+
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
@@ -236,3 +234,4 @@ nnoremap <leader>gf :call SelectaCommand("files", ":e")<cr>
 nnoremap <leader>ga :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump")<cr>
 nnoremap <leader>gd :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}.*::" .', "EditJump")<cr>
 
+" highlight ColorColumn ctermbg=8 guibg=#2c2d27
