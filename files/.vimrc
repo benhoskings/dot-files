@@ -18,38 +18,25 @@ filetype plugin indent on     " required!
 Bundle "tpope/vim-sensible"
 " -----------------------------------------------------------------------------
 
-" Install pathogen for runtime modification
-" execute pathogen#infect()
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
 " This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
-
 " How often do use ';' ... now how often do you use ':' ... that's why this mapping exists :)
 noremap ; :
-
 " Fast saving
 nmap <leader>w :w!<cr>
 " save and run current file
 nmap <leader>e :w \| !./%<cr>
 
-" Change the colorscheme
-Bundle 'altercation/vim-colors-solarized'
-" colorscheme murphy
-" colorscheme elflord
-set background=dark
 let g:solarized_termcolors=256
+let base16colorspace=256  " Access colors present
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/base16-vim'
+set background=dark
+colorscheme base16-default
 colorscheme solarized
-" Map f11 to toggle background
-map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-
-set number
-set autoindent
-set bs=indent,eol,start         " allow backspacing over everything in insert mode
 
 if !has("gui") && has("terminfo")
   set t_Co=16
@@ -64,13 +51,6 @@ else
   set t_Sf=[3%dm
   set t_Sb=[4%dm
 endif
-
-set title
-set visualbell
-set noerrorbells
-set ai
-set noai
-"set mouse=n
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -92,11 +72,7 @@ endif " has("autocmd")
 " auto correct
 ab teh the
 
-" command aliases
-command W write
-command Q quit
-
-" ctl-h removes trailing whitespace from all lines in the file
+" ctl-h removes trailing white space from all lines in the file
 :nmap <C-h> :%s/\s\+$//e<cr>
 
 " map ;e :w<CR>:exe ":! ./" . getreg("%") . "" <CR>
@@ -114,114 +90,80 @@ map <leader>t :w<cr>:!sbt test<cr>
 :imap <C-n> <ESC>:w<cr>:bn<cr>i
 :imap <C-p> <ESC>:w<cr>:bN<cr>i
 
-":nmap <C-t> :tabnew<cr>
-":map <C-S-tab> :tabprev<cr>
-":map <C-tab> :tabnext<cr>
-":imap <C-S-tab> <ESC>:tabprev<cr>i
-":imap <C-tab> <ESC>:tabnext<cr>i
-":imap <C-t> <ESC>:tabnew<cr>
+" Tab navigation like a BOSS!
+:nmap <C-t> :tabnew<cr>
+:map  <C-S-tab> :tabprev<cr>
+:map  <C-tab> :tabnext<cr>
+:imap <C-S-tab> <ESC>:tabprev<cr>i
+:imap <C-tab> <ESC>:tabnext<cr>i
+:imap <C-t> <ESC>:tabnew<cr>
 
-" take indent for new line from previous line
-set autoindent
-"dark" or "light", used for highlight colors
-set background=dark
-" how backspace works at start of line
-set backspace=indent,eol,start
-" keep backup file after overwriting a file
-" set backup
-" list of directories for the backup file
-" set backupdir=~/tmp
-" rule a line under the cursor position
-"set cursorline
-" encoding used internally
-set encoding=utf-8
-" use spaces when <Tab> is inserted
-set expandtab
-" automatically detected character encodings
-set fileencodings=utf-8
-" width of the column used to indicate folds
-set foldcolumn=2
-" set to display all folds open
-set foldenable
-" gvim cursor setting
-set gcr=n:blinkon0
-" don't unload buffer when it is |abandon|ed
-set hidden
-" highlight matches with last search pattern
-set hlsearch
-" number of command-lines that are remembered
-set history=500
-" ignore case in search patterns set ignorecase
-set ignorecase
-" highlight match while typing search pattern
-set incsearch
-" tells when last window has status lines
-set laststatus=2
-" don't redraw while executing macros
-set lazyredraw
-" wrap long lines at a blank
-set linebreak
-" DON'T show <Tab> and <EOL>
-set nolist
-" recognize modelines at start or end of file
-set modeline
-" ??
-set nocp
-" print the line number in front of each line
-set number
-" show cursor line and column in the status line
-set ruler
-"  minimum nr. of lines above and below cursor
-set scrolloff=2
-" round indent to multiple of shiftwidth
-set shiftround
-" number of spaces to use for (auto)indent step
-set shiftwidth=2
-set shiftround
+set autoindent                    " take indent for new line from previous line
+set background=dark               " "dark" or "light", used for highlight colors
+set backspace=indent,eol,start    " how backspace works at start of line
+set cursorline                    " rule a line under the cursor position
+set encoding=utf-8                " encoding used internally
+set expandtab                     " use spaces when <Tab> is inserted
+set fileencodings=utf-8           " automatically detected character encodings
+set foldcolumn=2                  " width of the column used to indicate folds
+set foldenable                    " set to display all folds open
+set gcr=n:blinkon0                " gvim cursor setting
+set hidden                        " don't unload buffer when it is |abandon|ed
+set hlsearch                      " highlight matches with last search pattern
+set history=500                   " number of command-lines that are remembered
+set ignorecase                    " ignore case in search patterns set ignorecase
+set smartcase                     " if you search with a mix of upper/lower case it becomes case sensitive again
+set incsearch                     " highlight match while typing search pattern
+set laststatus=2                  " tells when last window has status lines
+set lazyredraw                    " don't redraw while executing macros
+set linebreak                     " wrap long lines at a blank
+set nolist                        " DON'T show <Tab> and <EOL>
+set modelines=0                   " prevents security exploits [http://lists.alioth.debian.org/pipermail/pkg-vim-maintainers/2007-June/004020.html]
+set number                        " print the line number in front of each line
+set ruler                         " show cursor line and column in the status line
+set scrolloff=2                   " minimum nr. of lines above and below cursor
+set shiftround                    " round indent to multiple of shiftwidth
 set expandtab
 set smarttab
-" number of spaces that <Tab> uses while editing
-set softtabstop=2
-" syntax to be loaded for current buffer
-syntax on
-" number of spaces that <Tab> in file use
-set tabstop=2
-" maximum width of text that is being inserted
-" set textwidth=75
-" specifies what to save for :mkview
-set viewoptions=folds	" save folding state for views
-" long lines wrap and continue on the next line
-set wrap
-
-" Shortcut to rapidly toggle `set list` (ie show whitespace)
-nmap <leader>l :set list!<CR>
-
- " Use the same symbols as TextMate for tabstops and EOLs
- set listchars=tab:▸\ ,eol:¬
-
-
-" I think these are gpm-related.
+set colorcolumn=100
+let &colorcolumn=join(range(101,999),",")
+highlight ColorColumn ctermbg=108 guibg=#2c2d27
+" set smartindent
+set softtabstop=2                 " number of spaces that <Tab> uses while editing
+set shiftwidth=2                  " number of spaces to use for (auto)indent step
+set tabstop=2                     " number of spaces that <Tab> in file use
+set viewoptions=folds	            " save folding state for views
+set wrap                          " long lines wrap and continue on the next line
+set title
+set visualbell
+set noerrorbells
 set mouse-=a
 set mousehide
+set bs=indent,eol,start           " allow backspacing over everything in insert mode
+set incsearch                     " show the `best match so far' as search strings are typed:
+map <leader><space> :noh<cr>      " Easily remove search highlighting
+set pastetoggle=<F2>              " paste without trying to re-indent
 
-" relies on desert file existing. I keep it in ~/.vim/colors/
-" colorscheme moria
+syntax on                         " syntax to be loaded for current buffer
 
-" override color scheme to make status line darkblue
+nmap <leader>l :set list!<CR>     " Shortcut to rapidly toggle `set list` (ie show whitespace)
+set listchars=tab:▸\ ,eol:¬       " Use the same symbols as TextMate for tabstops and EOLs
+
+
+" override colour scheme to make status line dark green
 highlight StatusLine cterm=none ctermbg=darkgreen
 highlight StatusLineNC cterm=none ctermbg=darkgreen
 highlight VertSplit cterm=none ctermbg=darkgreen
 
 if version >= 700
-  " the following line enables spellchecking by default. I prefer to have it
+  " the following line enables spell checking by default. I prefer to have it
   " off, then toggle it on with F5 when required
-  " setlocal spell spelllang=en_au
+  setlocal spell spelllang=en_au
   :map <F5> :setlocal spell! spelllang=en_au<cr>
   :imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
 end
 
-" TagList
-:map <F6> :TlistToggle <cr>
+:map <F6> :TlistToggle <cr>       " TagList
 
 " Lets get crontab editing working
 if $VIM_CRONTAB == 'true'
@@ -245,13 +187,7 @@ inoremap <C-@> <C-p>
 " Languages
 Bundle "derekwyatt/vim-scala"
 so ~/.dot-files/files/.vim/bundle/vim-scala/ftdetect/scala.vim
-" Bundle "othree/html5.vim"
-" Bundle "kongo2002/fsharp-vim"
 Bundle "vim-ruby/vim-ruby"
-" Bundle "jgdavey/vim-blockle"
-" Bundle "tpope/vim-rails"
-" Bundle "jhenahan/idris-vim"
-"
 Bundle "Markdown"
 
 " for Perl programming, have things in braces indenting themselves:
@@ -278,7 +214,6 @@ autocmd BufEnter */debian/rules set noet ts=8 sw=8
 " for C-like programming, have automatic indentation:
 autocmd FileType c,cpp,slang set cindent
 
-
 " Stolen from some guy named ben :) benoit.cerrina@writeme.com
 fun BenIndent()
   let oldLine=line('.')
@@ -287,15 +222,7 @@ fun BenIndent()
 endfun
 map -- :call BenIndent()<CR>
 
-" show the `best match so far' as search strings are typed:
-set incsearch
-
-" Map f5 to toggle search highlighting
-map <F5> :set hls!set hls?
-
-" paste without trying to re-indent
-set pastetoggle=<Tab>
-
+" Show trailing spaces in bright red - they are the devil!!! (don't ask why)
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -303,51 +230,24 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
+" function! ResCur()
+"   if line("'\"") <= line("$")
+"     normal! g`"
+"     return 1
+"   endif
+" endfunction
 
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
+" augroup resCur
+"   autocmd!
+"   autocmd BufWinEnter * call ResCur()
+" augroup END
 
-runtime selecta.vim
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
+runtime selecta.vim
 nnoremap <leader>f :call SelectaCommand("find * -type f", ":e")<cr>
 nnoremap <leader>gf :call SelectaCommand("files", ":e")<cr>
 nnoremap <leader>ga :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump")<cr>
 nnoremap <leader>gd :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}.*::" .', "EditJump")<cr>
 
-
-" Transparent editing of gpg encrypted files.
-" By Wouter Hanegraaff <wouter@blub.net>
-"augroup encrypted
-"    au!
-"
-"    " First make sure nothing is written to ~/.viminfo while editing
-"    " an encrypted file.
-"    autocmd BufReadPre,FileReadPre      *.gpg set viminfo=
-"    " We don't want a swap file, as it writes unencrypted data to disk
-"    autocmd BufReadPre,FileReadPre      *.gpg set noswapfile
-"    " Switch to binary mode to read the encrypted file
-"    autocmd BufReadPre,FileReadPre      *.gpg set bin
-"    autocmd BufReadPre,FileReadPre      *.gpg let ch_save = &ch|set ch=2
-"    autocmd BufReadPost,FileReadPost    *.gpg '[,']!gpg --decrypt 2> /dev/null
-"    " Switch to normal mode for editing
-"    autocmd BufReadPost,FileReadPost    *.gpg set nobin
-"    autocmd BufReadPost,FileReadPost    *.gpg let &ch = ch_save|unlet ch_save
-"    autocmd BufReadPost,FileReadPost    *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-"
-"    " Convert all text to encrypted text before writing
-"    autocmd BufWritePre,FileWritePre    *.gpg   '[,']!gpg --default-key=DD07A6DC--default-recipient-self -ae 2>/dev/null
-"    " Undo the encryption so we are back in the normal text, directly
-"    " after the file has been written.
-"    autocmd BufWritePost,FileWritePost    *.gpg   u
-" augroup END
-"
