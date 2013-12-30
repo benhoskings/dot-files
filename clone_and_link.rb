@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
-if File.directory?("#{ENV['HOME']}/.dot-files")
-  `cd ~/.dot-files && git pull`
-else
-  `git clone --quiet git://github.com/vlc/dot-files.git ~/.dot-files`
+def clone_or_pull(dir, repo)
+  if File.directory?(dir)
+    `cd #{dir} && git pull`
+  else
+    `git clone --quiet #{repo} #{dir}`
+  end
 end
 
 def process_dir(dir)
@@ -29,4 +31,7 @@ def process_dir(dir)
   }
 end
 
+clone_or_pull("#{ENV['HOME']}/.dot-files", "git://github.com/vlc/dot-files.git")
 process_dir("#{ENV['HOME']}/.dot-files/files")
+
+clone_or_pull("#{ENV['HOME']}/.vim/bundle/vundle", "https://github.com/gmarik/vundle.git")
