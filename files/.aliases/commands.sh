@@ -34,6 +34,10 @@ if [ "$TERM" != "dumb" ]; then
     export GREP_OPTIONS='--color=auto'
 fi
 
+if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]; then
+  alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+fi
+
 alias vi='vim'
 
 alias b="./build.sh"

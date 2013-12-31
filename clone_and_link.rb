@@ -8,7 +8,7 @@ def clone_or_pull(dir, repo)
 end
 
 def process_dir(dir)
-  Dir.new(dir).each { |f| 
+  Dir.new(dir).each { |f|
     # skip (1) git dir (2) "." and ".." (3) this file
     next if f =~ /.git$/ || f =~ /^\.*$/ || f =~ /clone_and_link/
     source = File.join(dir, f)
