@@ -23,6 +23,8 @@ let g:mapleader = ","
 
 " This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
+" Fast switching between the last two open files
+nnoremap <leader><leader> <C-^>
 " How often do use ';' ... now how often do you use ':' ... that's why this mapping exists :)
 noremap ; :
 " Fast saving

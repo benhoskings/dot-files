@@ -1,10 +1,9 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-system_name=
 
 # If not running interactively, don't do anything
-# [ -z "$PS1" ] && return
+[ -z "$PS1" ] && return
 
 # Homebrew stuff (for Mac OS/X) - this has to be before the aliases so that we can do things like [ `which ack` ] in there
 [ -d ~/.homebrew/bin ] && PATH=~/.homebrew/bin:$PATH
