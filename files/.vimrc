@@ -30,7 +30,8 @@ noremap ; :
 " Fast saving
 nmap <leader>w :w!<cr>
 " save and run current file
-nmap <leader>e :w \| !./%<cr>
+nnoremap <leader>e :w<CR>:silent !chmod 755 %<CR>:silent !% > .tmp.xyz<CR>
+                 \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
 
 " colour schemes and shit ------------------
 runtime colours.vim
@@ -59,28 +60,37 @@ ab teh the
 " ctl-h removes trailing white space from all lines in the file
 :nmap <C-h> :%s/\s\+$//e<cr>
 
-" map ;e :w<CR>:exe ":! ./" . getreg("%") . "" <CR>
-
-map ;e :w<CR>:silent !chmod 755 %<CR>:silent !./% > .tmp.xyz<CR>
-      \ :vnew<CR>:r .tmp.xyz<CR>:silent !rm .tmp.xyz<CR>:redraw!<CR>
 
 " Scala tests
 map <leader>t :w<cr>:!sbt test<cr>
 
 " buffer navigation like a BOSS!
-:nmap <C-n> :w<cr>:bn<cr>
-:nmap <C-p> :w<cr>:bN<cr>
-:nmap <C-w> :w<cr>:bd<cr>
-:imap <C-n> <ESC>:w<cr>:bn<cr>i
-:imap <C-p> <ESC>:w<cr>:bN<cr>i
+nnoremap <C-n> :w<cr>:bn<cr>
+nnoremap <C-p> :w<cr>:bN<cr>
+nnoremap <C-w> :w<cr>:bd<cr>
+inoremap <C-n> <ESC>:w<cr>:bn<cr>i
+inoremap <C-p> <ESC>:w<cr>:bN<cr>i
 
 " Tab navigation like a BOSS!
-:nmap <C-t> :tabnew<cr>
-:map  <C-S-tab> :tabprev<cr>
-:map  <C-tab> :tabnext<cr>
-:imap <C-S-tab> <ESC>:tabprev<cr>i
-:imap <C-tab> <ESC>:tabnext<cr>i
-:imap <C-t> <ESC>:tabnew<cr>
+nnoremap <C-t> :tabnew<cr>
+nnoremap <C-S-tab> :tabprev<cr>
+nnoremap <C-tab> :tabnext<cr>
+inoremap <C-S-tab> <ESC>:tabprev<cr>i
+inoremap <C-tab> <ESC>:tabnext<cr>i
+inoremap <C-t> <ESC>:tabnew<cr>
+
+" Use ctrl-[hjkl] to select the active split! (AKA Split navigation like a boss)
+nnoremap <leader>s <C-w>v<C-w>w:A<cr> " Split with alternate
+nnoremap <silent> <c-k> :wincmd k<CR>
+nnoremap <silent> <c-j> :wincmd j<CR>
+nnoremap <silent> <c-h> :wincmd h<CR>
+nnoremap <silent> <c-l> :wincmd l<CR>
+" The following will only work if your terminal sends the correct
+" sequences (putty does not)
+nnoremap <silent> <C-Up> :wincmd k<CR>
+nnoremap <silent> <C-Down> :wincmd j<CR>
+nnoremap <silent> <C-Left> :wincmd h<CR>
+nnoremap <silent> <C-Right> :wincmd l<CR>
 
 set autoindent                    " take indent for new line from previous line
 set backspace=indent,eol,start    " how backspace works at start of line
