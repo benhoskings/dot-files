@@ -37,6 +37,10 @@ nnoremap <leader>e :w<CR>:silent !chmod 755 %<CR>:silent !% > .tmp.xyz<CR>
 runtime colours.vim
 " ------------------------------------------
 
+" autocompletion and shit ------------------
+runtime autocomplete.vim
+" ------------------------------------------
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -56,9 +60,6 @@ endif " has("autocmd")
 
 " auto correct
 ab teh the
-
-" ctl-h removes trailing white space from all lines in the file
-:nmap <C-h> :%s/\s\+$//e<cr>
 
 
 " Scala tests
@@ -160,11 +161,6 @@ set wildmode=list:longest,full
 " enable filetype detection:
 filetype on
 
-" Autocomplete settings - use ctrl-space to get the shit going :)
-set ofu=syntaxcomplete#Complete
-inoremap <C-Space> <C-p>
-inoremap <C-@> <C-p>
-
 " Languages
 Bundle "derekwyatt/vim-scala"
 so ~/.dot-files/files/.vim/bundle/vim-scala/ftdetect/scala.vim
@@ -221,13 +217,23 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+:nmap <C-h> :%s/\s\+$//e<cr> " ctl-h removes trailing white space from all lines in the file
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 runtime selecta.vim
 nnoremap <leader>f :call SelectaCommand("find * -type f", ":e")<cr>
 nnoremap <leader>gf :call SelectaCommand("files", ":e")<cr>
-nnoremap <leader>ga :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump")<cr>
-nnoremap <leader>gd :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}.*::" .', "EditJump")<cr>
+nnoremap <leader>ga :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump", "")<cr>
+nnoremap <leader>gd :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}.*::" .', "EditJump", "")<cr>
+nnoremap <C-F>      :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump", expand("<cword>"))<cr>
+
+class Foo
+end
+
+function! EditJump(jumpLine)
+  let [fname, lineno] = matchlist(a:jumpLine,'\v(.{-}):(\d+):.*$')[1:2]
+  exec ":e +" . lineno . " " . fname
+endfunction
 
 " highlight ColorColumn ctermbg=8 guibg=#2c2d27

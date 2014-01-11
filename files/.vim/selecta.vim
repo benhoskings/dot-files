@@ -46,9 +46,15 @@ function! ProducaCommand(choice_command, vim_command)
   redraw!
 endfunction
 
-function! ProducaFunction(choice_command, vim_function)
+function! ProducaFunction(choice_command, vim_function, initial_text)
   try
-    let choice = system("produca " . a:choice_command)
+
+    if (strlen(a:initial_text))
+      let search = "-s " . a:initial_text
+    else
+      let search = ""
+    endif
+    let choice = system("produca " . search . " -- " . a:choice_command)
     let Fn = function(a:vim_function)
     call Fn(choice)
   catch /Vim:Interrupt/

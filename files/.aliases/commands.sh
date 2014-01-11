@@ -1,7 +1,7 @@
 # Handy aliases to allow quick editing of key config files
 alias ea="vim ~/.dot-files/files/.aliases/commands.sh && source ~/.dot-files/files/.aliases/commands.sh"
 alias eb="vim ~/.dot-files/files/.bashrc && source ~/.dot-files/files/.bashrc"
-alias ev="vim ~/.dot-files/files/.vimrc"
+alias ev="vim ~/.dot-files/files/.vimrc ~/.dot-files/files/.vim/*.vim"
 alias ed="vim ~/.dot-files/files && source ~/.bashrc"
 alias ep="vim ~/.dot-files/files/.bash_prompt && source ~/.bash_prompt"
 alias ec="vim ~/.dot-files/files/.aliases/colours.sh && source ~/.dot-files/files/.bashrc"
