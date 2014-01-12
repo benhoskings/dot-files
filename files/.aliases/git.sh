@@ -1,5 +1,6 @@
 alias gs='git status -sb'
 alias gl='git log --oneline --decorate'
+alias gl='git l'
 alias gp='git push'
 alias ga='git add'
 alias gaa='git add .'

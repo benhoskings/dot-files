@@ -3,6 +3,8 @@
   st = status
   co = checkout
   log = log --oneline --decorate
+  l   = "!source ~/.githelpers && pretty_git_log"
+  lo  = !git -l --all
 [user]
   name  = Jamie Cook
   email = jamie.cook@veitchlister.com.au
