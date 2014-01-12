@@ -26,6 +26,8 @@
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "
 "Bundle "Shougo/neocomplete.vim"
+
+Bundle "Valloric/YouCompleteMe"
 "
 "" Autocomplete settings - use ctrl-space to get the shit going :)
 " set ofu=syntaxcomplete#Complete

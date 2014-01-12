@@ -16,6 +16,7 @@ Bundle 'gmarik/vundle'
 filetype plugin indent on     " required!
 
 Bundle "tpope/vim-sensible"
+Bundle "rking/ag.vim"
 " -----------------------------------------------------------------------------
 
 let mapleader = ","
@@ -222,14 +223,11 @@ autocmd BufWinLeave * call clearmatches()
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 runtime selecta.vim
-nnoremap <leader>f :call SelectaCommand("find * -type f", ":e")<cr>
+"nnoremap <leader>f :call SelectaCommand("find * -type f", ":e")<cr>
 nnoremap <leader>gf :call SelectaCommand("files", ":e")<cr>
 nnoremap <leader>ga :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump", "")<cr>
 nnoremap <leader>gd :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}.*::" .', "EditJump", "")<cr>
-nnoremap <C-F>      :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump", expand("<cword>"))<cr>
-
-class Foo
-end
+nnoremap <leader>f  :call ProducaFunction('xargs -I {} ag -S --nocolor --nogroup --search-files "{}" .', "EditJump", expand("<cword>"))<cr>
 
 function! EditJump(jumpLine)
   let [fname, lineno] = matchlist(a:jumpLine,'\v(.{-}):(\d+):.*$')[1:2]
