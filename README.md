@@ -15,11 +15,11 @@ VIM
 
 You'll also need to do some extra setup for vim and the associated bundles
 
-# Install vundle as per directions https://github.com/gmarik/vundle
+1. Install vundle as per directions https://github.com/gmarik/vundle
 
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-# From vim run :BundleInstall
+2. From vim run :BundleInstall
 
 
 
