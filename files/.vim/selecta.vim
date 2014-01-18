@@ -11,7 +11,7 @@ function! SelectaFunction(choice_command, vim_function)
     let choice = system(a:choice_command . " | selecta")
     let Fn = function(a:vim_function)
     call Fn(choice)
-    " silent! exec a:vim_command . " " . 
+    " silent! exec a:vim_command . " " .
   catch /Vim:Interrupt/
   endtry
   redraw!
@@ -24,7 +24,7 @@ function! BijectaFunction(choice_command, regex, vim_function)
     let choice = system(cmd)
     let Fn = function(a:vim_function)
     call Fn(choice)
-    " silent! exec a:vim_command . " " . 
+    " silent! exec a:vim_command . " " .
   catch /Vim:Interrupt/
   endtry
   redraw!
