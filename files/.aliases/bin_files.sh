@@ -42,6 +42,9 @@ install_brew_vim() {
 
 install_standard_bin_files()
 {
+  ensure_brew_package "wget"
+  ensure_brew_package "curl"
+
   install_bin_file_from_url ~/bin/selecta https://raw.github.com/nkpart/selecta/master/selecta
   clean_link ~/bin/selecta ~/bin/produca
   install_bin_file_from_url ~/bin/files   https://raw.github.com/nkpart/bin-files/master/files
