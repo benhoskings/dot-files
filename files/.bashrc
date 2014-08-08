@@ -62,6 +62,10 @@ fi
 
 [ `which brew` ] && source_if_exists `brew --prefix`/opt/chruby/share/chruby/chruby.sh
 
+# Haskell binaries on the path please
+[ -d ~/Library/Haskell/bin ] && PATH=$PATH:~/Library/Haskell/bin
+
+
 # Export all the things we've set up above
 export JAVA_HOME=/opt/jdk17
 export EDITOR=vim
