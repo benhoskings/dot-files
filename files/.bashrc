@@ -1,3 +1,4 @@
+#
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -74,3 +75,6 @@ export PATH=$PATH:~/bin:$JAVA_HOME/bin
 export LD_LIBRARY_PATH
 export LANG=en_AU.UTF-8 # Setup the LANG so that gcc doesn't spit a^ characters instead of '
 export ORACLE_HOME
+
+# Allow gistit to post gists as jamiecook
+export GISTIT_TOKEN="5522c05955ac0cbf22c8c73c26b7c51fdc4783a2"
