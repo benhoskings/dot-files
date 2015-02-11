@@ -1,30 +1,33 @@
 #!/bin/bash
 GO_SEARCH_DIRS="$HOME/Projects $HOME/src /opt $HOME/src/vlc $HOME/Projects/vlc $HOME/p"
+LS_COMMAND="ls -l" # or "ls -l --color=auto"
+
 export GO_SEARCH_DIRS
 
 get_dir_list() {
   for DIR in $GO_SEARCH_DIRS; do
-    [ -d $DIR ] && ls -l --color=auto $DIR | grep ^d | awk '{print $9}'
+    [ -d $DIR ] && ${LS_COMMAND} $DIR | grep ^d | awk '{print $9}'
   done
 }
 
 find_sub_dirs_strict() {
-  MATCHING_DIR=`ls -l --color=auto $DIR | grep ^d | awk '{ print $9}' | grep "^$PATTERN" | head -n 1`
+  MATCHING_DIR=`${LS_COMMAND} $DIR | grep ^d | awk '{ print $9}' | grep "^$PATTERN" | head -n 1`
 }
 
 find_sub_dirs() {
-  MATCHING_DIR=`ls -l --color=auto $DIR | grep ^d | awk '{ print $9}' | grep $PATTERN | head -n 1`
+  MATCHING_DIR=`${LS_COMMAND} $DIR | grep ^d | awk '{ print $9}' | grep $PATTERN | head -n 1`
 }
 
 go() {
   PATTERN=$1
+  MATCHING_DIR=
   for DIR in $GO_SEARCH_DIRS; do
-    find_sub_dirs_strict
+    [ -d $DIR ] && find_sub_dirs_strict
     [ -n "$MATCHING_DIR" ] && cd ${DIR}/${MATCHING_DIR} && return
   done
 
   for DIR in $GO_SEARCH_DIRS; do
-    find_sub_dirs
+    [ -d $DIR ] && find_sub_dirs
     [ -n "$MATCHING_DIR" ] && cd ${DIR}/${MATCHING_DIR} && return
   done
 }
