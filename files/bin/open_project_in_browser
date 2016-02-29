@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+
+remote = `git config --get remote.origin.url`.chomp
+project = remote.sub(%r{.*?([^/:]+/[^/.]+)(.git)?$}, '\1')
+
+branch = `zsh -i -c git_current_branch`.chomp
+
+if $0[/\bgh$/]
+  exec "open https://github.com/#{project}/tree/#{branch}"
+elsif $0[/\bbk$/]
+  exec "open http://buildkite.com/#{project}/builds?branch=#{branch}"
+else
+  abort("Not sure what to do when invoked as '#{$0}'.")
+end
