@@ -3,7 +3,7 @@
 remote = `git config --get remote.origin.url`.chomp
 project = remote.sub(%r{.*?([^/:]+/[^/.]+)(.git)?$}, '\1')
 
-branch = `zsh -i -c git_current_branch`.chomp
+branch = `cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD"`.chomp.sub(%r{^.*refs/heads/}, '')
 
 if $0[/\bgh$/]
   exec "open https://github.com/#{project}/tree/#{branch}"
