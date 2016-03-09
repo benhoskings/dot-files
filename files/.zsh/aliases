@@ -14,6 +14,7 @@ alias lal='ls -lah'
 alias less='less -R'
 alias sub='subl -n'
 alias b='bundle exec'
+alias z='zeus'
 
 cd() {
   builtin cd "$@" && ls
