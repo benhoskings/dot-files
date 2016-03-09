@@ -17,7 +17,7 @@ def render_commit_info timestamp, time_desc, ref, short_ref, message, ref_name, 
     time_desc,
     "\e[32m#{ref_name}\e[0m",
     (merged ? "  #{short_ref}" : "+ \e[33m#{short_ref}\e[0m"),
-    "\e[#{message[/^Temp/] ? 31 : 90}m#{message.strip}\e[0m"
+    "\e[#{message[/^Temp/i] ? 31 : 90}m#{message.strip}\e[0m"
   ].join(' ')
 end
 
