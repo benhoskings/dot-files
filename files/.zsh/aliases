@@ -13,13 +13,10 @@ alias la='ls -a'
 alias lal='ls -lah'
 alias less='less -R'
 alias sub='subl -n'
+alias b='bundle exec'
 
 cd() {
   builtin cd "$@" && ls
-}
-
-b() {
-  bundle "$@" | grep -v '^Using'
 }
 
 p() {
