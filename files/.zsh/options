@@ -10,8 +10,9 @@ setopt hist_ignore_dups # Don't save consecutive duplicate history items.
 # Misc zsh config
 setopt notify # Print background job status immediately.
 unsetopt auto_cd # Don't "execute" directories by changing into them.
+bindkey "^[[3~" delete-char # Forward-delete properly instead of echoing '~'.
 
 # Move between (customised) words with option-left/right.
 export WORDCHARS='*?[]~=&;!#$%^(){}'
-bindkey "\e\e[C"  forward-word
-bindkey "\e\e[D"  backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
