@@ -54,6 +54,7 @@ git_current_branch() {
 alias glog='git log --date-order --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(dim white) %an, %ar%Creset"'
 alias gl='glog --graph'
 alias gla='gl --all'
+alias glo='gl HEAD origin/$(git_current_branch)'
 gls() {
   query="$1"
   shift
