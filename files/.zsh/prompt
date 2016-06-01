@@ -10,5 +10,5 @@ ruby_version() {
   ruby -v | awk '{print $2}'
 }
 
-export PROMPT=$'%n@%M %{\e[0;%(?.0.31)m%}>%{\e[0m%} '
+export PROMPT=$'%n@%M %{\e[0;%(?.40.41);39m%} > %{\e[0m%} '
 export RPROMPT=$'%{\e[0;90m%} $(tilde_or_pwd)$(git_cwd_info)%{\e[0m%}'
