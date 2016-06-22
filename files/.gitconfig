@@ -11,5 +11,6 @@
 	user = benhoskings
 [diff]
 	submodule = log
+	compactionHeuristic = true
 [column]
 	ui = auto,dense
