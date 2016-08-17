@@ -8,7 +8,7 @@ branch = `cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD"`.chomp.sub(%r{^.*ref
 if $0[/\bgh$/]
   exec "open https://github.com/#{project}/tree/#{branch}"
 elsif $0[/\bbk$/]
-  exec "open http://buildkite.com/#{project}/builds?branch=#{branch}"
+  exec "open http://buildkite.com/#{project.downcase}/builds?branch=#{branch}"
 else
   abort("Not sure what to do when invoked as '#{$0}'.")
 end
