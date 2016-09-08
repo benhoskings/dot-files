@@ -1,5 +1,5 @@
 #!/bin/bash
-GO_SEARCH_DIRS="$HOME/Projects $HOME/src /opt $HOME/src/vlc $HOME/Projects/vlc $HOME/p"
+GO_SEARCH_DIRS="$HOME/Projects $HOME/src /opt $HOME/src/vlc $HOME/Projects/vlc $HOME/p $HOME/src/bdk"
 LS_COMMAND="ls -l" # or "ls -l --color=auto"
 
 export GO_SEARCH_DIRS
