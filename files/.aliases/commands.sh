@@ -67,5 +67,8 @@ source_if_exists()
 
 source_directory()
 {
-  test -d $1 && for file in ${1}/*; do source $file; done
+  test -d $1 && for file in ${1}/*; do
+    echo "Sourcing ${file}"
+    source $file
+  done
 }
