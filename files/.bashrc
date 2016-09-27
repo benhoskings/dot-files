@@ -65,6 +65,7 @@ fi
 
 # Haskell binaries on the path please
 [ -d ~/Library/Haskell/bin ] && PATH=$PATH:~/Library/Haskell/bin
+[ -d ~/.local/bin ] && PATH=$PATH:~/.local/bin
 
 
 # Export all the things we've set up above
