@@ -9,6 +9,8 @@ if $0[/\bgh$/]
   exec "open https://github.com/#{project}/tree/#{branch}"
 elsif $0[/\bbk$/]
   exec "open http://buildkite.com/#{project.downcase}/builds?branch=#{branch}"
+elsif $0[/\bpr$/]
+  exec "open https://github.com/#{project}/compare/#{branch}?expand=1"
 else
   abort("Not sure what to do when invoked as '#{$0}'.")
 end
