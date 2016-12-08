@@ -8,12 +8,12 @@ CMDS = {
 
 cmd = File.basename($0)
 
-if (["-h", "--help"] & ARGV).any? || !CMDS.keys.include?(cmd)
-  abort "Usage: #{CMDS.keys.join('|')}"
+if (["-h", "--help"] & ARGV).any? || ARGV.length > 1 || !CMDS.keys.include?(cmd)
+  abort "Usage: #{CMDS.keys.join('|')} [branch]"
 else
   remote = `git config --get remote.origin.url`.chomp
   project = remote.sub(%r{.*?([^/:]+/[^/.]+)(.git)?$}, '\1')
-  branch = `cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD"`.chomp.sub(%r{^.*refs/heads/}, '')
+  branch = ARGV[0] || `cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD"`.chomp.sub(%r{^.*refs/heads/}, '')
 
   exec CMDS.fetch(cmd).call(project, branch)
 end
