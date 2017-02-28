@@ -16,12 +16,6 @@ git_current_branch() {
   cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD" | sed -e 's/^.*refs\/heads\///'
 }
 
-# git status
-s() {
-  git status -sb "$@"
-  return 0
-}
-
 # general aliases
 alias ls='ls --color=auto'
 alias du='du -k --max-depth=1 $argv'
@@ -32,6 +26,7 @@ alias la='ls -a'
 alias lal='ls -lah'
 alias less='less -R'
 alias b='bundle exec'
+alias s='git status -sb'
 alias d='gd $argv'
 
 # git aliases
