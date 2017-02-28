@@ -6,6 +6,9 @@
 export HISTSIZE=1000000
 bind "set show-all-if-ambiguous On"
 
+# shell prompt
+export PS1=$'\[\e[90m\]$PWD\[\e[0m\]\n$ '
+
 # ls when changing directory
 cd() {
   builtin cd "$@" && ls
