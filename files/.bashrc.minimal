@@ -1,0 +1,80 @@
+
+# environment
+# export KEY=value
+
+# shell settings
+export HISTSIZE=1000000
+bind "set show-all-if-ambiguous On"
+
+# ls when changing directory
+cd() {
+  builtin cd "$@" && ls
+}
+
+# get the current branch name
+git_current_branch() {
+  cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD" | sed -e 's/^.*refs\/heads\///'
+}
+
+# git status
+s() {
+  git status -sb "$@"
+  return 0
+}
+
+# general aliases
+alias ls='ls --color=auto'
+alias du='du -k --max-depth=1 $argv'
+alias df='df -kh $argv'
+alias l='ls'
+alias ll='ls -lh'
+alias la='ls -a'
+alias lal='ls -lah'
+alias less='less -R'
+alias b='bundle exec'
+alias d='gd $argv'
+
+# git aliases
+alias ga='git add -A'
+alias gap='ga -p'
+alias gau='git add -u'
+alias gbr='git branch -v'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gcam='gca --amend'
+alias gch='git cherry-pick'
+alias gcm='git commit -v --amend'
+alias gco='git checkout'
+alias gcop='gco -p'
+alias gd='git diff -M'
+alias gd.='git diff -M --color-words="."'
+alias gdw='git diff -M --color-words="\w+"'
+alias gdc='git diff --cached -M'
+alias gdc.='git diff --cached -M --color-words="."'
+alias gdcw='git diff --cached -M --color-words="\w+"'
+alias gf='git fetch --tags --prune'
+alias glog='git log --date-order --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(dim white) %an, %ar%Creset"'
+alias gl='glog --graph'
+alias gla='gl --all'
+alias glo='gl HEAD origin/$(git_current_branch)'
+alias gm='git merge --no-ff'
+alias gmf='git merge --ff-only'
+alias gmfthis='gmf origin/$(git_current_branch)'
+alias gp='git push'
+alias gpthis='gp origin $(git_current_branch):$(git_current_branch)'
+alias gpthis!='gp --set-upstream origin $(git_current_branch):$(git_current_branch)'
+alias gr='git reset'
+alias grb='git rebase -p'
+alias grbthis='grb origin/$(git_current_branch)'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
+alias grh='git reset --hard'
+alias grhthis='grh origin/$(git_current_branch)'
+alias grp='gr --patch'
+alias grsh='git reset --soft HEAD~'
+alias grv='git remote -v'
+alias gs='git show -M'
+alias gs.='git show -M --color-words="."'
+alias gsw='git show -M --color-words="\w+"'
+alias gst='git stash'
+alias gstp='git stash pop'
