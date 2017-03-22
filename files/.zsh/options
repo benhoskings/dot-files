@@ -1,3 +1,7 @@
+# Make colour constants available.
+autoload -U colors
+colors
+
 # Shell history
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -16,3 +20,9 @@ bindkey "^[[3~" delete-char # Forward-delete properly instead of echoing '~'.
 export WORDCHARS='*?[]~=&;!#$%^(){}'
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
+
+# Command highlighting.
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+if [ -d "$(brew --prefix)/share/zsh-syntax-highlighting" ]; then
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
