@@ -22,3 +22,4 @@ export FZF_DEFAULT_OPTS="--height=15" # Run inline instead of fullscreen.
 # Homebrew
 export HOMEBREW_BUILD_FROM_SOURCE=true # Disable the use of bottles.
 export HOMEBREW_MAKE_JOBS=2 # The detected number of cores (probably 4 virtual cores) makes the system unresponsive.
+export HOMEBREW_NO_EMOJI=true
