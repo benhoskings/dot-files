@@ -21,5 +21,5 @@ cd() {
 }
 
 p() {
-  cd "$(find ~/src -maxdepth 1 | sed -e 's/\/\.git$//' | selecta)"
+  cd "$(find ~/src -maxdepth 1 | sed -e 's/\/\.git$//' | fzf)"
 }
