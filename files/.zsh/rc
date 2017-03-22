@@ -17,7 +17,7 @@ else
 fi
 
 # Misc
-export FZF_DEFAULT_OPTS="--ansi --height=15" # Enable colour; run inline instead of fullscreen.
+export FZF_DEFAULT_OPTS="--ansi --no-mouse --height=15" # Enable colour; run inline instead of fullscreen.
 
 # Homebrew
 export HOMEBREW_BUILD_FROM_SOURCE=true # Disable the use of bottles.
