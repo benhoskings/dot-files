@@ -24,6 +24,10 @@ p() {
   cd "$(find ~/src -maxdepth 1 | sed -e 's/\/\.git$//' | fzf)"
 }
 
+pcd() {
+  cd "$(find ~/src -type d -maxdepth 5 | fzf)"
+}
+
 yarn() {
   command yarn "$@" --no-emoji
 }
