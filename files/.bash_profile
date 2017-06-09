@@ -1,3 +1,5 @@
+export PATH=$PATH:/usr/local/bin:/usr/local/git/bin
+
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 # MacPorts Installer addition on 2012-02-03_at_17:59:20: adding an appropriate PATH variable for use with MacPorts.

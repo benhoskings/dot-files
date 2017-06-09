@@ -4,6 +4,8 @@
   co = checkout
   l   = "!source ~/.githelpers && pretty_git_log"
   lo  = !git -l --all
+  logg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold cyan)%h%C(reset) - %C(yellow)[%ar]%C(reset) %C(white)%s%C(reset)%C(green bold)%d%C(reset) %C(dim white)- %aN%C(reset)'
+  hist = log --pretty=format:'%C(bold cyan)%h%C(reset) - %C(yellow)[%ad]%C(reset) %C(white)%s%C(green bold)%d%C(reset) %C(dim white)- %aN%C(reset)'
 [user]
   name  = Jamie Cook
   email = jamie.cook@veitchlister.com.au
