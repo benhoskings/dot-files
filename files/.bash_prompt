@@ -117,7 +117,7 @@ function set_user_prompt () {
 set_smiley_status() {
   if [ $? = 0 ]; then
     # export SMILEY="\001\033[0;32m\002∴\001\033[0m\002"
-    export SMILEY="${GREEN}∴${COLOR_NONE}"
+    export SMILEY="${GREEN}λ${COLOR_NONE}"
   else
     # export SMILEY="\001\033[31m\002☢\001\033[0m\002"
     export SMILEY="${LIGHT_RED}☢${COLOR_NONE}"
