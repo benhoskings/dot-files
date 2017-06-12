@@ -15,6 +15,7 @@ alias gfo="git fetch origin --prune"
 # These are awesome. Only page when necessary.
 alias gdi='git --no-pager diff --staged --color | less -FXRS'
 alias gd='git --no-pager diff --color | less -FXRS'
+alias gdc='git diff --cached'
 
 alias gsp='git fetch origin && git rebase --autostash -p'
 
