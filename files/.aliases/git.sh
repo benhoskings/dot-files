@@ -11,6 +11,8 @@ alias gba='gb -a'
 alias gc.="gc -m '.'"
 alias gcm="gc -m "
 alias gfo="git fetch origin --prune"
+alias gch="git checkout"
+alias gch-="git checkout -"
 
 # These are awesome. Only page when necessary.
 alias gdi='git --no-pager diff --staged --color | less -FXRS'
