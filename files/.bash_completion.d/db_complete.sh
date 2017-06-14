@@ -12,7 +12,7 @@ db() {
     PATTERN=$1
     case $PATTERN in
         move_20170606)
-            echo "psql -u sa -h move.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 move_20170606"
+            psql -U sa -h move.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 move_20170606
             ;;
     esac
 }
