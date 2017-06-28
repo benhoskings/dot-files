@@ -24,7 +24,8 @@ db() {
     CONNECT_STR=${databases[$PATTERN]}
     if [[ -z "${CONNECT_STR}" ]]; then echo "Can't find database ${PATTERN}"; exit -1; fi
     if [[ "$COMMAND" == "connect" ]]; then
-        `${CONNECT_STR}`
+        # Actually execute the connection string to get a psql shell
+        $CONNECT_STR
     else
         echo ${COMMAND}
         echo ${CONNECT_STR}
