@@ -102,7 +102,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update  1
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -323,6 +323,8 @@ you should place your code here."
     (setq web-mode-indent-style 2)
     )
   (add-hook 'web-mode-hook  'my-web-mode-hook)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (add-to-list 'auto-mode-alist '("\\.cap$" . ruby-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
