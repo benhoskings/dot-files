@@ -10,7 +10,6 @@ databases=( ["move_20170606"]="psql -U sa -h move.ctofhnqqey87.us-east-1.rds.ama
             ["ams-prep"]="psql -U jetski_prep_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prep" \
             ["ams-snapshot"]="psql -U jetski_prod_user -h jetski-snapshot-jul15.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod" \
           )
-# echo 
 
 get_db_list() {
     for i in "${!databases[@]}"; do
