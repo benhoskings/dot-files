@@ -1,4 +1,5 @@
 #!/bin/bash
+
 DB_SEARCH_DIRS="$HOME/Projects $HOME/src /opt $HOME/src/vlc $HOME/Projects/vlc $HOME/p $HOME/src/bdk"
 LS_COMMAND="ls -l" # or "ls -l --color=auto"
 
@@ -21,13 +22,17 @@ db() {
     PATTERN=$1
     COMMAND=$2
     CONNECT_STR=${databases[$PATTERN]}
-    if [[ -z "${CONNECT_STR}" ]]; then echo "Can't find database ${PATTERN}"; exit -1; fi
-    if [[ "$COMMAND" == "connect" ]]; then
-        # Actually execute the connection string to get a psql shell
-        $CONNECT_STR
+    if [[ -z "${CONNECT_STR}" ]]; then 
+      echo "Can't find database ${PATTERN}"; 
+      exit -1
     else
-        echo ${COMMAND}
-        echo ${CONNECT_STR}
+        if [[ "$COMMAND" == "connect" ]]; then
+            # Actually execute the connection string to get a psql shell
+            $CONNECT_STR
+        else
+            echo ${COMMAND}
+            echo ${CONNECT_STR}
+        fi
     fi
 }
 
