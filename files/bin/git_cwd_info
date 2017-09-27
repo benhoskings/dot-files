@@ -1,44 +1,29 @@
-#!/usr/bin/ruby
-# -*- coding: utf-8 -*-
+#!/bin/sh
 
-# The methods that get called more than once are memoized.
+path=$(git rev-parse --git-dir 2>/dev/null)
+# path=$(cd "${relative_path}" &>/dev/null && printf "%s" "$PWD")
 
-def git_repo_path
-  @git_repo_path ||= begin
-    relative_path = `git rev-parse --git-dir 2>/dev/null`.strip
-    File.expand_path(relative_path) unless relative_path.empty?
-  end
-end
+in_repo=$([ "$path" ] && [ "$path" != "/.git" ] && [ "$path" != "~" ] && [ "$path" != "${HOME}/.git" ] && echo "true" || echo "false")
 
-def in_git_repo
-  !git_repo_path.nil? &&
-  git_repo_path != '/.git' &&
-  git_repo_path != '~' &&
-  git_repo_path != "#{ENV['HOME']}/.git"
-end
+if [ ${in_repo} == "false" ]; then
+  echo ""
+else
+  qualified_branch=$(cat "${path}/HEAD" | grep "refs/heads/")
+  branch=${qualified_branch#*refs/heads/}
 
-def git_parse_branch
-  @git_parse_branch ||= File.read("#{git_repo_path}/HEAD").strip.scan(/refs\/heads\/(.*)$/).flatten.first
-end
+  head_ref=$(git rev-parse --short HEAD 2>/dev/null)
 
-def git_head_commit_id
-  `git rev-parse --short HEAD 2>/dev/null`.strip
-end
+  cwd_dirty=$([ "$path" != "." ] && [ "$(git status --porcelain)" != "" ] && echo " %{\e[90m%}✗%{\e[0m%}")
 
-def git_cwd_dirty
-  " %{\e[90m%}✗%{\e[0m%}" unless git_repo_path == '.' || `git status --porcelain`.strip.empty?
-end
+  if [ -e "${path}/BISECT_LOG" ]; then
+    rebasing_etc="+bisect"
+  elif [ -e "${path}/MERGE_HEAD" ]; then
+    rebasing_etc="+merge"
+  elif [ -e "${path}/rebase" ] || [ -e "${path}/rebase-apply" ] || [ -e "${path}/rebase-merge" ] || [ -e "${path}/../.dotest" ]; then
+    rebasing_etc="+rebase"
+  else
+    rebasing_etc=""
+  fi
 
-def rebasing_etc
-  if File.exists?(File.join(git_repo_path, 'BISECT_LOG'))
-    "+bisect"
-  elsif File.exists?(File.join(git_repo_path, 'MERGE_HEAD'))
-    "+merge"
-  elsif %w[rebase rebase-apply rebase-merge ../.dotest].any? {|d| File.exists?(File.join(git_repo_path, d)) }
-    "+rebase"
-  end
-end
-
-if in_git_repo
-  print " %{\e[34m%}#{git_parse_branch}%{\e[90m%}@%{\e[33m%}#{git_head_commit_id}%{\e[0m%}#{rebasing_etc}#{git_cwd_dirty}"
-end
+  gecho -e " %{\e[34m%}${branch}%{\e[90m%}@%{\e[33m%}${head_ref}%{\e[0m%}${rebasing_etc}${cwd_dirty}"
+fi
