@@ -11,6 +11,7 @@ get_db_list() {
              ["ams-sa"]="psql -U awsroot -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 postgres" \
              ["ams-prod"]="psql -U jetski_prod_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod" \
              ["ams-prep"]="psql -U jetski_prep_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prep" \
+             ["ams-cd"]="psql -U jetski_cd_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_cd" \
              ["ams-snapshot"]="psql -U jetski_prod_user -h jetski-snapshot-jul15.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod" \
              ["gtfs"]="psql -U gtfs -h gtfs.c2kzxi2yumcx.us-east-1.rds.amazonaws.com -p 5432 realtime" \
             )
@@ -24,6 +25,7 @@ db() {
                ["ams-sa"]="psql -U awsroot -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 postgres" \
                ["ams-prod"]="psql -U jetski_prod_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod" \
                ["ams-prep"]="psql -U jetski_prep_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prep" \
+               ["ams-cd"]="psql -U jetski_cd_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_cd" \
                ["ams-snapshot"]="psql -U jetski_prod_user -h jetski-snapshot-jul15.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod" \
                ["gtfs"]="psql -U gtfs -h gtfs.c2kzxi2yumcx.us-east-1.rds.amazonaws.com -p 5432 realtime" \
               )
