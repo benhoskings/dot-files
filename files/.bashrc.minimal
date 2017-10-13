@@ -1,6 +1,7 @@
 
 # environment
 # export KEY=value
+export BUNDLE_WITHOUT="development test staging cf"
 
 # shell settings
 export HISTSIZE=1000000
