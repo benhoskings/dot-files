@@ -1,7 +1,6 @@
 #!/bin/sh
 
 path=$(git rev-parse --git-dir 2>/dev/null)
-# path=$(cd "${relative_path}" &>/dev/null && printf "%s" "$PWD")
 
 in_repo=$([ "$path" ] && [ "$path" != "/.git" ] && [ "$path" != "~" ] && [ "$path" != "${HOME}/.git" ] && echo "true" || echo "false")
 
@@ -13,17 +12,23 @@ else
 
   head_ref=$(git rev-parse --short HEAD 2>/dev/null)
 
-  cwd_dirty=$([ "$path" != "." ] && [ "$(git status --porcelain)" != "" ] && echo " %{\e[90m%}✗%{\e[0m%}")
+  cwd_dirty=$([ "$path" != "." ] && [ "$(git status --porcelain)" != "" ] && echo " %{\e[90m%}✗" || echo "")
 
   if [ -e "${path}/BISECT_LOG" ]; then
-    rebasing_etc="+bisect"
+    rebasing_etc="%{\e[90m%}, bisecting"
   elif [ -e "${path}/MERGE_HEAD" ]; then
-    rebasing_etc="+merge"
+    rebasing_etc="%{\e[90m%}, merging"
   elif [ -e "${path}/rebase" ] || [ -e "${path}/rebase-apply" ] || [ -e "${path}/rebase-merge" ] || [ -e "${path}/../.dotest" ]; then
-    rebasing_etc="+rebase"
+    rebasing_etc="%{\e[90m%}, rebasing"
   else
     rebasing_etc=""
   fi
 
-  gecho -e " %{\e[34m%}${branch}%{\e[90m%}@%{\e[33m%}${head_ref}%{\e[0m%}${rebasing_etc}${cwd_dirty}"
+  if [ "${branch}" == "" ]; then
+    gecho -en " %{\e[33m%}${head_ref}%{\e[90m%}, detached"
+  else
+    gecho -en " %{\e[34m%}${branch}%{\e[90m%}@%{\e[33m%}${head_ref}"
+  fi
+
+  gecho -e "${rebasing_etc}${cwd_dirty}%{\e[0m%}"
 fi
