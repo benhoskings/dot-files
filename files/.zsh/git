@@ -39,7 +39,7 @@ alias gdc='git diff --cached -M'
 alias gdc.='git diff --cached -M --color-words="."'
 alias gdcw='git diff --cached -M --color-words="\w+"'
 alias gf='git fetch --tags --prune'
-git-new() {
+git_new() {
   [ -d "$1" ] || mkdir "$1" &&
   cd "$1" &&
   git init &&
