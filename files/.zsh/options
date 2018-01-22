@@ -25,6 +25,6 @@ bindkey "\e\e[D" backward-word
 
 # Command highlighting.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-if [ -d "$(brew --prefix)/share/zsh-syntax-highlighting" ]; then
+if [ -x "$(command -v brew)" ] && [ -d "$(brew --prefix)/share/zsh-syntax-highlighting" ]; then
   source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
