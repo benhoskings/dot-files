@@ -5,6 +5,41 @@ tilde_or_pwd() {
   echo $PWD | sed -e "s/\/Users\/$USER/~/"
 }
 
+git_cwd_info() {
+  path=$(/usr/bin/git rev-parse --git-dir 2>/dev/null)
+
+  in_repo=$([ -n "$path" ] && [ "$path" != "/.git" ] && [ "$path" != "~" ] && [ "$path" != "${HOME}/.git" ] && echo "true" || echo "false")
+
+  if [ "${in_repo}" = "false" ]; then
+    echo ""
+  else
+    qualified_branch=$(/bin/cat "${path}/HEAD" | /usr/bin/grep "refs/heads/")
+    branch=${qualified_branch#*refs/heads/}
+
+    head_ref=$(/usr/bin/git rev-parse --short HEAD 2>/dev/null)
+
+    cwd_dirty=$([ "$path" != "." ] && [ "$(/usr/bin/git status --porcelain)" != "" ] && echo " %{\e[90m%}✗" || echo "")
+
+    if [ -e "${path}/BISECT_LOG" ]; then
+      rebasing_etc="%{\e[90m%}, bisecting"
+    elif [ -e "${path}/MERGE_HEAD" ]; then
+      rebasing_etc="%{\e[90m%}, merging"
+    elif [ -e "${path}/rebase" ] || [ -e "${path}/rebase-apply" ] || [ -e "${path}/rebase-merge" ] || [ -e "${path}/../.dotest" ]; then
+      rebasing_etc="%{\e[90m%}, rebasing"
+    else
+      rebasing_etc=""
+    fi
+
+    if [ "${branch}" = "" ]; then
+      echo -en " %{\e[33m%}${head_ref}%{\e[90m%}, detached"
+    else
+      echo -en " %{\e[34m%}${branch}%{\e[90m%}@%{\e[33m%}${head_ref}"
+    fi
+
+    echo -e "${rebasing_etc}${cwd_dirty}%{\e[0m%}"
+  fi
+}
+
 ruby_version() {
   chruby_auto
   ruby -v | awk '{print $2}'
