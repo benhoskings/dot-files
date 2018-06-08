@@ -48,9 +48,7 @@ git_new() {
   git add .gitignore &&
   git commit -m "Add .gitignore."
 }
-git_current_branch() {
-  cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD" | sed -e 's/^.*refs\/heads\///'
-}
+alias git_current_branch='git rev-parse --abbrev-ref HEAD'
 alias glog='git log --date-order --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(dim white) %an, %ar%Creset"'
 alias gl='glog --graph -15'
 alias gll='glog --graph'
