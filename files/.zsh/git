@@ -31,6 +31,7 @@ gca() {
 alias gcam='gca --amend'
 alias gch='git cherry-pick'
 alias gcm='git commit -v --amend'
+alias gco='git checkout'
 alias gcop='git checkout -p'
 alias gd='git diff -M'
 alias gd.='git diff -M --color-words="."'
@@ -86,20 +87,4 @@ gupstation() {
   gup
   gf production
   gf staging
-}
-
-gcob() {
-  local format branch branches
-  format="%(committerdate:relative)\\%(color:green)%(refname:short)%(color:reset)\\%(HEAD)\\%(color:yellow)%(objectname:short)%(color:reset) %(upstream:trackshort)\\%(contents:subject)"
-  branches=$(git for-each-ref "$@" --format="$format" --sort=-committerdate refs/heads/ | column -t -s "\\") &&
-  branch=$(echo "$branches" | fzf) &&
-  git checkout $(echo "$branch" | awk '{print $4}')
-}
-
-gco() {
-  if [ $# -eq 0 ]; then
-    gcob
-  else
-    git checkout "$@"
-  fi
 }
