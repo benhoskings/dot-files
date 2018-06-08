@@ -1,11 +1,3 @@
-
-if type hub >/dev/null; then
-  alias git=hub
-  if type compdef >/dev/null 2>/dev/null; then
-     compdef hub=git
-  fi
-fi
-
 s() {
   git status -sb "$@"
   return 0
@@ -34,11 +26,7 @@ alias gcm='git commit -v --amend'
 alias gco='git checkout'
 alias gcop='git checkout -p'
 alias gd='git diff -M'
-alias gd.='git diff -M --color-words="."'
-alias gdw='git diff -M --color-words="\w+"'
 alias gdc='git diff --cached -M'
-alias gdc.='git diff --cached -M --color-words="."'
-alias gdcw='git diff --cached -M --color-words="\w+"'
 alias gf='git fetch --tags --prune'
 git_new() {
   [ -d "$1" ] || mkdir "$1" &&
@@ -75,13 +63,5 @@ alias grp='gr --patch'
 alias grsh='git reset --soft HEAD~'
 alias grv='git remote -v'
 alias gs='git show -M'
-alias gs.='git show -M --color-words="."'
-alias gsw='git show -M --color-words="\w+"'
 alias gst='git stash'
 alias gstp='git stash pop'
-alias gup='git smart-pull'
-gupstation() {
-  gup
-  gf production
-  gf staging
-}
