@@ -7,17 +7,27 @@ else
 fi
 
 alias df='df -kh $argv'
-alias l='ls'
-alias ll='ls -lh'
-alias la='ls -a'
-alias lal='ls -lah'
 alias less='less -R'
 alias sub='subl'
 alias b='bundle exec'
 alias z='zeus'
 
+if type exa >/dev/null; then
+  alias l='exa'
+  alias ll='exa -l --git'
+  alias la='exa -a'
+  alias lal='exa -la --git'
+
+  alias tree='exa -T'
+else
+  alias l='ls'
+  alias ll='ls -lh'
+  alias la='ls -a'
+  alias lal='ls -lah'
+fi
+
 cd() {
-  builtin cd "$@" && ls
+  builtin cd "$@" && l
 }
 
 pcd() {
