@@ -5,6 +5,7 @@
 . ~/.zsh/aliases # shell aliases
 . ~/.zsh/git # git aliases
 . ~/.zsh/ruby # ruby env vars and version management
+. ~/.zsh/fzf # shell history finder and git helpers
 
 # Env vars
 if [ $(uname -s) = 'Darwin' ]; then
