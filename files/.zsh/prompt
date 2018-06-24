@@ -5,6 +5,22 @@ tilde_or_pwd() {
   echo $PWD | sed -e "s/\/Users\/$USER/~/"
 }
 
+kubectl() {
+  export KUBECTL_INVOKED=true
+  command kubectl "$@"
+}
+
+kube_context() {
+  [ -z "$KUBECTL_INVOKED" ] && exit
+
+  context=$(grep ^current-context ~/.kube/config | awk '{print $2}')
+
+  colour=$fg[cyan]
+  [[ "$context" =~ "prod" ]] && colour=$fg[red]
+
+  echo " %{$colour%}$context%{$reset_color%}"
+}
+
 git_cwd_info() {
   path=$(/usr/bin/git rev-parse --git-dir 2>/dev/null)
 
@@ -46,4 +62,4 @@ ruby_version() {
 }
 
 PROMPT=$'%n@%M %{\e[0;%(?.32.31)m%}$%{\e[0m%} '
-RPROMPT=$'%{\e[0;90m%} $(tilde_or_pwd)$(git_cwd_info)%{\e[0m%}'
+RPROMPT=$'%{\e[0;90m%} $(tilde_or_pwd)$(kube_context)$(git_cwd_info)%{\e[0m%}'
