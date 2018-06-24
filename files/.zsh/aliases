@@ -10,7 +10,6 @@ alias df='df -kh $argv'
 alias less='less -R'
 alias sub='subl'
 alias b='bundle exec'
-alias z='zeus'
 
 if type exa >/dev/null; then
   alias l='exa'
