@@ -36,3 +36,42 @@ pcd() {
 yarn() {
   command yarn "$@" --no-emoji
 }
+
+# Use fzf to select a kube context and echo it.
+select_kubecontext() {
+  local row ctx
+
+  row=$(kubectl config get-contexts --no-headers | fzf)
+  ctx=$(echo "$row" | sed -E 's/^\*? *//' | awk '{print $1}')
+
+  echo $ctx
+}
+
+# Switch to the supplied or chosen kube context.
+kctx() {
+  local context
+
+  context="$1"
+  if [ -z "$context" ] && context="$(select_kubecontext)"
+
+  kubectl config use-context "$context"
+}
+
+# Get a shell in the supplied or chosen kube context.
+ksh() {
+  local green="\033[32m"
+  local bright="\033[1;37m"
+  local reset="\033[0m"
+  local context="$1"
+  local pod
+
+  [ -z "$context" ] && context="$(select_kubecontext)"
+
+  echo "Getting api shell in ${bright}${context}${reset}"
+
+  pod=$(kubectl get pods --context="$context" -n app -l app=api -o json | jq -r '.items | map(select(.status.phase == "Running") | .metadata.name)[0]')
+
+  echo "  -> found ${bright}${pod}${reset}"
+
+  kubectl exec --context="$context" -n app -it "$pod" sh
+}
