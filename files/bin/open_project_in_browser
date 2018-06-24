@@ -2,18 +2,18 @@
 
 CMDS = {
   "gh" => ->(project, branch) { "open https://github.com/#{project}/tree/#{branch}" },
-  "bk" => ->(project, branch) { "open http://buildkite.com/#{project.downcase}/builds?branch=#{branch}" },
   "pr" => ->(project, branch) { "open https://github.com/#{project}/compare/#{branch}?expand=1" },
-}
+  "bk" => ->(project, branch) { "open http://buildkite.com/#{project.downcase}/builds?branch=#{branch}" },
+}.freeze
 
-cmd = File.basename($0)
+cmd = File.basename($PROGRAM_NAME)
 
 if (["-h", "--help"] & ARGV).any? || ARGV.length > 1 || !CMDS.keys.include?(cmd)
   abort "Usage: #{CMDS.keys.join('|')} [branch]"
 else
   remote = `git config --get remote.origin.url`.chomp
   project = remote.sub(%r{.*?([^/:]+/[^/.]+)(.git)?$}, '\1')
-  branch = ARGV[0] || `cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD"`.chomp.sub(%r{^.*refs/heads/}, '')
+  branch = ARGV[0] || `git rev-parse --abbrev-ref HEAD`.chomp
 
   exec CMDS.fetch(cmd).call(project, branch)
 end
