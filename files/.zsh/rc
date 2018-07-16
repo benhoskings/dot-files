@@ -1,12 +1,4 @@
 
-. ~/.zsh/prompt # prompt config
-. ~/.zsh/options # zsh options
-. ~/.zsh/completion # tab completion config
-. ~/.zsh/aliases # shell aliases
-. ~/.zsh/git # git aliases
-. ~/.zsh/ruby # ruby env vars and version management
-. ~/.zsh/fzf # shell history finder and git helpers
-
 export PATH="$HOME/bin:$PATH"
 
 # Env vars
@@ -14,6 +6,14 @@ if [ "$(uname -s)" = "Darwin" ]; then
   export LANG="en_AU.UTF-8"
   export EDITOR='subl -w'
 fi
+
+. ~/.zsh/prompt # prompt config
+. ~/.zsh/options # zsh options
+. ~/.zsh/completion # tab completion config
+. ~/.zsh/aliases # shell aliases
+. ~/.zsh/git # git aliases
+. ~/.zsh/ruby # ruby env vars and version management
+. ~/.zsh/fzf # shell history finder and git helpers
 
 # Misc
 export FZF_DEFAULT_OPTS="--ansi --no-mouse --height=15" # Enable colour; run inline instead of fullscreen.
