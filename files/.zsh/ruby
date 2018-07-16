@@ -9,5 +9,8 @@ if [ -d /usr/local/opt/chruby ]; then
   . /usr/local/opt/chruby/share/chruby/auto.sh
 fi
 
+# Preload the appropriate ruby for ~/ so the prompt is correct
+chruby_auto
+
 # Fix for ruby-2.4.x forking bug on High Sierra
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES

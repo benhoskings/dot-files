@@ -57,7 +57,6 @@ git_cwd_info() {
 }
 
 ruby_version() {
-  chruby_auto
   ruby -v | awk '{print $2}'
 }
 
