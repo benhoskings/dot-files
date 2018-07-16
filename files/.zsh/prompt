@@ -11,14 +11,14 @@ kubectl() {
 }
 
 kube_context() {
-  [ -z "$KUBECTL_INVOKED" ] && exit
+  if [ -n "$KUBECTL_INVOKED" ]; then
+    context=$(grep ^current-context ~/.kube/config | awk '{print $2}')
 
-  context=$(grep ^current-context ~/.kube/config | awk '{print $2}')
+    colour=$fg[cyan]
+    [[ "$context" =~ "prod" ]] && colour=$fg[red]
 
-  colour=$fg[cyan]
-  [[ "$context" =~ "prod" ]] && colour=$fg[red]
-
-  echo " %{$colour%}$context%{$reset_color%}"
+    echo " %{$colour%}$context%{$reset_color%}"
+  fi
 }
 
 git_cwd_info() {
