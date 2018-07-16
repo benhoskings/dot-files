@@ -37,6 +37,22 @@ yarn() {
   command yarn "$@" --no-emoji
 }
 
+proj() {
+  local project="$1"
+  local project_path="${HOME}/src/${project}"
+  local target="${project_path}/${project}.sublime-project"
+
+  cd $project_path
+
+  if [ -f "${target}" ]; then
+    echo "\nOpening project file ${target}"
+    sub $target
+  else
+    echo "\nOpening project dir ${project_path}"
+    sub $project_path
+  fi
+}
+
 # Use fzf to select a kube context and echo it.
 select_kubecontext() {
   local row ctx
