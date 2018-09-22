@@ -8,7 +8,7 @@ alias d='gd $argv'
 alias ga='git add -A'
 alias gap='ga -p'
 alias gau='git add -u'
-alias gbr='git branch -v'
+alias gbr='git branch -vv'
 alias gc!='git commit -v'
 gc() {
   git diff --cached | grep '\btap[ph]\b' >/dev/null &&
