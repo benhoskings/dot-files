@@ -37,6 +37,8 @@ yarn() {
   command yarn "$@" --no-emoji
 }
 
+gen_passwd() { ruby -rsecurerandom -e "puts 4.times.map { SecureRandom.alphanumeric(3) }.join('-')" }
+
 proj() {
   local project="$1"
   local project_path="${HOME}/src/${project}"
