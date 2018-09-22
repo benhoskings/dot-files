@@ -14,6 +14,7 @@ fi
 . ~/.zsh/git # git aliases
 . ~/.zsh/ruby # ruby env vars and version management
 . ~/.zsh/fzf # shell history finder and git helpers
+. ~/.zsh/gpg # gpg shell helpers
 
 # Misc
 export FZF_DEFAULT_OPTS="--ansi --no-mouse --height=15" # Enable colour; run inline instead of fullscreen.

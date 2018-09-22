@@ -1,0 +1,12 @@
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
+
+alias update_gpg_tty='gpg-connect-agent updatestartuptty /bye'
+
+# Prompt for SSH key password on the correct terminal. (Details in the gpg-agent
+# manpage under --enable-ssh-support)
+alias gf='update_gpg_tty && git fetch --tags --prune'
+alias gp='update_gpg_tty && git push'
+alias ssh='update_gpg_tty && ssh'
