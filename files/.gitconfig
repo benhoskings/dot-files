@@ -22,3 +22,5 @@
   default = current 
 [format]
   pretty = oneline
+[hub]
+	protocol = ssh
