@@ -14,6 +14,7 @@ setup_database_list() {
     databases["ams-cd"]="psql -U jetski_cd_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_cd"
     databases["ams-snapshot"]="psql -U jetski_prod_user -h jetski-snapshot-jul15.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod"
     databases["gtfs"]="psql -U gtfs -h gtfs.c2kzxi2yumcx.us-east-1.rds.amazonaws.com -p 5432 realtime"
+    databases["zmrlogger-snapshot"]="psql -U jamiecook -h zmrlogger.cxdbsusx40q0.ap-southeast-2.rds.amazonaws.com -p 5432 zmrlogger"
 }
 
 get_db_list() {
