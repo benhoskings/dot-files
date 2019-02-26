@@ -66,6 +66,10 @@ fi
 
 [ `which brew` ] && source_if_exists `brew --prefix`/opt/chruby/share/chruby/chruby.sh
 
+# Python Stuff
+brew_python_bin_dir="/usr/local/opt/python/libexec/bin"
+[[ -d ${brew_python_bin_dir} ]] && export PATH="${brew_python_bin_dir}:$PATH"
+
 # Haskell binaries on the path please
 [ -d ~/Library/Haskell/bin ] && PATH=$PATH:~/Library/Haskell/bin
 [ -d ~/.local/bin ] && PATH=$PATH:~/.local/bin
