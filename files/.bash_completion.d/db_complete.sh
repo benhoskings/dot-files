@@ -6,18 +6,25 @@ DB_SEARCH_DIRS="$HOME/Projects $HOME/src /opt $HOME/src/vlc $HOME/Projects/vlc $
 
 setup_database_list() {
     declare -Ag databases
-    databases["move_zov"]="psql -U zov -h move.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 zov"
-    databases["move_20170606"]="psql -U sa -h move.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 move_20170606"
-    databases["move"]="psql -U sa -h move.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 move"
-    databases["ams-sa"]="psql -U awsroot -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 postgres"
-    databases["ams-prod"]="psql -U jetski_prod_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod"
-    databases["ams-uat"]="psql -U jetski_uat_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_uat"
-    databases["ams-prep"]="psql -U jetski_prep_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prep"
-    databases["ams-cd"]="psql -U jetski_cd_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_cd"
-    databases["ams-snapshot"]="psql -U jetski_prod_user -h jetski-snapshot-jul15.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod"
+    databases["move_zov"]="psql -U zov -h move.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 zov"
+    databases["move"]="psql -U sa -h move.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 move"
+    databases["ams-sa"]="psql -U awsroot -h jetski.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 postgres"
+    databases["ams-prod"]="psql -U jetski_prod_user -h jetski.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 jetski_prod"
+    databases["ams-uat"]="psql -U jetski_uat_user -h jetski-prep.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 jetski_uat"
+    databases["ams-prep"]="psql -U jetski_prep_user -h jetski-prep.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 jetski_prep"
+    # databases["ams-cd"]="psql -U jetski_cd_user -h jetski.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_cd"
+    # databases["ams-snapshot"]="psql -U jetski_prod_user -h jetski-snapshot-jul15.ctofhnqqey87.us-east-1.rds.amazonaws.com -p 5432 jetski_prod"
     databases["gtfs"]="psql -U gtfs -h gtfs.c2kzxi2yumcx.us-east-1.rds.amazonaws.com -p 5432 realtime"
+    databases["gtfs-nsw"]="psql -U gtfs -h gtfs.c2kzxi2yumcx.us-east-1.rds.amazonaws.com -p 5432 realtime-nsw"
+    databases["gtfs-seq"]="psql -U gtfs -h gtfs.c2kzxi2yumcx.us-east-1.rds.amazonaws.com -p 5432 realtime-seq"
     databases["zmrlogger-snapshot"]="psql -U jamiecook -h zmrlogger.cxdbsusx40q0.ap-southeast-2.rds.amazonaws.com -p 5432 zmrlogger"
     databases["zapi-dev"]="psql -U sa -h zapi-dev.cxdbsusx40q0.ap-southeast-2.rds.amazonaws.com -p 5432 zapi_dev"
+    databases["tmr-rfmd-pg"]="psql -U vlc -h database-1.cemxnagrnubh.ap-southeast-2.rds.amazonaws.com -p 5432 postgres"
+    databases["tmr-rfmd"]="psql -U vlc -h database-1.cemxnagrnubh.ap-southeast-2.rds.amazonaws.com -p 5432 tmr_regional_model_dev"
+    databases["planwisely-dev"]="psql -h localhost -U sa development"
+    databases["planwisely-mapdata-dev"]="psql -h localhost -U sa mapdata_development"
+    databases["planwisely-uat"]="psql -h sitewisely-uat.csw0jljqrfdu.ap-southeast-2.rds.amazonaws.com -U sa uat"
+    databases["planwisely-mapdata-uat"]="psql -h sitewisely-uat.csw0jljqrfdu.ap-southeast-2.rds.amazonaws.com -U sa mapdata_uat"
 }
 
 get_db_list() {
