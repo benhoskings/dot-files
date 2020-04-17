@@ -35,9 +35,9 @@ shopt -s checkwinsize # check the window size after each command and, if necessa
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 if [ `uname -s` == 'Linux' ]; then
-  source_if_exists ./etc/bash_completion
+    source_if_exists ./etc/bash_completion
 else # I guess this is Mac OS/X
-  source_if_exists /opt/local/etc/bash_completion
+    source_if_exists /opt/local/etc/bash_completion
 fi
 source_directory ~/.bash_completion.d
 source_if_exists ~/.bash_prompt
@@ -47,24 +47,36 @@ for i in ~/.ec2rc ~/Projects/kahuna/etc/ec2/ec2rc; do source_if_exists $i; done
 
 # Oracle stuff
 if [ -d /opt/oracle/instantclient_10_2 ]; then
-  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
-  ORACLE_HOME=/opt/oracle/instantclient_10_2
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_10_2
+    ORACLE_HOME=/opt/oracle/instantclient_10_2
 fi
 
 # Postgres stuff (for Mac OS/X)
 HOME_BREW_POSTGRES_DIR=/opt/local/lib/postgresql84/bin/
 if [ -d $HOME_BREW_POSTGRES_DIR ]; then
-  PATH=${HOME_BREW_POSTGRES_DIR}:${PATH}
+    PATH=${HOME_BREW_POSTGRES_DIR}:${PATH}
 fi
 
-# RVM Stuff
-if [[ -d ~/.rvm ]]; then
-  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-  source_if_exists ~/.rvm/scripts/rvm
-  rvm use default # This loads RVM into a shell session.
-fi
+# Ruby Stuff -----------------------------------------------------------
+# rvm
+# if [[ -d ~/.rvm ]]; then
+#     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#     source_if_exists ~/.rvm/scripts/rvm
+#     rvm use default # This loads RVM into a shell session.
+# fi
 
-[ `which brew` ] && source_if_exists `brew --prefix`/opt/chruby/share/chruby/chruby.sh
+# chruby
+which brew && source_if_exists $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+# END: Ruby Stuff ------------------------------------------------------
+
+# NVM Stuff
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+
+
+# PyEnv Stuff
+eval "$(pyenv init -)"
 
 # Haskell binaries on the path please
 [ -d ~/Library/Haskell/bin ] && PATH=$PATH:~/Library/Haskell/bin
@@ -78,6 +90,7 @@ export PATH=$PATH:~/bin:$JAVA_HOME/bin
 export LD_LIBRARY_PATH
 export LANG=en_AU.UTF-8 # Setup the LANG so that gcc doesn't spit a^ characters instead of '
 export ORACLE_HOME
+export CIRCLE_API_TOKEN=f9c0f57d80044e8776a53f124a60bf0809cf8fe1
 
 # Allow gistit to post gists as jamiecook
 export GISTIT_TOKEN="5522c05955ac0cbf22c8c73c26b7c51fdc4783a2"
