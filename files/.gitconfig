@@ -6,6 +6,7 @@
   lo  = !git -l --all
   logg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold cyan)%h%C(reset) - %C(yellow)[%ar]%C(reset) %C(white)%s%C(reset)%C(green bold)%d%C(reset) %C(dim white)- %aN%C(reset)'
   hist = log --pretty=format:'%C(bold cyan)%h%C(reset) - %C(yellow)[%ad]%C(reset) %C(white)%s%C(green bold)%d%C(reset) %C(dim white)- %aN%C(reset)'
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 [user]
   name  = Jamie Cook
   email = jamie.cook@veitchlister.com.au
@@ -24,3 +25,26 @@
   pretty = oneline
 [hub]
 	protocol = ssh
+[diff "sqlite3"]
+  textconv = sqlite_dump.sh
+
+[diff "zip"]
+  textconv = unzip -c -a
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[difftool]
+	prompt = false
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false
