@@ -14,7 +14,7 @@ case $1 in
         ;;
 
     ruby)
-        ruby -run -ehttpd . -p8000
+        ruby -run -ehttpd . -p8001
         ;;
 
     *)
