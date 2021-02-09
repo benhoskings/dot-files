@@ -51,22 +51,12 @@ if [ -d /opt/oracle/instantclient_10_2 ]; then
     ORACLE_HOME=/opt/oracle/instantclient_10_2
 fi
 
-# Postgres stuff (for Mac OS/X)
-HOME_BREW_POSTGRES_DIR=/opt/local/lib/postgresql84/bin/
-if [ -d $HOME_BREW_POSTGRES_DIR ]; then
-    PATH=${HOME_BREW_POSTGRES_DIR}:${PATH}
-fi
-
 # Ruby Stuff -----------------------------------------------------------
-# rvm
-# if [[ -d ~/.rvm ]]; then
-#     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#     source_if_exists ~/.rvm/scripts/rvm
-#     rvm use default # This loads RVM into a shell session.
-# fi
-
-# chruby
-which brew && source_if_exists $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+which -s brew
+if [[ $? == 0 ]]; then
+    source_if_exists $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+    source_if_exists $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+fi
 # END: Ruby Stuff ------------------------------------------------------
 
 # NVM Stuff
@@ -74,13 +64,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
-
 # PyEnv Stuff
 eval "$(pyenv init -)"
+[[ -d /Users/jamie/.pyenv/shims/mypy ]] && export PATH=$PATH:/Users/jamie/.pyenv/shims
+if which pyenv-virtualenv-init > /dev/null; then
+    eval "$(pyenv virtualenv-init -)";
+fi
 
 # Python Stuff
 brew_python_bin_dir="/usr/local/opt/python/libexec/bin"
-[[ -d ${brew_python_bin_dir} ]] && export PATH="${brew_python_bin_dir}:$PATH"
+[[ -d ${brew_python_bin_dir} ]] && export PATH="$PATH:${brew_python_bin_dir}"
 
 # Haskell binaries on the path please
 [ -d ~/Library/Haskell/bin ] && PATH=$PATH:~/Library/Haskell/bin
@@ -95,6 +88,13 @@ export LD_LIBRARY_PATH
 export LANG=en_AU.UTF-8 # Setup the LANG so that gcc doesn't spit a^ characters instead of '
 export ORACLE_HOME
 export CIRCLE_API_TOKEN=f9c0f57d80044e8776a53f124a60bf0809cf8fe1
+export BAT_THEME=OneHalfLight
 
 # Allow gistit to post gists as jamiecook
 export GISTIT_TOKEN="5522c05955ac0cbf22c8c73c26b7c51fdc4783a2"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -d $HOME/.rvm/bin ]] && export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -48,3 +48,7 @@
 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
+[pull]
+	rebase = false
+[credential]
+	helper = store

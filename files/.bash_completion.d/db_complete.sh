@@ -25,6 +25,11 @@ setup_database_list() {
     databases["planwisely-mapdata-dev"]="psql -h localhost -U sa mapdata_development"
     databases["planwisely-uat"]="psql -h sitewisely-uat.csw0jljqrfdu.ap-southeast-2.rds.amazonaws.com -U sa uat"
     databases["planwisely-mapdata-uat"]="psql -h sitewisely-uat.csw0jljqrfdu.ap-southeast-2.rds.amazonaws.com -U sa mapdata_uat"
+    databases["planwisely-prod"]="psql -h sitewisely.csw0jljqrfdu.ap-southeast-2.rds.amazonaws.com -U sa production"
+    databases["planwisely-mapdata-prod"]="psql -h sitewisely.csw0jljqrfdu.ap-southeast-2.rds.amazonaws.com -U sa mapdata_production"
+    databases["qbase"]="psql -h tau-aurora-postgresql-cluster.cluster-cfbcjdgws3od.ap-southeast-2.rds.amazonaws.com -U vlc_seqef qbase"
+    databases["seqstm"]="psql -h tau-aurora-postgresql-cluster.cluster-cfbcjdgws3od.ap-southeast-2.rds.amazonaws.com -U vlc_seqef seqstm"
+    databases["luptai"]="psql -h tau-pg-instance-1.cfbcjdgws3od.ap-southeast-2.rds.amazonaws.com -U vlc_luptai luptai"
 }
 
 get_db_list() {
