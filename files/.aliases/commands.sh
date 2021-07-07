@@ -5,6 +5,7 @@ alias ev="vim ~/.vim/vimrc ~/.vim/*.vim"
 alias ed="vim ~/.dot-files/files && source ~/.bashrc"
 alias ep="vim ~/.dot-files/files/.bash_prompt && source ~/.bash_prompt"
 alias ec="vim ~/.dot-files/files/.aliases/colours.sh && source ~/.dot-files/files/.bashrc"
+alias es="vim ~/.ssh/config"
 
 alias ..="cd .."
 alias cp="cp -i"

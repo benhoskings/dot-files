@@ -9,9 +9,6 @@
 # Homebrew stuff (for Mac OS/X) - this has to be before the aliases so that we can do things like [ `which ack` ] in there
 [ -d ~/.homebrew/bin ] && PATH=~/.homebrew/bin:$PATH
 
-# added by Anaconda3 5.2.0 installer
-[[ -d /anaconda3/bin ]] && export PATH="/anaconda3/bin:$PATH"
-
 # Alias definitions.
 source ~/.aliases/commands.sh
 source_directory ~/.aliases
@@ -78,9 +75,16 @@ export NVM_DIR="$HOME/.nvm"
 # PyEnv Stuff
 eval "$(pyenv init -)"
 
+# Node Stuff
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Python Stuff
-brew_python_bin_dir="/usr/local/opt/python/libexec/bin"
-[[ -d ${brew_python_bin_dir} ]] && export PATH="${brew_python_bin_dir}:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)" || true
+eval "$(pyenv init -)" || true
 
 # Haskell binaries on the path please
 [ -d ~/Library/Haskell/bin ] && PATH=$PATH:~/Library/Haskell/bin

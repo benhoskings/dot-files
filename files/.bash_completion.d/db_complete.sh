@@ -6,6 +6,7 @@ DB_SEARCH_DIRS="$HOME/Projects $HOME/src /opt $HOME/src/vlc $HOME/Projects/vlc $
 
 setup_database_list() {
     declare -Ag databases
+    databases["orma"]="psql -U orma -h 118.68.168.241 -p 5432 orma"
     databases["move_zov"]="psql -U zov -h move.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 zov"
     databases["move"]="psql -U sa -h move.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 move"
     databases["ams-sa"]="psql -U awsroot -h jetski.cq3ctoubdswc.ap-southeast-2.rds.amazonaws.com -p 5432 postgres"
