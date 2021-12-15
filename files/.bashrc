@@ -65,8 +65,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 # PyEnv Stuff
-eval "$(pyenv init -)"
-[[ -d /Users/jamie/.pyenv/shims/mypy ]] && export PATH=$PATH:/Users/jamie/.pyenv/shims
+command -v pyenv && eval "$(pyenv init -)"
+[[ -d /Users/jamie/.pyenv/shims ]] && export PATH=$PATH:/Users/jamie/.pyenv/shims
 if which pyenv-virtualenv-init > /dev/null; then
     eval "$(pyenv virtualenv-init -)";
 fi
@@ -89,6 +89,7 @@ export LANG=en_AU.UTF-8 # Setup the LANG so that gcc doesn't spit a^ characters 
 export ORACLE_HOME
 export CIRCLE_API_TOKEN=f9c0f57d80044e8776a53f124a60bf0809cf8fe1
 export BAT_THEME=OneHalfLight
+export PACKAGE_ACCESS_TOKEN=8WyjTqkDa4uj3-rfiomm
 
 # Allow gistit to post gists as jamiecook
 export GISTIT_TOKEN="5522c05955ac0cbf22c8c73c26b7c51fdc4783a2"
@@ -98,3 +99,7 @@ export GISTIT_TOKEN="5522c05955ac0cbf22c8c73c26b7c51fdc4783a2"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true

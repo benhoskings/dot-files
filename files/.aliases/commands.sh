@@ -32,6 +32,8 @@ if [ "$TERM" != "dumb" ]; then
     alias ll='ls -l'
     alias l='ls -CF'
 
+    [[ $(type -P "bat") ]] && alias cat=bat
+
     export GREP_OPTIONS='--color=auto'
 fi
 
@@ -48,6 +50,8 @@ alias sst="svn st"
 alias ss="svn st"
 alias sd="svn diff | less"
 
+
+alias s3fzf="aws s3 ls move2.0 --recursive | tr -s ' ' | cut -d ' ' -f 4- | fzf"
 
 RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
 alias min='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'

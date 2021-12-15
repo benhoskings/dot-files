@@ -14,6 +14,19 @@
   diff = auto
   status = auto
   branch = auto
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[delta]
+  syntax-theme = Solarized Light
+  navigate = true
+  line-numbers = true
+  side-by-side = true
+
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input

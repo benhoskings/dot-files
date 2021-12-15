@@ -31,25 +31,25 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     elm
-     typescript
-     c-c++
+     ;; elm
+     ;; typescript
+     ;; c-c++
      shell-scripts
-     lua
+     ;; lua
      ansible
      (python :variables
              python-formatter 'black
              python-format-on-save t)
-     yaml
-     (javascript :variables javascript-fmt-tool 'prettier)
-     sql
-     html
-     ruby
+     ;; yaml
+     ;; (javascript :variables javascript-fmt-tool 'prettier)
+     ;; sql
+     ;; html
+     ;; ruby
 
-     windows-scripts
-     csv
-     markdown
-     org
+     ;; windows-scripts
+     ;; csv
+     ;; markdown
+     ;; org
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -60,29 +60,30 @@ values."
      better-defaults
      emacs-lisp
      git
-     github
+     ;; github
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell"
               haskell-completion-backend 'dante)
-     ;; org
+     ;; lsp
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; scala
      syntax-checking
-     version-control
+     ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(rufo)
+   ;; dotspacemacs-additional-packages '(rufo)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(intero)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -383,18 +384,15 @@ you should place your code here."
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
+   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
  '(evil-want-Y-yank-to-eol nil)
- '(helm-completion-style (quote emacs))
+ '(helm-completion-style 'emacs)
  '(package-selected-packages
-   (quote
-    (rufo vimrc-mode dactyl-mode scala-mode sbt-mode noflet flycheck-elm elm-mode reformatter lv transient toml-mode racer flycheck-rust cargo rust-mode tide typescript-mode dockerfile-mode docker tablist docker-tramp groovy-mode disaster company-c-headers cmake-mode clang-format org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot treepy graphql phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode insert-shebang fish-mode company-shell winum unfill fuzzy ghub evil-vimish-fold vimish-fold lua-mode jinja2-mode company-ansible ansible-doc ansible yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode sql-indent web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby powershell csv-mode mwim magit-gh-pulls helm-company helm-c-yasnippet github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht flycheck-pos-tip pos-tip flycheck-haskell diff-hl company-statistics company-cabal auto-yasnippet ac-ispell auto-complete mmm-mode markdown-toc markdown-mode gh-md smeargle orgit org magit-gitflow intero flycheck hlint-refactor hindent helm-hoogle helm-gitignore haskell-snippets yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-unimpaired evil-magit magit magit-popup git-commit with-editor company-ghci company-ghc ghc company haskell-mode cmm-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+   '(magit-section rufo vimrc-mode dactyl-mode scala-mode sbt-mode noflet flycheck-elm elm-mode reformatter lv transient toml-mode racer flycheck-rust cargo rust-mode tide typescript-mode dockerfile-mode docker tablist docker-tramp groovy-mode disaster company-c-headers cmake-mode clang-format org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot treepy graphql phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode insert-shebang fish-mode company-shell winum unfill fuzzy ghub evil-vimish-fold vimish-fold lua-mode jinja2-mode company-ansible ansible-doc ansible yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode sql-indent web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby powershell csv-mode mwim magit-gh-pulls helm-company helm-c-yasnippet github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht flycheck-pos-tip pos-tip flycheck-haskell diff-hl company-statistics company-cabal auto-yasnippet ac-ispell auto-complete mmm-mode markdown-toc markdown-mode gh-md smeargle orgit org magit-gitflow flycheck hlint-refactor hindent helm-hoogle helm-gitignore haskell-snippets yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-unimpaired evil-magit magit magit-popup git-commit with-editor company-ghci company haskell-mode cmm-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))
  '(pcre-mode t)
  '(safe-local-variable-values
-   (quote
-    ((intero-targets "hakuna-engine:lib" "hakuna-engine:exe:hakuna" "hakuna-engine:test:spec" "hakuna-web:lib" "hakuna-web:exe:hakuna-web" "hakuna-web:test:spec" "one-at-a-time:lib" "one-at-a-time:test:spec")
-     (intero-targets "zapi:lib" "zapi:exe:zapi-exe" "zapi:test:spec")))))
+   '((intero-targets "hakuna-engine:lib" "hakuna-engine:exe:hakuna" "hakuna-engine:test:spec" "hakuna-web:lib" "hakuna-web:exe:hakuna-web" "hakuna-web:test:spec" "one-at-a-time:lib" "one-at-a-time:test:spec")
+     (intero-targets "zapi:lib" "zapi:exe:zapi-exe" "zapi:test:spec"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
