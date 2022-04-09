@@ -51,8 +51,6 @@ alias ss="svn st"
 alias sd="svn diff | less"
 
 
-alias s3fzf="aws s3 ls move2.0 --recursive | tr -s ' ' | cut -d ' ' -f 4- | fzf"
-
 RUBY_NUMERIC_ARRAY_STR='ruby -e "load \"~/.dot-files/stats.rb\"; p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map { |e| e.to_f }'
 alias min='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.min"'
 alias max='ruby -e "p ARGF.select{|e| e =~ /^\s*[+-]?\d+[.]?\d*/ }.map{|e| e.to_f }.max"'

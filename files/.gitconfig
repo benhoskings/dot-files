@@ -65,3 +65,5 @@
 	rebase = false
 [credential]
 	helper = store
+[init]
+	defaultBranch = main

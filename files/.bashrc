@@ -103,3 +103,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
+
+# s3fzf config
+export S3FZF_BUCKET=move2.0
+export S3FZF_ROOTDIR=/Users/jamie/move2.0
