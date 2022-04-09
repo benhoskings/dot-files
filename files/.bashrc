@@ -52,7 +52,7 @@ if [ -d /opt/oracle/instantclient_10_2 ]; then
 fi
 
 # Ruby Stuff -----------------------------------------------------------
-which -s brew
+which brew
 if [[ $? == 0 ]]; then
     source_if_exists $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
     source_if_exists $(brew --prefix)/opt/chruby/share/chruby/auto.sh
@@ -65,8 +65,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 # PyEnv Stuff
+[[ -d ~/.pyenv ]] && export PATH=$PATH:~/.pyenv/bin
 command -v pyenv && eval "$(pyenv init -)"
-[[ -d /Users/jamie/.pyenv/shims ]] && export PATH=$PATH:/Users/jamie/.pyenv/shims
+[[ -d ~/.pyenv/shims ]] && export PATH=$PATH:~/.pyenv/shims
 if which pyenv-virtualenv-init > /dev/null; then
     eval "$(pyenv virtualenv-init -)";
 fi
